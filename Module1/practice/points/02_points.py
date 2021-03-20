@@ -12,3 +12,7 @@ points = [Point(2, 7), Point(12, 7), Point(5, -2), Point(10, -16), Point(-12, 0)
 # TODO: your core here...
 
 print("Координаты наиболее удаленной точки = ", ...)
+
+
+
+###
