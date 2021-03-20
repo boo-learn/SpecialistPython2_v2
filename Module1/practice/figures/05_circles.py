@@ -1,6 +1,6 @@
 class Circle:
     def __init__(self, center_coords, radius):
-        self.center_coords = (0, 0)
+        self.center_coords = center_coords
         self.radius = radius
 
     def intersect(self, other_circle):
