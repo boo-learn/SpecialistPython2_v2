@@ -1,0 +1,7 @@
+class Point:
+    def __init__(self, x, y):  # magic
+        self.x = x
+        self.y = y
+
+    def dist(self, other_point):
+        return ((self.x - other_point.x) ** 2 + (self.y - other_point.y) ** 2) ** 0.5
