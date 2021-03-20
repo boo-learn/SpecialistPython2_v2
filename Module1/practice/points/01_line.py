@@ -10,6 +10,7 @@ points = [Point(2, 4), Point(7, 5), Point(5, -2), Point(0, 6), Point(-12, 0)]
 # Задание: Найдите длину ломаной линии
 
 # TODO: your core here...
-# my code
+def dist(self, other_point):
+        return ((self.x - other_point.x) **2 + (self.y - other_point))
 
 print("Длина ломаной линии = ", ...)
