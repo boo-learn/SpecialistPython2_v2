@@ -22,4 +22,3 @@ for i in items1:
 for i in items2:
     print('{}.'.format(num), i.type, '"{}"'.format(i.model), i.cost, "rub.")
     num += 1
-Iphone = Item("phone", "Samsung A10", 24599)
