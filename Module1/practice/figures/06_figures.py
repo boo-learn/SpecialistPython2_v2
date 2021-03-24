@@ -54,7 +54,6 @@ random_coords = []
 
 for i in range(count):
     lst.append(random.choice(figures_type))
-print(lst)
 
 for i in range(len(lst)):
     if lst[i] == 'Triangle':
@@ -69,8 +68,6 @@ for i in range(len(lst)):
         random_radius = random.randint(0, 100)
         lst[i] = Circle(random_coords, random_radius)
         random_coords = []
-
-print(lst)
 
 max_area = 0
 result = ''
