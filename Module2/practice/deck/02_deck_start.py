@@ -1,26 +1,17 @@
 class Card:
+    DIAMONDS = "Diamonds"
+    SPADES = "Spades"
+    HEARTS = "Hearts"
+    CLUBS = "Clubs"
+    suits_symbols = {DIAMONDS: '\u2665',
+                     SPADES: '\u2666',
+                     HEARTS: '\u2663',
+                     CLUBS: '\u2660'}
+
+
     def __init__(self, value, type):
-        pass
+        self.value = value
+        self.type = type
 
     def to_str(self):
-        pass
-
-
-class Deck:
-    def __init__(self):
-        self.cards = []
-
-    def show(self):
-        pass
-
-    def draw(self, x):
-        pass
-
-    def shuffle(self):
-        pass
-
-
-deck = Deck()
-print(deck.show())
-deck.shuffle()
-print(deck.show())
+        return f"{self.value} {Card.suits_symbols[self.type]}"
