@@ -65,30 +65,15 @@ deck.shuffle()
 # Вытяните 10 карт сверху и посчитайте карт какой/каких мастей среди вытянутых карт оказалось больше всего?
 cards = deck.draw(10)
 
-hearts = []
-diamonds = []
-clubs = []
-spades = []
-
-print(cards)
-for i in range(len(cards)):
-    if cards[i].suit == Card.HEARTS:
-        hearts.append(cards[i])
-    elif cards[i].suit == Card.DIAMONDS:
-        diamonds.append(cards[i])
-    elif cards[i].suit == Card.CLUBS:
-        clubs.append(cards[i])
-    else:
-        spades.append(cards[i])
-max_suits = max(len(hearts), len(diamonds), len(clubs), len(spades))
-
+counters = {"Hearts": 0, "Spades": 0, "Diamonds": 0, "Clubs": 0}
+for card in cards:
+    counters[card.suit] += 1
+maximum = 0
 result = []
-if len(hearts) == max_suits:
-    result.append(Card.HEARTS)
-if len(diamonds) == max_suits:
-    result.append(Card.DIAMONDS)
-if len(clubs) == max_suits:
-    result.append(Card.CLUBS)
-if len(spades) == max_suits:
-    result.append(Card.SPADES)
+for key in counters:
+    if counters[key] > maximum:
+        maximum = counters[key]
+for key in counters:
+    if counters[key] == maximum:
+        result.append(key)
 print('в вытянутой руке больше всего карт масти: ', *result)
