@@ -1,9 +1,18 @@
 class Card:
     def __init__(self, value, type):
-        pass
+        self.value = value
+        self.type = type
 
     def to_str(self):
-        pass
+        if self.type == "Hearts":
+            tmp = "\u2665"
+        elif self.type == "Diamonds":
+            tmp = "\u2666"
+        elif self.type == "Clubs":
+            tmp = "\u2663"
+        else:
+            tmp = "\u2660"
+        return (f'{self.value}{tmp}')
 
 
 class Deck:
