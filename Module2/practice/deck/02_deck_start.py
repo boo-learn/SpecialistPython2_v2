@@ -8,10 +8,12 @@ class Card:
 
 class Deck:
     def __init__(self):
-        self.cards = []
+        self.values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+        self.suits = [Card.HEARTS, Card.DIAMONDS, Card.CLUBS, Card.SPADES]
+        self.cards = [Card(value, type_card) for type_card in self.suits for value in self.values]
 
     def show(self):
-        pass
+        return f'deck[{len(self.cards)}]: {", ".join([self.cards[i].to_str() for i in range(len(self.cards))])}'
 
     def draw(self, x):
         pass
