@@ -1,14 +1,35 @@
+#!/usr/bin
+
 class Card:
     def __init__(self, value, type):
-        pass
+        self.value = value
+        self.type = type
 
     def to_str(self):
-        pass
+        if self.type == "hearts":
+            return self.value + '\u2665'
+        elif self.type == "peaks":
+            return self.value + '\u2660'
+        elif self.type == "diamonds":
+            return self.value + '\u2663'
+        elif self.type == "clubs":
+            return self.value + '\u2663'
+
+    def equal_suit(self, card):
+        return self.type == card.type
+
+    def more(self, card):
+        return self.type == card.type and self.value > card.value
+
+    def less(self, card):
+        return self.type == card.type and self.value < card.value
 
 
 class Deck:
     def __init__(self):
         self.cards = []
+        card = Card("8", "clubs")
+        print(card.to_str())
 
     def show(self):
         pass
@@ -21,6 +42,5 @@ class Deck:
 
 
 deck = Deck()
-print(deck.show())
-deck.shuffle()
-print(deck.show())
+
+
