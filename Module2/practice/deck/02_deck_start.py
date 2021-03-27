@@ -1,9 +1,10 @@
 class Card:
     def __init__(self, value, type):
-        pass
+        self.value = value
+        self.type = type
 
     def to_str(self):
-        pass
+        return f"{self.value} {self.type}"
 
 
 class Deck:
