@@ -24,3 +24,4 @@ deck = Deck()
 print(deck.show())
 deck.shuffle()
 print(deck.show())
+CODE
