@@ -26,7 +26,7 @@ class Card:
 
     def more(self, card2):
         if self.equal_suit(card2):
-            return Card.suits.index(self.suit) > Card.suits.index(card2.suit)
+            return Card.suits.index(self.suit) < Card.suits.index(card2.suit)
         else:
             return Card.values.index(self.value) > Card.values.index(card2.value)
 
