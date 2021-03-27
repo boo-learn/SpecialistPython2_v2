@@ -1,26 +1,21 @@
-class Card:
-    def __init__(self, value, type):
-        pass
-
-    def to_str(self):
-        pass
-
-
 class Deck:
+    suits = [Card.DIAMONDS, Card.HEARTS, Card.SPADES, Card.CLUBS]
+    cards_list = ["2", "3", "4", "5", "6", "7",  "8", "9", "10", "J", "Q", "K", "A"]
+
     def __init__(self):
         self.cards = []
+        for suit in Deck.suits:
+            for card in Deck.cards_list:
+                self.cards.append(Card(Deck.suits[suit], Deck.cards_list[card]))
+
+        return self.cards
+
 
     def show(self):
-        pass
+
 
     def draw(self, x):
-        pass
+
 
     def shuffle(self):
-        pass
-
-
-deck = Deck()
-print(deck.show())
-deck.shuffle()
-print(deck.show())
+   
