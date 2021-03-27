@@ -101,8 +101,6 @@ card_zero = deck.draw(1)
 deck.shuffle()
 card_next = deck.draw(1)
 hand = [card_zero]
-print(card_zero)
-print(card_next)
 while card_next < card_zero:
     deck.shuffle()
     hand.append(card_next)
