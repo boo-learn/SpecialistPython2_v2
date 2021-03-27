@@ -1,9 +1,13 @@
 class Card:
     def __init__(self, value, type):
-        pass
+        self.value_card = value
+        self.type_card = type
 
     def to_str(self):
-        pass
+
+        lear = {"Diamonds" : '\u2666', "Hearts" : '\u2665', "Spades" : '\u2660', "Clubs" : '\u2663'}
+
+        return self.value_card, lear[self.type_card]
 
 
 class Deck:
