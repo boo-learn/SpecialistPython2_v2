@@ -97,15 +97,16 @@ class Deck:
 # пока не вытяните карту больше предыдущей карты. В качестве результата выведи все вытягиваемые карты в консоль.
 deck = Deck()
 deck.shuffle()
-card_zero = deck.draw(1)
+card_zero = deck.draw(1)[0]
 deck.shuffle()
-card_next = deck.draw(1)
+card_next = deck.draw(1)[0]
 hand = [card_zero]
+
 while card_next < card_zero:
     deck.shuffle()
     hand.append(card_next)
     card_zero = card_next
-    card_next = deck.draw(1)
+    card_next = deck.draw(1)[0]
 else:
     hand.append(card_next)
 
