@@ -1,9 +1,20 @@
 class Card:
-    def __init__(self, value, type):
-        pass
+    HEARTS = 'Hearts'
+    DIAMONDS = 'Diamonds'
+    SPADES = 'Spades'
+    CLUBS = 'Clubs'
+
+    suit_simbol = {DIAMONDS: '\u2666',
+                   HEARTS: '\u2665',
+                   SPADES: '\u2660',
+                   CLUBS: '\u2663'}
+
+    def __init__(self, value, suit):
+        self.value = value
+        self.suit = suit
 
     def to_str(self):
-        pass
+        return f'{self.value}{Card.suit_simbol[self.suit]}'
 
 
 class Deck:
