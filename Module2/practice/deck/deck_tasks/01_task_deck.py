@@ -11,8 +11,7 @@ class Card:
                    DIAMONDS: '\u2666',
                    CLUBS: '\u2663',
                    SPADES: '\u2660'}
-    values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
-    suits = [HEARTS, DIAMONDS, CLUBS, SPADES]
+
 
     def __init__(self, value, suit):
         self.value = value
@@ -26,9 +25,26 @@ class Card:
 
     def more(self, card2):
         if self.equal_suit(card2):
-            return Card.suits.index(self.suit) < Card.suits.index(card2.suit)
+            return Deck.suits.index(self.suit) > Deck.suits.index(card2.suit)
         else:
-            return Card.values.index(self.value) > Card.values.index(card2.value)
+            return Deck.values.index(self.value) > Deck.values.index(card2.value)
+
+    def suit_calc(self, list):
+        self.list = list
+        hearts = []
+        diamonds = []
+        clubes = []
+        spades = []
+        for i in self.list:
+            if self.list[i].suit == Card.HEARTS:
+                hearts.append(self.list[i])
+            elif self.list[i].suit == Card.DIAMONDS:
+                diamonds.append(self.list[i])
+            elif self.list[i].suit == Card.CLUBS:
+                clubes.append(self.list[i])
+            else:
+                spades.append(self.list[i])
+        return len(hearts), len(diamonds), len(clubes), len(spades)
 
 
 class Deck:
