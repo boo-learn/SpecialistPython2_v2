@@ -1,9 +1,11 @@
 class Card:
-    def __init__(self, value, type):
-        pass
+    def __init__(self, value, type_card):
+        self.value = value
+        self.type = type_card
+        self.convert = {'Hearts':'\u2665', 'Diamonds':'\u2666', 'Spades':'\u2660', 'Clubs':'\u2663'}
 
     def to_str(self):
-        pass
+        return f"{self.value}{self.convert[self.type]}"
 
 
 class Deck:
