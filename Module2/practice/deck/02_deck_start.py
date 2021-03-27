@@ -1,18 +1,20 @@
 class Card:
-    def __init__(self, value, type):
+    HEARTS = 'Hearts'
+    DIAMONDS = 'Diamonds'
+    SPADES = 'Spades'
+    CLUBS = 'Clubs'
+
+    suit_simbol = {DIAMONDS: '\u2666',
+                   HEARTS: '\u2665',
+                   SPADES: '\u2660',
+                   CLUBS: '\u2663'}
+
+    def __init__(self, value, suit):
         self.value = value
-        self.type = type
+        self.suit = suit
 
     def to_str(self):
-        if self.type == "Hearts":
-            tmp = "\u2665"
-        elif self.type == "Diamonds":
-            tmp = "\u2666"
-        elif self.type == "Clubs":
-            tmp = "\u2663"
-        else:
-            tmp = "\u2660"
-        return (f'{self.value}{tmp}')
+        return f'{self.value}{Card.suit_simbol[self.suit]}'
 
 
 class Deck:
