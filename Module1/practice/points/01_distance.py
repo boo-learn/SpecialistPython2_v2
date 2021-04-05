@@ -1,13 +1,14 @@
+from math import sqrt
+
+
 class Point:
     def __init__(self, x, y):
         self.x = x
         self.y = y
 
 
-def distance():
-    """
-    Расстояние между двумя точками
-    """
+def distance(p1, p2):
+    return sqrt(((p1.x - p2.x) ** 2) + ((p1.y - p2.y) ** 2))
 
 
 # Дано две точки на координатной плоскости
@@ -18,4 +19,4 @@ point2 = Point(5, -2)
 
 # TODO: your core here...
 
-print("Расстояние между точками = ", ...)
+print(distance(points1, point2))
