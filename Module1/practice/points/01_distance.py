@@ -4,18 +4,17 @@ class Point:
         self.y = y
 
 
-def distance():
+def distance(p_1, p_2):
     """
     Расстояние между двумя точками
     """
+    return ((p_2.x - p_1.x) ** 2 + (p_2.y - p_1.y) ** 2) ** (1/2)
 
 
 # Дано две точки на координатной плоскости
-points1 = Point(2, 4)
-point2 = Point(5, -2)
+point_1 = Point(0, 0)
+point_2 = Point(3, 4)
 
 # Задание: Найдите расстояние между этими точками. Реализовав и используя функцию distance()
 
-# TODO: your core here...
-
-print("Расстояние между точками = ", ...)
+print(f"Расстояние между точками = {distance(point_1, point_2)}")
