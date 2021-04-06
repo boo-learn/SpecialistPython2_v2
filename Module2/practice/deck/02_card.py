@@ -1,6 +1,6 @@
 # Начнем с создания карты
 class Card:
-    def __init__(self, value, type):
+    def __init__(self, value, suit):
         pass
 
     def to_str(self):

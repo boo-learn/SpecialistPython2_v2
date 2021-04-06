@@ -23,6 +23,7 @@ class Vector:
     def __str__(self):
         return "V(x:{} y:{})".format(self.x, self.y)
 
+
 # Создаем экземпляры класса (объекты)
 v1 = Vector((10, 15))
 v2 = Vector((12, 10))
