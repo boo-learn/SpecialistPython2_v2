@@ -1,35 +1,21 @@
-class Card:
-    pass
-    # TODO: сюда копируем реализацию класса карты из предыдущего задания
-
-
-# Задание: Теперь создадим колоду из 52-ух карт и реализуем все методы
 class Deck:
     def __init__(self):
         # Список карт в колоде. Каждым элементом списка будет объект класса Card
         self.cards = []
-
+        value=['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+        suit=['Hearts', 'Diamonds', 'Spades', 'Clubs']
+        for s in suit:
+            for v in value:
+                self.cards.append(Card (v,s))
+        
     def show(self):
-        pass
+
 
     def draw(self, x):
-        pass
-
-    def shuffle(self):
-        pass
-
-
-# Создаем колоду
-deck = Deck()
-# Выводим колоду в формате указанном в основном задании
-print(deck.show())
-# Тусуем колоду
-deck.shuffle()
-print(deck.show())
-
-# Возьмем 5 карт "в руку"
-hand = deck.draw(5)
-# Выводим колоду, чтобы убедиться что 5 верхних карт отсутствуют
-print(deck.show())
-# Выводим список карт "в руке"(список hand)
-print(...)
+#метод .draw(x) - возвращает x первых карт из колоды в виде списка, эти карты убираются из колоды. 
+#Уточнение: первую карту в списке считаем верхней картой колоды
+        draw=[]
+        for i in range (0,x):
+            draw.append(Card[i])
+            del self.cards[i]
+        return draw
