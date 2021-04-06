@@ -18,9 +18,9 @@
 
 **Вычитание векторов:**
 
-<img src="img/vector_sub.png.png" width="300">
+<img src="img/vector_sub.png" width="300">
 
-
+    
 **Умножение вектора на скаляр(число):**
 
 <img src="img/vector_mult.jpg" width="400">
