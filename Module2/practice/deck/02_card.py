@@ -1,25 +1,11 @@
-# Начнем с создания карты
 class Card:
     def __init__(self, value, suit):
-        pass
+        value=[2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A]
+        suit=[Diamonds, Hearts, Spades, Clubs]
+        self.value=random.choice(value)
+        self.suit=random.choice(suit)
 
     def to_str(self):
-        pass
-
-    def equal_suit(self, other_card):
-        pass
-
-
-# Создадим несколько карт
-card1 = Card("10", "Hearts")
-card2 = Card("A", "Diamonds")
-
-# Выведем карты на экран в виде: 10♥ и A♦
-print(card1.to_str())
-print(card2.to_str())
-
-# Проверим, одинаковые ли масти у карт
-if card1.equal_suit(card2):
-    print(f"У карт: {card1.to_str()} и {card2.to_str()} одинаковые масти")
-else:
-    print(f"У карт: {card1.to_str()} и {card2.to_str()} разные масти")
+        #.to_str() возвращает строковое представление карты в виде строки, формата:4♦
+        pic = {'Diamonds': '\u2666', 'Hearts': '\u2665','Spades':'\u2660','Clubs':'\u2663'}
+        print (Card.value,pic[Card.suit])и")
