@@ -1,13 +1,25 @@
 # Начнем с создания карты
 class Card:
     def __init__(self, value, suit):
-        pass
+        self.value_card = value
+        self.suit_card = suit
 
     def to_str(self):
-        pass
+        if self.suit_card == "Diamonds":
+            self.suit_card_icone = "♦"
+        elif self.suit_card == "Hearts":
+            self.suit_card_icone = "♥"
+        elif self.suit_card == "Spades":
+            self.suit_card_icone = "♠"
+        else:
+            self.suit_card_icone = "♣"
+        return f"{self.value_card}{self.suit_card_icone}"
 
     def equal_suit(self, other_card):
-        pass
+        if self.suit_card == other_card.suit_card:
+            return True
+        else:
+            return False
 
 
 # Создадим несколько карт
