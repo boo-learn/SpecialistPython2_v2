@@ -7,3 +7,19 @@
 # 2. метод is_palindrome(), который возвращает True или False в зависимости от того,
 # является ли строка палиндромом. Регистрами символов пренебрегать.
 # Пустую строку считать палиндромом.
+
+class SuperStr(str):
+
+    def is_repeatance(self, s):
+        temp = ''
+        for i in range(int(len(self) / len(s))):
+            temp += s
+        return self == temp
+
+    def is_palindrome(self):
+        return self.lower() == self[::-1].lower()
+
+a = SuperStr('aa')
+
+print(a.is_palindrome())
+print(a.is_repeatance('aa'))
