@@ -2,7 +2,7 @@
 # Дан массив(список) чисел.
 # Найти: сумму 10-ти самых больших элементов по модулю.
 
-def bubble_sort(nums):
+def bubble_sort(nums, key):
     count = 0
     swapped = True
     j = 0
@@ -12,13 +12,14 @@ def bubble_sort(nums):
         for i in range(len(nums) - 1 - j):
             count += 1
             # print("i = ", i)
-            if abs(nums[i]) > abs(nums[i + 1]):
+            if key(nums[i]) > key(nums[i + 1]):
                 # Меняем элементы
                 nums[i], nums[i + 1] = nums[i + 1], nums[i]
                 # Устанавливаем swapped в True для следующей итерации
                 swapped = True
         j += 1
     # print("count = ", count)
+
 
 def gen_list(size, at=-100, to=100):
     import random
@@ -35,7 +36,7 @@ def gen_list(size, at=-100, to=100):
 
 
 nums = gen_list(10)
-bubble_sort(nums)
+bubble_sort(nums, key=abs)
 
 print(nums)
 
