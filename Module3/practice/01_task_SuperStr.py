@@ -1,9 +1,26 @@
-# Разработать класс SuperStr, который наследует функциональность стандартного типа str и содержит 2 новых метода:
+class SuperStr(str):
+    """Суперстрока!"""
 
-# 1. метод is_repeatance(s), который принимает 1 аргумент s и возвращает True или False
-# в зависимости от того, может ли текущая строку быть получена целым количеством повторов строки s.
-# Вернуть False, если s не является строкой, необходимо преобразовать к строке.
+    def is_repeatance(self, s):
+        s = str(s)
+        if len(self.__str__()) != 0:
+            return self.__str__().replace(s, '') == ''
 
-# 2. метод is_palindrome(), который возвращает True или False в зависимости от того,
-# является ли строка палиндромом. Регистрами символов пренебрегать.
-# Пустую строку считать палиндромом.
+    def is_palindrome(self):
+        reversed_string = self.__str__()[::-1]
+        return self.__str__() == reversed_string
+
+
+if __name__ == '__main__':
+    super_str = SuperStr('*****')
+    print(super_str)
+    print(super_str.is_palindrome())
+    print(super_str.is_repeatance('*'))
+    super_str = SuperStr('шалаш')
+    print(super_str)
+    print(super_str.is_palindrome())
+    print(super_str.is_repeatance('*'))
+    super_str = SuperStr('hello')
+    print(super_str)
+    print(super_str.is_palindrome())
+    print(super_str.is_repeatance('*'))
