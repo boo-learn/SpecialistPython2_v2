@@ -11,3 +11,19 @@
 # 10 1 3 4 3 5 6 7 7 6 1
 # Выход
 # 5
+
+input_str = '10 1 3 4 3 5 6 7 7 6 1'
+num_list = input_str.split()
+res_list = num_list[1:]
+
+count = 0
+j = 0
+while j < 3:
+    maximum = max(res_list)
+    for res in res_list.copy():
+        if res == maximum:
+            count += 1
+            res_list.pop(res_list.index(res))
+    j += 1
+
+print(count)
