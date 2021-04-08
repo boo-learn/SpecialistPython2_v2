@@ -13,3 +13,14 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+a = list(map(int, input().split()))
+a.sort()
+b = [a[i] for i in range(len(a) // 2)]
+a = a[len(a) // 2:]
+c = 0
+answ = 0
+for i in a:
+    b.insert(c, i)
+    c += 2
+    answ += i
+print(answ)
