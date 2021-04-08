@@ -3,3 +3,16 @@
 # Телефон задан в виде строки формата nn-nn-nn. Например, 23-45-67
 
 phones = ["25-17-58", "11-34-85", "54-61-56", "34-61-72", "25-17-55", "34-56-56"]
+arr = [int(i.replace('-', '')) for i in phones]
+N = len(arr)
+i = 0
+while i < N - 1:
+    m = i
+    j = i + 1
+    while j < N:
+        if arr[j] < arr[m]:
+            m = j
+        j += 1
+    arr[i], arr[m] = arr[m], arr[i]
+    i += 1
+print(arr)
