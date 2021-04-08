@@ -58,11 +58,17 @@ class LinkedList:
             self.first = new_node
 
     def insert(self, value, index):
-        """
-        Вставляет узел со значением value на позицию index
-        """
-        # TODO: реализовать вставку
-        raise TypeError("Not implemented")
+        try:
+            if index == 0:
+                self.push(value)
+            else:
+                prev_node = self.first
+                for _ in range(index - 1):
+                    prev_node = prev_node.next
+                new_node = Node(value, prev_node.next)
+                prev_node.next = new_node
+        except:
+            raise TypeError("Not implemented")
 
     def find(self, value):
         """
