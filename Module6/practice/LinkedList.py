@@ -81,6 +81,16 @@ class LinkedList:
                 current = current.next
                 length += 1
         return length + 1  # +1 для учета self.first
+    
+    def reverse(self):
+        prev = None
+        current = self.first
+        while (current is not None):
+            nxt = current.next
+            current.next = prev
+            prev = current
+            current = nxt
+        self.first = prev
 
 
 if __name__ == "__main__":
