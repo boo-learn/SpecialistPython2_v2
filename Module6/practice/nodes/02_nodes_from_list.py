@@ -28,10 +28,8 @@ def gen_names_list(size=None):
 names = gen_names_list()
 print(names)
 
-# TODO: создайте цепочку нод из имен списка
-...
+curr = None
+for name in names[::-1]:
+    curr = Node(name,curr)
 
-
-# TODO: Передайте первую ноду в функцию print_nodes_value(), чтобы получить значения всех нод в цепочке
-first_node = ...
-print_nodes_value(first_node)
+print_nodes_value(curr)
