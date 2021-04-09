@@ -1,7 +1,5 @@
 class Node:
-    """
-    Класс для узла списка. Хранит значение и указатель на следующий узел.
-    """
+    """Класс для узла списка. Хранит значение и указатель на следующий узел."""
 
     def __init__(self, value=None, next=None):
         self.value = value
@@ -24,14 +22,18 @@ def gen_names_list(size=None):
     return names[:size]
 
 
-# Дан список из произвольного количества имен
-names = gen_names_list()
-print(names)
+if __name__ == '__main__':
+    # Дан список из произвольного количества имен
+    names = gen_names_list()
+    print(names)
 
-# TODO: создайте цепочку нод из имен списка
-...
+    # TODO: создайте цепочку нод из имен списка
+    prev = None
+    for name in names:
+        node = Node(value=name, next=prev)
+        prev = node
 
 
-# TODO: Передайте первую ноду в функцию print_nodes_value(), чтобы получить значения всех нод в цепочке
-first_node = ...
-print_nodes_value(first_node)
+    # TODO: Передайте первую ноду в функцию print_nodes_value(), чтобы получить значения всех нод в цепочке
+    first_node = node
+    print_nodes_value(first_node)
