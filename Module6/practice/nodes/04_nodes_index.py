@@ -1,3 +1,4 @@
+import random
 class Node:
     """
     Класс для узла списка. Хранит значение и указатель на следующий узел.
@@ -14,8 +15,13 @@ def print_node_by_index(start_node, index):
     Если index = 0, выводим значение ноды start_node
     Считаем, что index гарантированно > 0
     """
-    pass
-
+    print(index)
+    cur_node = start_node
+    i = 0
+    while i < index:
+        cur_node = cur_node.next
+        i += 1
+    print(cur_node.value)
 
 def gen_names_list(size=None):
     import random
@@ -28,14 +34,17 @@ def gen_names_list(size=None):
 
 # Дан список из произвольного количества имен
 names = gen_names_list()
-# print(names)
+print(names)
 
 # TODO: скопируйте цепочку нод из предыдущей задачи
-...
+prev_node = Node(names[-1])
+for name in names[::-1][1:]:
+    next_node = Node(name, prev_node)
+    prev_node = next_node
 
 
 # TODO: Передайте первую ноду и индекс ноды, значение которой нужно вывести, в функцию print_node_by_index()
 #  напишите реализацию функции print_node_by_index()
-first_node = ...
-index = ...
+first_node = prev_node
+index = random.randint(0, len(names)-1)
 print_node_by_index(first_node, index)
