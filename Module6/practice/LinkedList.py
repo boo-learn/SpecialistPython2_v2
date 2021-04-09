@@ -35,14 +35,12 @@ class LinkedList:
         """
         Добавляем новое значение value в конец списка
         """
-        # Создаем новый узел
-        new_node = Node(value, None)
-        if self.first is None:
-            # self.first и self.last будут указывать на один и тотже узел
-            self.last = self.first = new_node
+        new_node = Node(value, None)  # Создаем новый узел
+        if self.first is None:  # Если список был пуст
+            # self.first и self.last будут указывать на один и тотже узел, т.к. он единственный
+            self.last = new_node
+            self.first = new_node
         else:
-            # здесь, уже на разные
-            new_node = Node(value, None)
             self.last.next = new_node
             self.last = new_node
 
@@ -50,7 +48,7 @@ class LinkedList:
         """
         Добавляет элемент со значением value в начало списка
         """
-        if self.first is None:
+        if self.first is None:  # Если список был пуст
             # self.first и self.last будут указывать на один и тотже узел
             self.last = self.first = Node(value, None)
         else:
