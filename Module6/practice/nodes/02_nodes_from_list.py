@@ -1,5 +1,7 @@
 class Node:
     """
+    class Node:
+    """
     Класс для узла списка. Хранит значение и указатель на следующий узел.
     """
 
@@ -29,9 +31,16 @@ names = gen_names_list()
 print(names)
 
 # TODO: создайте цепочку нод из имен списка
-...
+nodes = []
+for name in names:
+    node = Node(name)
+    nodes.append(node)
 
+cur = nodes[0]
+for nod in nodes[1:]:
+    cur.next = nod
+    cur = nod
 
 # TODO: Передайте первую ноду в функцию print_nodes_value(), чтобы получить значения всех нод в цепочке
-first_node = ...
+first_node = nodes[0]
 print_nodes_value(first_node)
