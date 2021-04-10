@@ -10,7 +10,16 @@
 
 
 class SuperStr(str):
-    pass
+
+    def is_palindrome(self):
+        return self.lower() == self[::-1].lower()
+
+    def only_numbers(self):
+        string = ""
+        for char in self:
+            if char in [str(i) for i in range(10)]:
+                string += char
+        return string
 
 
 s = SuperStr("text")
@@ -18,3 +27,6 @@ if s.is_palindrome():
     print(f"{s} палиндром")
 else:
     print(f"{s} НЕ палиндром")
+
+s1 = SuperStr("10 долларов - это примерно 775 рублей")
+print(s1.only_numbers())
