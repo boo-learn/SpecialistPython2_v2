@@ -1,8 +1,21 @@
-# Разработать класс IterInt, который наследует функциональность стандартного типа int, но добавляет
-# возможность итерировать по цифрам числа
+class MyIter():
+    def __init__(self, number):
+        self.number = number
+        self.index = 0
+
+    def __next__(self):
+        try:
+            digit = int(str(self.number)[self.index])
+        except IndexError:
+            raise StopIteration
+        self.index += 1
+        return digit
+
 
 class IterInt(int):
-    pass
+    def __iter__(self):
+        return MyIter(self)
+
 
 
 n = IterInt(12346)
