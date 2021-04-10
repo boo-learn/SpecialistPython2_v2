@@ -51,4 +51,20 @@ class AccountBase(ABC):
         """
         return f"..."
 
+   class Account(AccountBase):
+    def deposite(self, amount):
+        self.balance += amount
+
+    def transfer(self, target_account, amount):
+        target_account.balance -= amount
+        self.balance += amount
+
+    def withdraw(self, amount):
+        self.balance -= amount
+
+    def full_info(self):
+        return f"{self.name} баланс: {self.balance} руб. паспорт: {self.passport8} т. {self.phone_number}"
+
+    def __repr__(self):
+        return f"{self.name} баланс: {self.balance} руб."
 
