@@ -2,7 +2,17 @@
 # возможность итерировать по цифрам числа
 
 class IterInt(int):
-    pass
+    def __iter__(self):
+        self.index = 0
+        return self
+
+    def __next__(self):
+        try:
+            digit = int(str(self)[self.index])
+        except IndexError:
+            raise StopIteration
+        self.index += 1
+        return digit
 
 
 n = IterInt(12346)
