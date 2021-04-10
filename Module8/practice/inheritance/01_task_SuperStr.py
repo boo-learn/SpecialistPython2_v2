@@ -8,13 +8,26 @@
 # Пример: s = SuperStr("10 долларов - это примерно 775 рублей")
 # s.only_numbers()  --> "10775"
 
-
 class SuperStr(str):
-    pass
+    def is_palindrome(self):
+        rev = ''.join(reversed(self)) 
+        if (self == rev): 
+            return True
+        return False
+    
+    def only_numbers(self):
+        num_str = ''
+        for char in self:  
+            if char.isnumeric():
+                num_str += char
+        return num_str
 
 
-s = SuperStr("text")
+s = SuperStr("textrtxet")
 if s.is_palindrome():
     print(f"{s} палиндром")
 else:
     print(f"{s} НЕ палиндром")
+    
+s2 = SuperStr("10 долларов - это примерно 775 рублей")
+print(s2.only_numbers())
