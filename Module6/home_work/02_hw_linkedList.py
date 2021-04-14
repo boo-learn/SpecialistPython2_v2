@@ -12,6 +12,7 @@ class LinkedList:
     """
     Класс для связанного однонаправленного списка.
     """
+
     def __init__(self, *args):
         self.first = None
         self.last = None
@@ -184,12 +185,25 @@ class LinkedList:
         Разворачивает связанный список (Значение первой ноды становится значением последней,
         значение второй ноды - значением предпоследней, и т.д.)
         """
-        temp = LinkedList()
-        for i in range(len(self)):
-            temp.add(self[-i - 1])
-        self.clear()
-        for i in range(len(temp)):
-            self.add(temp[i])
+        # temp = LinkedList()
+        # for i in range(len(self)):
+        #     temp.add(self[-i - 1])
+        # self.clear()
+        # for i in range(len(temp)):
+        #     self.add(temp[i])
+        if self.last is None:
+            return
+        else:
+            current_node = self.first
+            next_node = current_node.next
+            while next_node is not None:
+                prev_node = current_node
+                current_node = next_node
+                next_node = current_node.next
+                current_node.next = prev_node
+            self.first.next = None
+            self.first = self.last
+            self.last = self.first
 
 
 if __name__ == "__main__":
@@ -205,7 +219,7 @@ if __name__ == "__main__":
     print("list = ", L)
     print(f'{len(L)=}')
 
-    print('*'*40)
+    print('*' * 40)
     # Проверка поиска индекса по значению (.find)
     try:
         searched_number_index = L.find(-5)
@@ -213,7 +227,7 @@ if __name__ == "__main__":
     except ValueError as e:
         print(e)
 
-    print('*'*40)
+    print('*' * 40)
     # Проверка интерфейса итерации (iter, next)
     for el in L:
         print(el)
@@ -227,7 +241,7 @@ if __name__ == "__main__":
     # next(iterator_L)
     # next(iterator_L)
 
-    print('*'*40)
+    print('*' * 40)
     # Проверка обращения и изменения значения по индексу (в т.ч. обработка отрицательных значений индекса)
     # (getitem, setitem)
     try:
@@ -239,12 +253,12 @@ if __name__ == "__main__":
     print(L)
     print(f'{L[-2]=}')
 
-    print('*'*40)
+    print('*' * 40)
     # Проверка создания нового списка с указанием начальных элементов:
     L = LinkedList(2, 4, 6, -12)
     print(L)
 
-    print('*'*40)
+    print('*' * 40)
     # Проверка очистки списка (clear) и удаления элементов по индексу (del), по значению (.remove) :
     print(L)
     del L[3]
@@ -259,7 +273,7 @@ if __name__ == "__main__":
     print(L)
     print(len(L))
 
-    print('*'*40)
+    print('*' * 40)
     # Проверка обращения (разворота) списка (.reverse)
     L = LinkedList(2, 4, 6, -12)
     print(L)
