@@ -1,4 +1,4 @@
-
+EMPLOYEE_PASSWORD = "123"
 
 def close_account():
     """
@@ -51,12 +51,8 @@ def transfer():
 def create_new_account():
     print("Укажите данные клиента")
     name = input("Имя:")
-    second_name = input("Отчество:")
-    surname = input("Фамилия:")
     passport = input("Номер паспорта: ")
     phone_number = input("Номер телефона: ")
-    # Если лень каждый раз вводить - воспользуйтесь функцией генератором
-    # name, surname, second_name, passport, phone_number = gen_user_data()
     # TODO: тут создаем новый аккаунт пользователя account = ...
     #   и добавляем его в accounts.append(account)
 

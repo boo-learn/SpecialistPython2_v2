@@ -1,8 +1,6 @@
 # from generators import get_user_data
 from abc import ABC, abstractmethod
 
-EMPLOYEE_PASSWORD = "123"
-
 
 class AccountBase(ABC):
     def __init__(self, name, passport8, phone_number, start_balance=0):
