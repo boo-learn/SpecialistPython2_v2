@@ -1,5 +1,5 @@
 import unittest
-from ..results.IBank_part2 import Account
+from ... import Account
 
 
 # FIXME: Допишите тест/тесты, который выявит недоработки в классе Account ,
