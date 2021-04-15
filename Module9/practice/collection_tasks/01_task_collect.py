@@ -7,3 +7,12 @@
 # Входные данные:
 # Произвольный текст
 # TODO: your code here...
+
+import collections
+
+counter = collections.Counter()
+
+text = input('Введите текст: ')
+for char in text:
+    counter[char] += 1
+print(counter.most_common(1))
