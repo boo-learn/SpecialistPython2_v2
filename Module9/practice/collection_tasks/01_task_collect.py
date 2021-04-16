@@ -6,4 +6,8 @@
 
 # Входные данные:
 # Произвольный текст
-# TODO: your code here...
+import collections
+text = '12f3sa486f4ds3f13asf15as16a2123v1fda31fsdfds'
+counter = collections.Counter(text)
+print(f"Наиболее встречающийся символ: ", counter.most_common(1))
+
