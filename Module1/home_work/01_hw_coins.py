@@ -1,17 +1,17 @@
 import random
 
+heads = 0
+tails = 0
+count = 0
+while count != 100:
+    coin = random.randint(1, 2)
+    count += 1
+    if coin == 1:
+        heads += 1
 
-class Coin:
-    def __init__(self):
-        # heads-орел/tails-решка
-        self.side = None
-
-    def flip(self):
-        """
-        Подбрасывание монетки
-        """
-        self.side = ...  # random: heads/tails
+    elif coin == 2:
+        tails += 1
 
 
-# Задание: создайте список из n-монеток. Подбросьте(flip) все монетки.
-# выведите соотношение выпавших орлов и решек в процентах
+print(f'Орел {heads}%')
+print(f'Решка {tails}%')
