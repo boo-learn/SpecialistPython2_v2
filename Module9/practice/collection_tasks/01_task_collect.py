@@ -7,3 +7,11 @@
 # Входные данные:
 # Произвольный текст
 # TODO: your code here...
+import collections
+
+text = 'Буря мглою небо кроет, вихри снежные крутя'
+counter = collections.Counter()
+for el in text:
+    counter[el] += 1
+
+print("counter=", counter)
