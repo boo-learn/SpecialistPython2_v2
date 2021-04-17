@@ -1,6 +1,21 @@
 # Разработать класс TotalDict со следующими возможностями:
 class TotalDict(dict):
-    pass
+    def __repr__(self):
+        return 'TD: ' + super().__repr__()
+    
+    def __add__(self, other):
+        new_dict = self.copy()
+        for el in other:
+            if el in self:
+                new_dict[el] += other[el]
+            else:
+                new_dict[el] = other[el]
+        return TotalDict(new_dict)
+    
+    def most_expensive(self, num=None):
+        lst = list(self.items())
+        lst.sort(key=(lambda x: -x[1]))
+        return TotalDict(lst[:num])
 
 
 # 1. Объект выводит себя в консоли как обычный словарь, НО с символами TD: в начал
