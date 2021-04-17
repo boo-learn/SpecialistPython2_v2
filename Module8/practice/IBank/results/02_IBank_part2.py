@@ -66,17 +66,19 @@ class Account(AccountBase):
 
     def deposite(self, amount):
         self.balance += amount
-        self.hist(timestamp=datetime.now().timestamp(), transaction_type='пополнение счета', user_from=self,
+        self.new_history(timestamp=datetime.now().timestamp(), transaction_type='пополнение счета', user_from=self.name,
                   value=amount)
 
     def transfer(self, target_account, amount):
         self.withdraw(amount)
         target_account.deposite(amount)
+        self.new_history(timestamp=datetime.now().timestamp(), transaction_type='перевод средств', user_from=self.name,
+                  user_to=target_account.name, value=amount)
 
     def withdraw(self, amount):
         if self.balance >= amount:
             self.balance -= amount
-            self.hist(timestamp=datetime.now().timestamp(), transaction_type='снятие наличных', user_from=self,
+            self.new_history(timestamp=datetime.now().timestamp(), transaction_type='снятие наличных', user_from=self.name,
                       value=amount)
         else:
             raise ValueError('нехватка средств на балансе')
@@ -100,7 +102,7 @@ class Account(AccountBase):
         if len(value) != 8:
             raise Exception("В номере паспорта должно быть 8 знаков!")
 
-    def hist(self, timestamp: datetime.timestamp, transaction_type, value, user_from=None, user_to=None):
+    def new_history(self, timestamp: datetime.timestamp, transaction_type, value, user_from=None, user_to=' '):
         self.history.append([transaction_type, value, timestamp, user_from, user_to])
 
 
