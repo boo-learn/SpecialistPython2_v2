@@ -54,6 +54,28 @@ class AccountBase(ABC):  # абстрактный класс - от него н�
         return f"..."
 
 
+class Transaction:
+    def __init__(self, type, value, user_from=None, user_to=None):
+        self.date = datetime.now()
+        self.type = type
+        self.value = value
+        self.user_from = user_from
+        self.user_to = user_to
+
+    def __repr__(self):
+        # if self.type == 'перевод средств':
+        #     return f'{self.date}: {self.type} на сумму {round(self.value, 2)} от {self.user_from} ' \
+        #            f'на счет пользователя {self.user_to}'
+        # else:
+        #     return f'{self.date}: {self.type} на сумму {round(self.value, 2)}'
+        s = f'{self.date}: {self.type} на сумму {round(self.value, 2)}'
+        if self.user_from:
+            s += f' от {self.user_from}'
+        if self.user_to:
+            s += f' клиенту {self.user_to}'
+        return s
+
+
 class Account(AccountBase):
     def __init__(self, name, passport8, phone_number, start_balance=0):
         try:
@@ -66,20 +88,18 @@ class Account(AccountBase):
 
     def deposite(self, amount):
         self.balance += amount
-        self.new_history(timestamp=datetime.now().timestamp(), transaction_type='пополнение счета', user_from=self.name,
-                  value=amount)
+        self.history.append(Transaction(type='Пополнение счета', value=amount))
 
     def transfer(self, target_account, amount):
         self.withdraw(amount)
         target_account.deposite(amount)
-        self.new_history(timestamp=datetime.now().timestamp(), transaction_type='перевод средств', user_from=self.name,
-                  user_to=target_account.name, value=amount)
+        self.history.append(Transaction(type='Перевод', value=amount, user_from=self.name,
+                                        user_to=target_account.name))
 
     def withdraw(self, amount):
         if self.balance >= amount:
             self.balance -= amount
-            self.new_history(timestamp=datetime.now().timestamp(), transaction_type='снятие наличных', user_from=self.name,
-                      value=amount)
+            self.history.append(Transaction(type='Снятие', value=amount))
         else:
             raise ValueError('нехватка средств на балансе')
 
@@ -102,9 +122,10 @@ class Account(AccountBase):
         if len(value) != 8:
             raise Exception("В номере паспорта должно быть 8 знаков!")
 
-    def new_history(self, timestamp: datetime.timestamp, transaction_type, value, user_from=None, user_to=' '):
-        self.history.append([transaction_type, value, timestamp, user_from, user_to])
-
+    # def new_history(self, timestamp: datetime.timestamp, transaction_type, value, user_from=None, user_to=' '):
+    #     self.history.append([transaction_type, value, timestamp, user_from, user_to])
+    def get_history(self):
+        return '\n'.join(map(str, self.history))
 
 acc1 = Account('Иванов И.В.', '12345678', '9998887766')
 acc2 = Account('Петров В.И.', '87654321', '9998887765', 200)
@@ -126,4 +147,6 @@ acc4 = Account('Иванов И.И.', '1234', '9998887766')
 print("*" * 40)
 
 for i in range(len(acc1.history)):
-    print(*acc1.history[i])
+    print(acc1.history[i])
+print("*" * 40)
+print(acc1.get_history())
