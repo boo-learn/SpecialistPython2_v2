@@ -1,7 +1,28 @@
 # Разработать класс TotalDict со следующими возможностями:
 class TotalDict(dict):
-    pass
+    def __repr__(self):
+        res = super().__repr__()
+        return "TD:" + res
 
+    def __add__(self, other_td):
+        new_dict = self
+        for el in other_td:
+            if el in self:
+                new_dict[el] += other_td[el]
+            else:
+                new_dict[el] = other_td[el]
+        return new_dict
+
+    def most_expensive(self, number=None):
+        my_list = []
+        i = 0
+        for key, value in self.items():
+            my_list.append((key, value))
+            i += 1
+            if i == number:
+                break
+        my_list.sort(key=lambda x: x[1], reverse=True)
+        return my_list
 
 # 1. Объект выводит себя в консоли как обычный словарь, НО с символами TD: в начал
 items1 = TotalDict(milk=250, bread=120, meat=450.6)
