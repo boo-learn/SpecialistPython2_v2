@@ -1,8 +1,8 @@
 # Возьмите классы Deck и Card с GIST'а второго занятия и доработайте их
 from classes import Deck
+import sys
 
 player_money = 100  # Деньги игрока
-rate_value = 10  # Размер ставки
 
 deck = Deck()
 
@@ -31,7 +31,9 @@ def sum_points(cards):
     return sum_points
 
 
-while True:
+while player_money > 0:
+    rate_value = 10  # Размер ставки
+    game = True
     # 0. Игрок делает ставку
     player_money -= rate_value
     # 1. В начале игры перемешиваем колоду
@@ -41,6 +43,7 @@ while True:
     # 3. Дилер берет одну карту
     dealer_cards = deck.draw(1)
     # 4. Отображаем в консоли карты игрока и дилера
+    print(f'{player_money=}')
     print(player_cards)
     print(dealer_cards)
     # 5. Проверяем нет ли у игрока блэкджека (21 очко)
@@ -48,6 +51,8 @@ while True:
         # Выплачиваем выигрыш 3 и 2
         player_money += rate_value * 1.5
         print("Black Jack!!! Игрок победил")
+        game = False
+        break
         # Заканчиваем игру
     # Если нет блэкджека, то
     while True:  # Игрок добирает карты пока не скажет "достаточно" или не сделает перебор (>21)
@@ -58,8 +63,9 @@ while True:
             print(player_cards, dealer_cards, sum_points(player_cards), sum_points(dealer_cards), sep='\n')
             # Если перебор (>21), заканчиваем добор
             if sum_points(player_cards) > 21:
-                print(f"Перебор: {sum_points(player_cards)} очков")
+                print(f"Перебор у игрока: {sum_points(player_cards)} очков")
                 rate_value = 0
+                game = False
                 break
         if player_choice == "0":
             # Заканчиваем добирать карты
@@ -72,21 +78,24 @@ while True:
             while sum_points(dealer_cards) < 17:
                 dealer_cards.append(*deck.draw(1))
                 print(player_cards, dealer_cards, sum_points(player_cards), sum_points(dealer_cards), sep='\n')
-                break
+                if sum_points(dealer_cards) > 21:
+                    print(f"Перебор у диллера: {sum_points(dealer_cards)} очков")
+                    player_money += rate_value * 2
+                    break
             else:
                 break
             ...  # Смотри подробные правила добора дилера в задании
 
     # Выясняем кто набрал больше очков. Выплачиваем/забираем ставку
-    if rate_value > 0 and sum_points(player_cards) > sum_points(dealer_cards):
-        player_money += rate_value * 2
-        print('Игрок победил')
-    elif rate_value > 0 and sum_points(player_cards) == sum_points(dealer_cards):
-        player_money += rate_value
-        print('Ничья')
-    else:
-        rate_value = 0
-        print('Игрок проиграл')
-    print(f'{player_money=}')
+    if game:
+        if rate_value > 0 and sum_points(player_cards) > sum_points(dealer_cards):
+            player_money += rate_value * 2
+            print('Игрок победил')
+        elif rate_value > 0 and sum_points(player_cards) == sum_points(dealer_cards):
+            player_money += rate_value
+            print('Ничья')
+        else:
+            rate_value = 0
+            print('Игрок проиграл')
     print('Новый раунд')
     print('*' * 40)
