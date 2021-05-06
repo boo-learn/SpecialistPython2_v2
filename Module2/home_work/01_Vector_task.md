@@ -27,20 +27,8 @@
 
 **boild**
 
- - [x] check1
- - [ ] check2
-
-```python
-print("Hello world")
-```
-
-|col1  | col2 |
-|------|-------|
-| text | text |
-| next |    bla|
-
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNTEwMjU1OTYsLTEwMzQyNjI0NDNdfQ
-==
+eyJoaXN0b3J5IjpbLTkyMzg3NDYyOSwtMTE1MTAyNTU5NiwtMT
+AzNDI2MjQ0M119
 -->
