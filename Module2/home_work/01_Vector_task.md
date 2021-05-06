@@ -29,10 +29,8 @@
 
  - [x] check1
  - [ ] check2
-|col1|  |
-|--|--|
-|  |  |
 
+```pytho
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyMjYzNzQzN119
+eyJoaXN0b3J5IjpbMTkxMjY1MjkxMF19
 -->
