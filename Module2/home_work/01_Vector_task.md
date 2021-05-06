@@ -25,10 +25,7 @@
 
 <img src="img/vector_mult.jpg" width="400">
 
-**boild**
-
-
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkyMzg3NDYyOSwtMTE1MTAyNTU5NiwtMT
+eyJoaXN0b3J5IjpbLTIxNDgzMDA5MywtMTE1MTAyNTU5NiwtMT
 AzNDI2MjQ0M119
 -->
