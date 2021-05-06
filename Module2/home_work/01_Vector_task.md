@@ -24,6 +24,8 @@
 **Умножение вектора на скаляр(число):**
 
 <img src="img/vector_mult.jpg" width="400">
+
+boild
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU1NzQzNTE0MV19
+eyJoaXN0b3J5IjpbLTUxNjczMDY1N119
 -->
