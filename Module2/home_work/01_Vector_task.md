@@ -14,7 +14,6 @@
 **Сложение векторов:**
 
 <img src="img/vector_add.png" width="300">
-![enter image description here](https://github.com/boo-learn/SpecialistPython2_v2/blob/master/Module2/home_work/img/vector_add.png?raw=true)
 
 
 **Вычитание векторов:**
@@ -26,5 +25,5 @@
 
 <img src="img/vector_mult.jpg" width="400">
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0OTE1MzM1MjVdfQ==
+eyJoaXN0b3J5IjpbMTU1NzQzNTE0MV19
 -->
