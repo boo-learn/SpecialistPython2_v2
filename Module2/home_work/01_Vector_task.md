@@ -30,7 +30,9 @@
  - [x] check1
  - [ ] check2
 
-```pytho
+```python
+print("Hello world")
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTkxMjY1MjkxMF19
+eyJoaXN0b3J5IjpbMTI2NDA5MTUyMF19
 -->
