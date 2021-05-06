@@ -25,7 +25,11 @@
 
 <img src="img/vector_mult.jpg" width="400">
 
-boild
+**boild**
+
+ - [x] check1
+ - [ ] check2
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUxNjczMDY1N119
+eyJoaXN0b3J5IjpbMjA3MTU1Nzg3NF19
 -->
