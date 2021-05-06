@@ -34,14 +34,12 @@
 print("Hello world")
 ```
 
-Blockquote
-```
-|  |  |
-|--|--|
-|  |  |
+|col1  | col2 |
+|------|-------|
+| text | text |
+| next|    bla|
 
-```
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgyNjc5NTYzNywtMTAzNDI2MjQ0M119
+eyJoaXN0b3J5IjpbLTkzOTQzNTM4NiwtMTAzNDI2MjQ0M119
 -->
