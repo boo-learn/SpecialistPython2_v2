@@ -29,7 +29,10 @@
 
  - [x] check1
  - [ ] check2
+|col1|  |
+|--|--|
+|  |  |
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA3MTU1Nzg3NF19
+eyJoaXN0b3J5IjpbLTEyMjYzNzQzN119
 -->
