@@ -1,8 +1,4 @@
 class Node:
-    """
-    Класс для узла списка. Хранит значение и указатель на следующий узел.
-    """
-
     def __init__(self, value=None, next=None):
         self.value = value
         self.next = next
@@ -17,10 +13,11 @@ class LinkedList:
         # FIXME: убрать вывод запятой после последнего элемента
         if self.first is not None:
             current = self.first
-            out = 'LinkedList [' + str(current.value) + ','
+            out = 'LinkedList [' + str(current.value)
             while current.next is not None:
                 current = current.next
-                out += str(current.value) + ','
+                out += ',' + str(current.value) 
+
             return out + ']'
         return 'LinkedList []'
 
