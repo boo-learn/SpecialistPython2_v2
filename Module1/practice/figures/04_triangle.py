@@ -22,7 +22,7 @@ class Triangle:
 
 
 # Треугольник задан координатами трех точек
-triangle1 = Triangle(Point(2, 4), Point(6, 8), Point(-2, 0))
+triangle1 = Triangle(Point(2, 4), Point(12, 8), Point(-2, 0))
 # Задание: найдите площадь и пеиметр треугольника, реализовав методы
 
 # TODO: your core here...
