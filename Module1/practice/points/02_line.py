@@ -3,12 +3,19 @@ class Point:
         self.x = x
         self.y = y
 
+def distance(p1, p2):
+    return ((p1.x-p2.x)**2+(p1.y-p2.y)**2)**0.5
+
 
 # Ломаная линия задана произвольным количеством последовательных точек
 points = [Point(2, 4), Point(7, 5), Point(5, -2), Point(0, 6), Point(-12, 0)]
 
 # Задание: Найдите длину ломаной линии
+i=1
+lenght=0
 
-# TODO: your core here...
+while i<len(points):
+    lenght=distance(points[i-1], points[i])+lenght
+    i+=1
 
-print("Длина ломаной линии = ", ...)
+print("Длина ломаной линии = ", lenght)
