@@ -1,11 +1,21 @@
 class Point:
-    def __init__(self, x, y):
+    def __init__(self, x, y, color):
         self.x = x
         self.y = y
-        self.color = ...
+        self.color = color
 
     def dist_to(self, other_point):
-        ...
+        return ((self.x - other_point.x) ** 2 + (self.y - other_point.y) ** 2) ** 0.5
+
+
+def area(tr_points):
+    a = tr_points[0].dist_to(tr_points[1])
+    b = tr_points[0].dist_to(tr_points[2])
+    c = tr_points[1].dist_to(tr_points[2])
+
+    hp = (a + b + c) / 2
+
+    return (hp * (hp - a) * (hp - b) * (hp - c)) ** 0.5
 
 
 # Дан список точек нарисованных красным(red) и зеленым(green) цветами
@@ -24,7 +34,10 @@ points = [
 # Задание-2: реализуйте метод dist_to()
 # Задание-3: вычислите площади треугольников образованных точками разных цветов
 
-# TODO: your core here...
+d = {}
 
-print("Площадь красного треугольника = ", ...)
-print("Площадь зеленого треугольника = ", ...)
+for point in points:
+    d.setdefault(point.color, []).append(point)
+
+for key in d.keys():
+    print(f"Area of {key} triangle: {area(d.get(key))}")
