@@ -1,13 +1,18 @@
 class Circle:
     def __init__(self, center_coords, radius):
-        ...
+        self.center_coords = center_coords
+        self.radius = radius
 
     def intersect(self, other_circle):
         """
         Проверяет пересекается ли текущая окружность с other_circle
         :return: True/False
         """
-        ...
+        d = ((self.center_coords[0] - other_circle.center_coords[0]) ** 2 + (self.center_coords[1] - other_circle.center_coords[1]) ** 2) ** 0.5
+        if d > abs(self.radius - other_circle.radius):
+            return False
+        else:
+            return True
 
 
 # Окружности заданы координатами центров и радиусами
