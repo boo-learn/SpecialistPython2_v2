@@ -12,3 +12,20 @@ points = [Point(2, 4), Point(7, 5), Point(5, -2), Point(0, 6), Point(-12, 0)]
 # TODO: your core here...
 
 print("Длина ломаной линии = ", ...)
+
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+def distance(p1, p2):
+    """
+    Расстояние между двумя точками
+    """
+    return ((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2) ** 0.5
+
+
+points = [Point(2, 4), Point(7, 5), Point(5, -2), Point(0, 6), Point(-12, 0)]
+point.get (points)
+sum(points)
+print("Длина ломаной линии = ", ...)
