@@ -1,33 +1,63 @@
+import random
+from enum import Enum
+
+class SuitType(Enum):
+    Spades = 0
+    Hearts = 1
+    Diamonds = 2
+    Clubs = 3
+
+cardtype_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]
+
+# Начнем с создания карты
 class Card:
-    pass
+    suit_icon = {
+        SuitType.Spades: '\2660',
+        SuitType.Hearts: '\2665',
+        SuitType.Diamonds: '\2666',
+        SuitType.Clubs: '\2663',
+    }
 
-    # TODO: сюда копируем реализацию класса карты из предыдущего задания
+    def __init__(self, card_type, suit_type):
+        self.card_type = card_type
+        self.suit_type = suit_type
 
+    def to_str(self):
+        return f"{self.card_type}{Card.suit_icon[self.suit_type]}"
 
+    def same_suit(self, card):
+        return self.suit_type == card.suit_type
+
+# Задание: Теперь создадим колоду из 52-ух карт и реализуем все методы
 class Deck:
-    pass
-    # TODO: сюда копируем реализацию класса колоды из предыдущего задания
+    def __init__(self):
+        self.cards = []
+        for card_type in cardtype_list:
+            for suit_type in SuitType:
+                self.cards.append(Card(card_type, suit_type))
 
+    def show(self):
+        s = ""
+        for i, card in enumerate(self.cards):
+            if i < len(self.cards):
+                s += card.to_str() + ","
+            else:
+                s += card.to_str()
+        return f"Количество карт: {len(self.cards)}, карты: {s}"
+
+    def draw(self, x):
+        pass
+
+    def shuffle(self):
+        order = [i for i in range(len(self.cards))]
+        count = len(order)
+        for i in range(len(order)):
+            j = random.randint(0, count - i + 1)
+            card = self.cards[i]
+            self.cards[i] = self.cards[j]
+            self.cards[j] = card
+            order[j] = order[count - i - 1]
 
 deck = Deck()
-# Задачи - реализовать нативную работу с объектами:
-# 1. Вывод колоды в терминал:
-print(deck)  # вместо print(deck.show())
-
-card1, card2 = deck.draw(2)
-# 2. Вывод карты в терминал:
-print(card1)  # вместо print(card1.to_str())
-
-# 3. Сравнение карт:
-if card1 > card2:
-    print(f"{card1} больше {card2}")
-
-# 4. Итерация по колоде:
-for card in deck:
-    print(card)
-
-# Просмотр карты в колоде по ее индексу:
-print(deck[6])
-
-
-# Список ВСЕХ magic-методов см. тут: http://pythonworld.ru/osnovy/peregruzka-operatorov.html
+deck.shuffle()
+print(deck.show())
