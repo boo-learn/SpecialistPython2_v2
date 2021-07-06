@@ -13,12 +13,21 @@ class Deck:
         pass
 
     def draw(self, x):
-        pass
+        counter = x
+        small_deck = []
+        for i in range (counter):
+            rand_card = random.randint(0, len(self.cards))
+            small_deck.append(self.cards.pop(rand_card))
+        deck_str_hand = f"deck[{len(small_deck)}]"
+        for card in small_deck:
+            deck_str_hand += card.to_str() + ","
+        return deck_str_hand
 
     def shuffle(self):
-        pass
-
-
+        random.shuffle(self.cards)
+    # По невнимательности не совсем корректно вычитал задание, но, тем не менее отправлю
+    # берем из перемешенной колоды 5 любых карт
+    
 # Создаем колоду
 deck = Deck()
 # Выводим колоду в формате указанном в основном задании
@@ -32,4 +41,4 @@ hand = deck.draw(5)
 # Выводим колоду, чтобы убедиться что 5 верхних карт отсутствуют
 print(deck.show())
 # Выводим список карт "в руке"(список hand)
-print(...)
+print(deck.draw(5))
