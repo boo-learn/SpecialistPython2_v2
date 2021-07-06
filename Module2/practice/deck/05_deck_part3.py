@@ -1,33 +1,94 @@
+import random
+
 class Card:
-    pass
+    def __init__(self, value, suit):
+        self.value = value
+        self.suit = suit
 
-    # TODO: сюда копируем реализацию класса карты из предыдущего задания
+    def to_str(self):
+        icons = {"Hearts": '\u2665',
+                 "Diamonds": '\u2666',
+                 "Spades": '\u2660',
+                 "Clubs": '\u2663'}
+        return f'{self.value}{icons[self.suit]}'
 
+    def equal_suit(self, other_card):   # сравниваем масти
+        return self.suit == other_card.suit
+
+    def more(self, other_card):
+        values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+        suits = ['Spades', 'Clubs', 'Diamonds', 'Hearts']
+        if values.index(self.value) > values.index(other_card.value) or \
+           (values.index(self.value) == values.index(other_card.value) and
+            values.index(self.suit) > values.index(other_card.suit)):
+            return True
+        else:
+            return False
+
+    def less(self, other_card):
+        if self.more(other_card):
+            return False
+        else:
+            return True
+
+# Задание: Теперь создадим колоду из 52-ух карт и реализуем все методы
 
 class Deck:
-    pass
-    # TODO: сюда копируем реализацию класса колоды из предыдущего задания
+    def __init__(self):
+        # Список карт в колоде. Каждым элементом списка будет объект класса Card
+        values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+        suits = ['Hearts', 'Diamonds', 'Spades', 'Clubs']
+        self.cards = list()
+        for s in suits:
+            for v in values:
+                # card = Card(v,s)
+                self.cards.append(Card(v, s))
+
+    def show(self):
+        deck_str = f'deck[{len(self.cards)}]:'
+        for c in self.cards:
+            deck_str += c.to_str()+','
+        return deck_str[0:-1]
+
+    def draw(self, x):
+        # deck_hand = self.cards[0:x]
+        # self.cards = self.cards[x:]
+        # мой вариант:
+        deck_hand = list()
+        for _ in range(x):
+            deck_hand.append(self.cards.pop(0))
+        return deck_hand
+
+    def shuffle(self):
+        random.shuffle(self.cards)
 
 
+# Создаем колоду
 deck = Deck()
-# Задачи - реализовать нативную работу с объектами:
-# 1. Вывод колоды в терминал:
-print(deck)  # вместо print(deck.show())
-
-card1, card2 = deck.draw(2)
-# 2. Вывод карты в терминал:
-print(card1)  # вместо print(card1.to_str())
-
-# 3. Сравнение карт:
-if card1 > card2:
-    print(f"{card1} больше {card2}")
-
-# 4. Итерация по колоде:
-for card in deck:
-    print(card)
-
-# Просмотр карты в колоде по ее индексу:
-print(deck[6])
+# Выводим колоду в формате указанном в основном задании
+print(deck.show())
+# Тусуем колоду
+deck.shuffle()
+print(deck.show())
+#
+# # Возьмем 5 карт "в руку"
+hand = deck.draw(5)
+# # Выводим колоду, чтобы убедиться что 5 верхних карт отсутствуют
+print(deck.show())
+# # Выводим список карт "в руке"(список hand)
+for c in hand:
+    print(c.to_str(), end=',')
 
 
-# Список ВСЕХ magic-методов см. тут: http://pythonworld.ru/osnovy/peregruzka-operatorov.html
+
+
+
+
+# # Создадим несколько карт
+card1 = Card("10", "Hearts")
+card2 = Card("A", "Diamonds")   # "Diamonds"
+card3 = Card("6", "Clubs")
+card4 = Card("Q", "Spades")
+print()
+print(card1.more(card2))
+print(card1.less(card2))
