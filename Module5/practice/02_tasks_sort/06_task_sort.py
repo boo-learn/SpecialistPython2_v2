@@ -11,3 +11,18 @@
 # 10 1 3 4 3 5 6 7 7 6 1
 # Выход
 # 5
+lst = [10, 1, 3, 4, 3, 5, 6, 7, 7, 6, 1]
+print (lst)
+lst.pop(0)
+print (lst)
+lst.sort(reverse=True)
+print (lst)
+i=0
+c=0
+while i<3:
+    if lst[0]>lst[1]:
+        i+=1
+    c+=1
+    lst.pop(0)
+
+print (c)
