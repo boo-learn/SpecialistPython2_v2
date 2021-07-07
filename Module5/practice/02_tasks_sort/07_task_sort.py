@@ -13,3 +13,14 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+
+import random
+
+N = 9     # количество товаров
+
+goods = [random.randrange(50, 1000) for _ in range(N)]      # стоимость товаров
+goods.sort()                    # цены по возрастанию
+
+print(goods)
+print('Сумма товаров в чеке', sum(goods[len(goods) // 2:]))
+
