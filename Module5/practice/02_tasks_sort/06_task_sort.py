@@ -11,3 +11,16 @@
 # 10 1 3 4 3 5 6 7 7 6 1
 # Выход
 # 5
+import random
+N = 10      # количество участников
+results = [random.randrange(0, 12) for _ in range(N)]
+results.sort()
+
+unic_results = list(set(results))[-3:]
+
+print(results)
+print(unic_results)
+
+winner = [r for r in results if r in unic_results]
+
+print('Количество призеров', len(winner))
