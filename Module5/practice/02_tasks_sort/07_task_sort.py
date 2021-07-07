@@ -13,3 +13,20 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+import random
+
+def max_сheque(list_prices):
+    import math
+    mc = 0
+    list_prices.sort(reverse=True)
+    l = len(list_prices)
+    expensive = list_prices[:math.ceil(l/2)]
+    cheap = list_prices[math.ceil(l/2):]
+    print(expensive)
+    print(cheap)
+    return sum(expensive)
+
+N = 21
+array = [random.randint(1, 1000) for _ in range(N)]
+print(array)
+print(f"Max cheque sum is {max_сheque(array)}")
