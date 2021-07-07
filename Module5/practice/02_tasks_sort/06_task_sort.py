@@ -11,3 +11,25 @@
 # 10 1 3 4 3 5 6 7 7 6 1
 # Выход
 # 5
+
+def gen_list(size, at=-100, to=100):
+    import random
+    """
+    :param size: кол-во элементов списка
+    :param at: минимально возможное значение элементов
+    :param to: максимально возможное значение элементов
+    :return: списко из size произвольных элементов вдиапазоне at..to 
+    """
+    return [random.randint(at, to) for _ in range(size)]
+
+N = 10
+l = gen_list(N, 0, 5)
+l.sort(reverse=True)
+cnt = 0
+i = 0
+print(l)
+while cnt < 3:
+    if l[i] > l[i+1]:
+        cnt += 1
+    i += 1
+print("число призеров", i)
