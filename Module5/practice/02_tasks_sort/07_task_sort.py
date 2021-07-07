@@ -13,3 +13,29 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+
+
+def gen_list(size, at=-100, to=100):
+    import random
+    """
+    :param size: кол-во элементов списка
+    :param at: минимально возможное значение элементов
+    :param to: максимально возможное значение элементов
+    :return: списко из size произвольных элементов вдиапазоне at..to 
+    """
+    return [random.randint(at, to) for _ in range(size)]
+
+
+N = 7
+l = gen_list(N, 0, 10)
+l.sort(reverse=True)
+print(l)
+sum_check = 0
+
+res = l[:len(l) // 2]
+if len(l) % 2 == 1:
+    res.append(l[len(l)//2])
+
+for el in res:
+    sum_check += el
+print(sum_check)
