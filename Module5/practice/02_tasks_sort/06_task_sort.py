@@ -11,3 +11,14 @@
 # 10 1 3 4 3 5 6 7 7 6 1
 # Выход
 # 5
+
+def get_winners(list_inval:list):
+    set_inval = set(list_inval)
+    winner_balls = list(set_inval)
+    winner_balls.sort(reverse=True)
+    return len([val for val in list_inval if val in winner_balls[:3]])
+
+
+if __name__ == '__main__':
+    list_children = [7, 8, 9, 5, 0, 3, 37, 7, 8, 65, 8, 79, 79, 79, 79, 79, 7]
+    print(get_winners(list_children))
