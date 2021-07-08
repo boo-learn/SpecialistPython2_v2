@@ -4,3 +4,44 @@
 # Определите: Из каких точек можно дойти до выхода(F), а из каких нет
 
 # Сюда отправляем полное решение
+graph = [
+    # список смежности
+    [1],  # 0
+    [4, 2, 0],  # 1
+    [1, 3, 4],  # 2
+    [2],  # 3
+    [1, 2, 5, 6],  # 4
+    [4],  # 5
+    [4, 7, 8],  # 6
+    [6],  # 7
+    [6],  # 8
+    [10],   #9
+    [9]     #10
+]
+
+visited = [False] * (len(graph))
+
+def dfs(v):
+    visited[v] = True
+    for w in graph[v]:
+        if not visited[w]:  # посещён ли текущий сосед?
+            dfs(w)
+
+def f(_):
+    if _: return('можно')
+    else: return('нельзя')
+
+l = ['s-1','s-2','s-3']
+p = [0,3,9]
+finish = 8
+i=j=0
+while i < len(visited):
+    if i in p:
+        dfs(j)
+        print(f'Из точки ',l[j],f(visited[i]),'дойти до финиша')
+        j += 1
+    i += 1
+
+
+#print()
+#print(visited)
