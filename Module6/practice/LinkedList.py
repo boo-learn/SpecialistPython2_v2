@@ -14,13 +14,12 @@ class LinkedList:
         self.last = None
 
     def __str__(self):
-        # FIXME: убрать вывод запятой после последнего элемента
         if self.first is not None:
             current = self.first
-            out = 'LinkedList [' + str(current.value) + ','
+            out = 'LinkedList [' + str(current.value)
             while current.next is not None:
                 current = current.next
-                out += str(current.value) + ','
+                out +=',' + str(current.value)
             return out + ']'
         return 'LinkedList []'
 
@@ -28,8 +27,8 @@ class LinkedList:
         """
         Очищаем список
         """
-        # TODO: реализовать очистку списка
-        raise TypeError("Not implemented")
+        self.first = None
+        self.last = None
 
     def add(self, value):
         """
@@ -59,8 +58,17 @@ class LinkedList:
         """
         Вставляет узел со значением value на позицию index
         """
-        # TODO: реализовать вставку
-        raise TypeError("Not implemented")
+        if (self.first is not None) and (0 < index < len(self)):
+            new_node = Node(value, None)
+            i = 1
+            current = self.first
+            while i != index:
+                current = current.next
+                i += 1
+            new_node.next=current.next
+            current.next=new_node
+        else:
+            raise TypeError("index out of range")
 
     def find(self, value):
         """
