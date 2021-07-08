@@ -24,7 +24,6 @@ graph = [
 ]
 
 visited = [False] * (len(graph))
-prev = [None] * (len(graph))
 start = 0
 
 
