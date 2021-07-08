@@ -3,25 +3,28 @@ class Node:
     Класс для узла списка. Хранит значение и указатель на следующий узел.
     """
 
-    def __init__(self, value=None, next=None):
+    def __init__(self, value=None, next_node=None, index=None):
         self.value = value
-        self.next = next
+        self.next = next_node
+        self.index = index
+
+    def __str__(self):
+        return f'<node> val={self.value}, id={self.index}'
 
 
 class LinkedList:
-    def __init__(self):
+    def __init__(self, *args):
         self.first = None
         self.last = None
+        for val in args:
+            self.add(val)
 
     def __str__(self):
-        # FIXME: убрать вывод запятой после последнего элемента
         if self.first is not None:
-            current = self.first
-            out = 'LinkedList [' + str(current.value) + ','
-            while current.next is not None:
-                current = current.next
-                out += str(current.value) + ','
-            return out + ']'
+            out = '[ '
+            for node in self:
+                out += f'{node} | '
+            return out[:-3] + ' ]'
         return 'LinkedList []'
 
     def clear(self):
@@ -29,18 +32,19 @@ class LinkedList:
         Очищаем список
         """
         # TODO: реализовать очистку списка
-        raise TypeError("Not implemented")
+        self.first = self.last = None
 
     def add(self, value):
         """
         Добавляем новое значение value в конец списка
         """
-        new_node = Node(value, None)  # Создаем новый узел
-        if self.first is None:  # Если список был пуст
-            # self.first и self.last будут указывать на один и тотже узел, т.к. он единственный
+        new_node = Node(value=value)
+        if self.first is None:
             self.last = new_node
             self.first = new_node
+            new_node.index = 0
         else:
+            new_node.index = self.last.index + 1
             self.last.next = new_node
             self.last = new_node
 
@@ -48,65 +52,153 @@ class LinkedList:
         """
         Добавляет элемент со значением value в начало списка
         """
-        if self.first is None:  # Если список был пуст
-            # self.first и self.last будут указывать на один и тотже узел
+        if self.first is None:
             self.last = self.first = Node(value, None)
+            self.first.index = 0
         else:
             new_node = Node(value, self.first)
             self.first = new_node
+            self.first.index = 0
+            current = self.first
+            i = 1
+            while current.next is not None:
+                current = current.next
+                current.index = i
+                i += 1
 
     def insert(self, value, index):
         """
         Вставляет узел со значением value на позицию index
         """
-        # TODO: реализовать вставку
-        raise TypeError("Not implemented")
-
-    def find(self, value):
-        """
-        Ищет элемент со зачением value
-        :param value: значение искомого элемента
-        :return: индекс искомого элемента, или ???, если элемент не найден
-        """
-        # TODO: реализовать поиск элемента
-        #   подумать над возвращаемым значением, если элемент со значение value не найден
-        raise TypeError("Not implemented")
-
-    def len(self):
-        # TODO: сделать более быструю реализацию, т.к. каждый раз проходка по всем элементам - долго
-        length = 0
-        if self.first is not None:
+        if self.first is None or self.first.index == index:
+            self.push(value)
+        else:
             current = self.first
             while current.next is not None:
                 current = current.next
-                length += 1
-        return length + 1  # +1 для учета self.first
+                if current.index == index - 1:
+                    tmp_node = current.next
+                    current.next = Node(value=value, next_node=tmp_node, index=index)
+                    current = current.next
+                    while current.next is not None:
+                        current = current.next
+                        current.index += 1
+                    break
+
+    def find(self, value=None, index=None):
+        """
+        Ищет элемент со зачением value
+        :param value: значение искомого элемента
+        :param index: индекс узла списка
+        :return: индекс искомого элемента, или ???, если элемент не найден
+        """
+        # TODO: реализовать поиск элемента
+        if index is None:
+            for node in self:
+                if node.value == value:
+                    return node
+            return None
+        else:
+            current = self.first
+            if current.index == index:
+                return current
+            while current.next is not None:
+                current = current.next
+                if current.index == index:
+                    return current
+            return None
+
+    def len(self):
+        """
+        возврат длины списка
+        т.к. имеетсяи ндекс который постоянно считается на базе количества елементов
+         достаточно вернуть его полс + 1
+        :return:
+        """
+        return self.last.index + 1
+
+    def __iter__(self):
+        self.index_node = -1
+        return self
+
+    def __next__(self):
+        self.index_node += 1
+        current = self.find(index=self.index_node)
+        if current is not None:
+            return current
+        else:
+            raise StopIteration
+
+    def __getitem__(self, index):
+        current = self.find(index=index)
+        return current.value
+
+    def __setitem__(self, index, value):
+        current = self.find(index=index)
+        current.value = value
+
+    def _update_index(self):
+        i = 1
+        current = self.first
+        current.index = 0
+        while current.next is not None:
+            current = current.next
+            current.index = i
+            i += 1
+
+    def del_item(self, value=None, index=None):
+        if index is None:
+            current = self.first
+            if current.value == value:
+                self.first = self.first.next
+                self._update_index()
+            else:
+                for node in self:
+                    if node.next.value == value:
+                        print(node.next.next)
+                        tmp_node = node.next.next
+                        node.next = tmp_node
+                        self._update_index()
+                        print(self)
+                        break
+                else:
+                    raise ValueError('не найдена Node')
+        else:
+            if self.first.index == index:
+                self.first = self.first.next
+                self._update_index()
+            else:
+                for node in self:
+                    if node.index == index - 1:
+                        node.next = node.next.next
+                        self._update_index()
+                        break
 
 
 if __name__ == "__main__":
     L = LinkedList()
-    print("empty list = ", L)
+    # print("empty list = ", L)
     L.add(1)
     L.add(2)
     L.add(3)
 
-    print("list = ", L)
-
+    print(L)
+    L.insert(5, 0)
+    print(L)
     # TODO: реализовать интерфейс итерации
-    # for el in L:
-    #     print(el)
-    # Напомню принцип работы итератора:
-    # iterator_L = iter(L) L.__iter__()
-    # next(iterator_L) it.__next__()
-    # next(iterator_L)
-    # next(iterator_L)
-    # next(iterator_L)
-
+    for el in L:
+        print(el)
     # TODO: реализовать обращение по индексу и изменение значение по индексу
-    # print(L[0])
-    # L[0] = "new"
-    # print(L[0])
+    print(L[0])
+    L[0] = "new"
+    print(L[0])
 
     # TODO: реализовать создание нового списка с задание начальных элементов
-    # L = LinkedList(2, 4, 6, -12)
-    # print(L)
+    L = LinkedList(2, 4, 6, -12)
+    print(L)
+    L.del_item(2)
+    print(L)
+    L.del_item(4)
+    print(L)
+    L.del_item(index=1)
+    print(L)
