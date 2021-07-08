@@ -17,24 +17,21 @@ class LinkedList:
         # FIXME: убрать вывод запятой после последнего элемента
         if self.first is not None:
             current = self.first
-            out = 'LinkedList [' + str(current.value) + ','
+            out = 'LinkedList [' + str(current.value)
             while current.next is not None:
                 current = current.next
-                out += str(current.value) + ','
+                out += ',' + str(current.value)
             return out + ']'
         return 'LinkedList []'
 
     def clear(self):
-        """
-        Очищаем список
-        """
-        # TODO: реализовать очистку списка
-        raise TypeError("Not implemented")
+        self.first =self.last = None
 
     def add(self, value):
         """
         Добавляем новое значение value в конец списка
         """
+
         new_node = Node(value, None)  # Создаем новый узел
         if self.first is None:  # Если список был пуст
             # self.first и self.last будут указывать на один и тотже узел, т.к. он единственный
@@ -59,7 +56,14 @@ class LinkedList:
         """
         Вставляет узел со значением value на позицию index
         """
-        # TODO: реализовать вставку
+        if self.first is None:  # Если список был пуст
+            # self.first и self.last будут указывать на один и тотже узел
+            new_node = Node(value, self.first)
+            self.last = self.first = new_node
+        else:
+            new_node = Node(value, index)
+            for i to index:
+                            # TODO: реализовать вставку
         raise TypeError("Not implemented")
 
     def find(self, value):
@@ -89,7 +93,7 @@ if __name__ == "__main__":
     L.add(1)
     L.add(2)
     L.add(3)
-
+    L.clear()
     print("list = ", L)
 
     # TODO: реализовать интерфейс итерации
