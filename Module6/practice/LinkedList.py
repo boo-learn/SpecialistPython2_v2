@@ -25,11 +25,7 @@ class LinkedList:
         return 'LinkedList []'
 
     def clear(self):
-        """
-        Очищаем список
-        """
-        # TODO: реализовать очистку списка
-        raise TypeError("Not implemented")
+        self.__init__()
 
     def add(self, value):
         """
@@ -56,11 +52,22 @@ class LinkedList:
             self.first = new_node
 
     def insert(self, value, index):
-        """
-        Вставляет узел со значением value на позицию index
-        """
-        # TODO: реализовать вставку
-        raise TypeError("Not implemented")
+        if self.first == None:
+            self.last = self.first = Node(value, None)
+            return
+        if index == 0:
+            self.first = Node(value, self.first)
+            return
+        curr = self.first
+        count = 0
+        while curr != None:
+            count += 1
+            if count == index:
+                curr.next = Node(value, curr.next)
+                if curr.next.next == None:
+                    self.last = curr.next
+                break
+            curr = curr.next
 
     def find(self, value):
         """
