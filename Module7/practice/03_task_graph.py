@@ -6,5 +6,31 @@
 # Стартовав из какой точки можно собрать максимальное количество сокровищ?
 # Стартовав из каких точек, можно собрать максимальное количество сокровищ и дойти до выхода(F)?
 
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#!!!!!! NE SDELANO NE DELANO NE SDELANO
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 # Сюда отправляем полное решение
+#Dear python
+#here are my points
+points =
+{0:"P-1", 1:"P-2", 2:"P-3", 3:"P-4", 4: "F"}
+#Treasure is indicated with a T-its number.
+treasure =
+{5:"T1", 6:"T2", 7:"T3",8:"T4",9:"T5", 10:"T6"}
+#we are trying to exit at point F, make sure using bfs it is accessible
+#find all the ways we can grab the treasure
+graph =
+#template is
+#     [1],  # 0
+#     [4, 2, 0],  # 1
+#     [1, 3, 4],  # 2
+#     [2],  # 3
+[
+    [4, 3, 5], #0 aka p1
+    [9, 8, 7],  #1 aka p2
+    [], #2 aka p3
+    [], #3 aka p4
+    []
+]
+#then we use DFS
