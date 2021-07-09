@@ -1,15 +1,4 @@
-# from generators import get_user_data
-from abc import ABC, abstractmethod
-
-
-class AccountBase(ABC):
-    def __init__(self, name, passport8, phone_number, start_balance=0):
-        self.name = name
-        self.passport8 = passport8
-        self.phone_number = phone_number
-        self.balance = start_balance
-
-    @abstractmethod
+class Account(AccountBase):
     def transfer(self, target_account, amount):
         """
         Перевод денег на счет другого клиента
@@ -17,36 +6,38 @@ class AccountBase(ABC):
         :param amount: сумма перевода
         :return:
         """
-        pass
+        if self.balance < amount:
+            raise ValueError("Суммы на счёте недостаточно")
+        target_account.balance += amount
+        self.balance -= amount
 
-    @abstractmethod
-    def deposite(self, amount):
+    def deposit(self, amount):
         """
         Внесение суммы на текущий счет
         :param amount: сумма
         """
-        pass
+        if amount < 0:
+            raise ValueError("Сумма должна быть положительная")
+        self.balance += amount
 
-    @abstractmethod
     def withdraw(self, amount):
         """
         Снятие суммы с текущего счета
         :param amount: сумма
         """
-        pass
+        if self.balance < amount:
+            raise ValueError("Суммы на счёте недостаточно")
+        self.balance -= amount
 
-    @abstractmethod
     def full_info(self):
         """
         Полная информация о счете в формате: "Иванов Иван Петрович баланс: 100 руб. паспорт: 12345678 т.89002000203"
         """
-        return f"..."
+        return f"{self.name}  баланс: {self.balance} руб. паспорт: {self.passport8} т.{self.phone_number}"
 
-    @abstractmethod
     def __repr__(self):
         """
         :return: Информацию о счете в виде строки в формате "Иванов И.П. баланс: 100 руб."
         """
-        return f"..."
 
-
+        return f"{self.name} баланс: {self.balance} руб."
