@@ -1,5 +1,4 @@
-# Возьмите классы Deck и Card с GIST'а второго занятия и доработайте их
-from ... import Deck, Card
+from card import Deck, Card
 
 player_money = 100  # Деньги игрока
 rate_value = 10  # Размер ставки
@@ -8,37 +7,47 @@ deck = Deck()
 
 
 def sum_points(cards):
-    """
-    Напишите отдельную функцию для нахождения суммы очков всех карт в списке
-    :param cards: список карт(рука игрока или диллера)
-    :return: сумму очков
-    """
-    # Совет: храните кол-во очков за карту внутри класса Колоды(колода "знает", сколько дает очков каждая карта)
+    summ_points = 0
+    for card in cards:
+        for card_key in Deck.card_points.keys():
+            if card.value == card_key:
+                summ_points += Deck.card_points[card.value]
+    if summ_points > 21:
+        summ_points = 0
+        for card in cards:
+            for card_key in Deck.card_points.keys():
+                if card.value == card_key:
+                    if card.value == 'A':
+                        summ_points += 1
+                    else:
+                            summ_points += Deck.card_points[card.value]
+    return summ_points
 
-    #  Сначала считаем сумму карт, считая ТУЗ за 11-очков
-    sum_points = ...
-    # Если сумма > 21, то перечитываем сумму, считая ТУЗ за 1(единицу)
-    if sum_points > 21:
-        ...
+cards = [
+    Card("9", Card.HEARTS),
+    Card("A", Card.DIAMONDS),
+    # Card("2", Card.DIAMONDS),
+    # Card("A", Card.DIAMONDS),
 
-    return sum_points
-
+]
+print(sum_points(cards))
 
 while True:
     # 0. Игрок делает ставку
     player_money -= rate_value
     # 1. В начале игры перемешиваем колоду
+    deck.shuffle()
     # 2. Игроку выдаем две карты
-    player_cards = ...
+    player_cards = deck.draw(2)
     # 3. Дилер берет одну карту
-    dealer_cards = ...
+    dealer_cards = deck.draw(1)
     # 4. Отображаем в консоли карты игрока и дилера
+    print(f'Карты игрока: {player_cards} /n карты Дилера {dealer_cards}')
     # 5. Проверяем нет ли у игрока блэкджека (21 очко)
     if sum_points(player_cards) == 21:
-        # Выплачиваем выигрышь 3 и 2
         player_money += rate_value * 1.5
         print("Black Jack!!! Игрок победил")
-        # Заканчиваем игру
+        exit(0)    
     # Если нет блэкджека, то
     while True:  # Игрок добирает карты пока не скажет "достаточно" или не сделает перебор (>21)
         player_choice = input("еще(1)/достаточно(0): ")
