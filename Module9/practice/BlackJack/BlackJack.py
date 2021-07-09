@@ -8,19 +8,10 @@ deck = Deck()
 
 
 def sum_points(cards):
-    """
-    Напишите отдельную функцию для нахождения суммы очков всех карт в списке
-    :param cards: список карт(рука игрока или диллера)
-    :return: сумму очков
-    """
-    # Совет: храните кол-во очков за карту внутри класса Колоды(колода "знает", сколько дает очков каждая карта)
 
-    #  Сначала считаем сумму карт, считая ТУЗ за 11-очков
-    sum_points = ...
-    # Если сумма > 21, то перечитываем сумму, считая ТУЗ за 1(единицу)
+    sum_points = sum([Deck.value_cost[card.suit] for card in cards])
     if sum_points > 21:
-        ...
-
+        sum_points = sum([1 if card.suit == "A" else card.value] for card in cards)
     return sum_points
 
 
