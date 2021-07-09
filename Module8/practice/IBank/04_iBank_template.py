@@ -49,4 +49,18 @@ class AccountBase(ABC):
         """
         return f"..."
 
+class Account(AccountBase):
+    
+    def withdraw(self, amount):
+        if amount < 0:
+            raise print(f"Некорректная сумма")
+        elif amount <= self.balance:
+            self.balance -= amount
+            return self.balance
+        else:
+            raise print(f"Недостаточно денег на счете")
+
+            
+    def full_info(self):
+        return f"{self.name}, баланс: {self.balance} руб., паспорт {self.passport8}, номер телефона {self.phone_number}."
 
