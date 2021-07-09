@@ -3,50 +3,69 @@ from abc import ABC, abstractmethod
 
 
 class AccountBase(ABC):
-    def __init__(self, name, passport8, phone_number, start_balance=0):
+    def __init__(self, name, passport, phone_number, start_balance=0):
         self.name = name
-        self.passport8 = passport8
+        self.passport = passport
         self.phone_number = phone_number
         self.balance = start_balance
 
     @abstractmethod
     def transfer(self, target_account, amount):
-        """
-        Перевод денег на счет другого клиента
-        :param target_account: счет клиента для перевода
-        :param amount: сумма перевода
-        :return:
-        """
-        pass
+        if self.balance > amount:
+            self.balance -= amount
+            target_account += amount
+        else:
+            raise ValueError ('Недостаточно средств для вывода')
 
     @abstractmethod
-    def deposite(self, amount):
-        """
-        Внесение суммы на текущий счет
-        :param amount: сумма
-        """
-        pass
+    def deposit(self, amount):
+        self.balance += amount
+
 
     @abstractmethod
     def withdraw(self, amount):
-        """
-        Снятие суммы с текущего счета
-        :param amount: сумма
-        """
-        pass
+        if self.balance > amount:
+            self.balance -= amount
+        else:
+            raise ValueError ('Недостаточно средств для вывода')
 
     @abstractmethod
     def full_info(self):
-        """
-        Полная информация о счете в формате: "Иванов Иван Петрович баланс: 100 руб. паспорт: 12345678 т.89002000203"
-        """
-        return f"..."
+        return f"{self.name} баланс: {self.balance} руб. паспорт {self.passport}"
 
     @abstractmethod
     def __repr__(self):
-        """
-        :return: Информацию о счете в виде строки в формате "Иванов И.П. баланс: 100 руб."
-        """
-        return f"..."
+        return f"{account1.name} баланс {account1.balance} руб."
+
+class Account(AccountBase):
+
+    def transfer(self, target_account, amount):
+        if self.balance > amount:
+            self.balance -= amount
+            target_account += amount
+        else:
+            raise ValueError ('Недостаточно средств для вывода')
+    def deposit(self, amount):
+        self.balance += amount
+
+    def withdraw(self, amount):
+        if self.balance > amount:
+            self.balance -= amount
+        else:
+            raise ValueError ('Недостаточно средств для вывода')
+
+    def full_info(self):
+        return f"{self.name} баланс: {self.balance} руб. паспорт {self.passport}"
+
+    def __repr__(self):
+        return f"{account1.name} баланс {account1.balance} руб."
+
+account1 = Account('Иванов И.П.', 1234566, 876543, 0)
+account1.deposit(1000)
+
+print(account1)
+print(account1.full_info())
+print(account1.withdraw((500)))
+
 
 
