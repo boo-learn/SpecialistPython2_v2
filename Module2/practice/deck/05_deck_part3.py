@@ -1,12 +1,72 @@
-class Card:
-    pass
+import random
 
-    # TODO: сюда копируем реализацию класса карты из предыдущего задания
+
+class Card:
+    HEARTS = 'Hearts'
+    DIAMONDS = 'Diamonds'
+    SPADES = 'Spades'
+    CLUBS = 'Clubs'
+
+    def __init__(self, value, suit):
+        self.value = value
+        self.suit = suit
+
+    def __str__(self):
+        suit = {'Hearts': '\u2665', 'Diamonds': '\u2666', 'Spades': '\u2660', 'Clubs': '\u2663'}
+        return f'{self.value}{suit[self.suit]}'
+
+    def equal_suit(self, other_card):
+        return self.suit == other_card.suit
+
+    def __gt__(self, other_card):
+        if Deck.values.index(self.value) == Deck.values.index(other_card.value):
+            return Deck.suits.index(self.suit) > Deck.suits.index(other_card.suit)
+        else:
+            return Deck.values.index(self.value) > Deck.values.index(other_card.value)
+
+    def __lt__(self, other_card):
+        if Deck.values.index(self.value) == Deck.values.index(other_card.value):
+            return Deck.suits.index(self.suit) < Deck.suits.index(other_card.suit)
+        else:
+            return Deck.values.index(self.value) < Deck.values.index(other_card.value)
 
 
 class Deck:
-    pass
-    # TODO: сюда копируем реализацию класса колоды из предыдущего задания
+    values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+    suits = [Card.SPADES, Card.CLUBS, Card.DIAMONDS, Card.HEARTS]
+
+    def __init__(self):
+        self.cards = []
+        self.last_card_index = -1
+        for suit in Deck.suits:
+            for value in Deck.values:
+                card = Card(value, suit)
+                self.cards.append(card)
+
+    def __str__(self):
+        deck_string = f'deck[{len(self.cards)}]: '
+        for card in self.cards:
+            deck_string += str(card) + ", "
+        return deck_string
+
+    def __iter__(self):
+        self.last_card_index = -1  # сброс счетчика
+        return self
+
+    def __next__(self):
+        self.last_card_index += 1
+        if self.last_card_index >= len(self.cards):
+            raise StopIteration
+        return self.cards[self.last_card_index]
+
+    def draw(self, x):
+        drowned_cards = []
+        for _ in range(x):
+            drowned_cards.append(self.cards.pop(0))
+        return drowned_cards
+
+    def shuffle(self):
+        random.shuffle(self.cards)
 
 
 deck = Deck()
@@ -16,18 +76,18 @@ print(deck)  # вместо print(deck.show())
 
 card1, card2 = deck.draw(2)
 # 2. Вывод карты в терминал:
-print(card1)  # вместо print(card1.to_str())
+print(card1, card2)  # вместо print(card1.to_str())
 
 # 3. Сравнение карт:
-if card1 > card2:
-    print(f"{card1} больше {card2}")
+if card2 > card1:
+    print(f"{card2} больше {card1}")
 
 # 4. Итерация по колоде:
-for card in deck:
-    print(card)
+# for card in deck:
+#     print(card)
+print(min(deck))
 
 # Просмотр карты в колоде по ее индексу:
-print(deck[6])
-
+# print(deck[6])
 
 # Список ВСЕХ magic-методов см. тут: http://pythonworld.ru/osnovy/peregruzka-operatorov.html
