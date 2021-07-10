@@ -1,11 +1,13 @@
 import random
 
-# Начнем с создания карты
+
 class Card:
+
     HEARTS = "Hearts"
     DIAMONDS = "Diamonds"
     SPADES = "Spades"
     CLUBS = "Clubs"
+    VALUES = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
 
     def __init__(self, value, suit):
         self.value = value
@@ -33,7 +35,7 @@ class Deck:
     def create_deck(self):
         res = list()
         for suit in [Card.HEARTS, Card.DIAMONDS, Card.SPADES, Card.CLUBS]:
-            for value in ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']:
+            for value in Card.VALUES:
                 res.append(Card(value, suit))
         self.cards = res
 
