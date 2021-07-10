@@ -1,18 +1,61 @@
-class Card:
-    pass
+import random
 
-    # TODO: сюда копируем реализацию класса карты из предыдущего задания
-    #  реализуем новые методы
+
+class Card:
+    HEARTS = 'Hearts'
+    DIAMONDS = 'Diamonds'
+    SPADES = 'Spades'
+    CLUBS = 'Clubs'
+    VALUES = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+    SUITS = [HEARTS, DIAMONDS, CLUBS, SPADES]
+
+    def __init__(self, value, suit):
+        self.value = value
+        self.suit = suit
+
+    def to_str(self):
+        suit = {'Hearts': '\u2665', 'Diamonds': '\u2666', 'Spades': '\u2660', 'Clubs': '\u2663'}
+        return f'{self.value}{suit[self.suit]}'
+
+    def equal_suit(self, other_card):
+        return self.suit == other_card.suit
+
     def more(self, other_card):
-        pass
+        if Card.VALUES.index(self.value) > Card.VALUES.index(other_card.value):
+            return True
+        elif Card.VALUES.index(self.value) == Card.VALUES.index(other_card.value) \
+                and Card.SUITS.index(self.suit) > Card.SUITS.index(other_card.suit):
+            return True
+        return False
 
     def less(self, other_card):
-        pass
+        if Card.VALUES.index(self.value) < Card.VALUES.index(other_card.value):
+            return True
+        elif Card.VALUES.index(self.value) == Card.VALUES.index(other_card.value) \
+                and Card.SUITS.index(self.suit) < Card.SUITS.index(other_card.suit):
+            return True
+        return False
 
 
 class Deck:
-    pass
-    # TODO: сюда копируем реализацию класса колоды из предыдущего задания
+    def __init__(self):
+        self.cards = []
+        for suit in Card.SUITS:
+            for value in Card.VALUES:
+                card = Card(value, suit)
+                self.cards.append(card)
+
+    def show(self):
+        print(f'deck[{len(self.cards)}]:', *[card.to_str() + "," for card in self.cards])
+
+    def draw(self, x):
+        drowned_cards = []
+        for _ in range(x):
+            drowned_cards.append(self.cards.pop(0))
+        return drowned_cards
+
+    def shuffle(self):
+        random.shuffle(self.cards)
 
 
 deck = Deck()
