@@ -1,19 +1,39 @@
 class Card:
-    pass
-    # TODO: сюда копируем реализацию класса карты из предыдущего задания
+    HEARTS = 'Hearts'
+    DIAMONDS = 'Diamonds'
+    SPADES = 'Spades'
+    CLUBS = 'Clubs'
+
+    def __init__(self, value, suit):
+        self.value = value
+        self.suit = suit
+
+    def to_str(self):
+        suit = {'Hearts': '\u2665', 'Diamonds': '\u2666', 'Spades': '\u2660', 'Clubs': '\u2663'}
+        return f'{self.value}{suit[self.suit]}'
+
+    def equal_suit(self, other_card):
+        return self.suit == other_card.suit
 
 
 # Задание: Теперь создадим колоду из 52-ух карт и реализуем все методы
 class Deck:
     def __init__(self):
-        # Список карт в колоде. Каждым элементом списка будет объект класса Card
+        values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+        suits = [Card.HEARTS, Card.DIAMONDS, Card.SPADES, Card.CLUBS]
         self.cards = []
+        for suit in suits:
+            for value in values:
+                card = Card(value, suit)
+                self.cards.append(card)
+
 
     def show(self):
-        pass
+        print(f'deck[{len(self.cards)}]:', *[card.to_str()+"," for card in self.cards])
+
 
     def draw(self, x):
-        pass
+        for 
 
     def shuffle(self):
         pass
