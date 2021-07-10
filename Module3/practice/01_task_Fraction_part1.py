@@ -3,8 +3,16 @@
 class Fraction:
     def __init__(self, fraction_str):  # Дробь в конструктор передается в виде строки
         # А мы храним дробь в виде
-        self.numerator = ...  # числителя
-        self.denominator = ...  # знаменатель
+        pair = fraction_str.split()
+        if len(pair) == 2:
+            hole = int(pair[0])
+        else:
+            hole = 0
+        f = pair[-1]
+        numerator = int(f.split("/")[0])
+        denominator = int(f.split("/")[1])
+        self.numerator = numerator + hole * denominator  # числителя
+        self.denominator = denominator  # знаменатель
         # целую часть перебрасываем в числитель
         # минус, если он есть, тоже храним в числителе
 
@@ -13,38 +21,31 @@ class Fraction:
         Возвращает строковое представление в формате: <Целая часть> <числитель>/<знаменатель>
         Пример: -3 5/7
         """
-        pass
+        hole = self.numerator // self.denominator
+        num = self.numerator % self.denominator
+        return f"{hole} {num}/{self.denominator}"
+    
+    def __f_hole__(self):
+        hole = self.numerator // self.denominator
+        return f"{hole}"
 
+    def __add__(self, other_f):
+        if self.denominator != other_f.denominator:
+            new_denominator = self.denominator * other_f.denominator
+            new_numerator = self.numerator + other_f.denominator + other_f.numerator + self.denominator
+        else:
+            new_denominator = self.denominator
+            new_numerator = self.numerator + other_f.numerator
+            
+        return Fraction(f'{new_numerator}/{new_denominator}')
+        
+    
 
 # Примеры создания дробей:
-f1 = Fraction("3 12/15")
-f2 = Fraction("-1 2/6")
-f3 = Fraction("2/4")
-f4 = Fraction("-2/4")
-f5 = Fraction("3/4")
+f1 = Fraction("4/15")
+#print(f1)
+f2 = Fraction("11/15")
+#print(f2)
 
-# TODO: Задание: реализуйте операции с дробями
-# Примечание: в начальной реализации получившиеся дроби упрощать не требуется.
-# При операциях с дробями их можно приводить к максимальному общему знаменателю.
-
-# Сложение
-f_sum = f1 + f2
-print(f"{f1} + {f2} = {f_sum}")
-# Вычитание
-f_sub = f3 - f4
-print(f"{f3} + {f4} = {f_sub}")
-# Умножение
-f_mult = f3 * f4
-print(f"{f3} * {f4} = {f_mult}")
-# Сравнение (> < == != <= >=)
-if f5 > f4:
-    print(f"{f5} > {f4}")
-elif f5 < f4:
-    print(f"{f5} < {f4}")
-else:
-    print(f"{f5} = {f4}")
-# Сложение с целым(int) числом
-f_sum2 = f1 + 2
-print(f"{f1} + {2} = {f_sum2}")
-f_sum3 = 2 + f1
-print(f"{2} + {f1} = {f_sum2}")
+f3 = f1 + f2
+print(f3)
