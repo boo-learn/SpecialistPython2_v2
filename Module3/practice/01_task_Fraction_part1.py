@@ -2,9 +2,16 @@
 
 class Fraction:
     def __init__(self, fraction_str):  # Дробь в конструктор передается в виде строки
-        # А мы храним дробь в виде
-        self.numerator = ...  # числителя
-        self.denominator = ...  # знаменатель
+        pair = fraction_str.split()
+        if len(pair) == 2:
+            hole = int(pair[0])
+        else:
+            hole = 0
+        f = pair[-1]
+        numerator = int(f.split('/')[0])
+        denominator = int(f.split('/')[1])
+        self.numerator = hole * denominator + numerator * (-1 if hole < 0 else 1)  # числитель, в скобках перенос знака
+        self.denominator = denominator  # знаменатель
         # целую часть перебрасываем в числитель
         # минус, если он есть, тоже храним в числителе
 
@@ -13,7 +20,73 @@ class Fraction:
         Возвращает строковое представление в формате: <Целая часть> <числитель>/<знаменатель>
         Пример: -3 5/7
         """
-        pass
+        if int(self.numerator) == 0:
+            return f'{self.numerator}'
+        numerator = int(self.numerator)  # числитель неправильной дроби
+        denominator = int(self.denominator)  # знаменатель
+        integer_part = int(abs(numerator) // denominator * (-1 if numerator < 0 else 1))  # целая часть смешанной дроби
+        numerator = (int(numerator - integer_part * denominator))  # числитель смешанной дроби
+        if numerator == 0:
+            return f'{integer_part}'
+        elif integer_part == 0:
+            return f'{numerator}/{denominator}'
+        else:
+            return f'{integer_part} {abs(numerator)}/{denominator}'
+
+    def __add__(self, other_f):
+        if self.denominator != other_f.denominator:
+            new_denominator = self.denominator * other_f.denominator
+            new_numerator = self.numerator * other_f.denominator + self.denominator * other_f.numerator
+        else:
+            new_denominator = self.denominator
+            new_numerator = self.numerator + other_f.numerator
+        return Fraction(f'{new_numerator}/{new_denominator}')
+
+    def __sub__(self, other_f):
+        if self.denominator != other_f.denominator:
+            new_denominator = self.denominator * other_f.denominator
+            new_numerator = self.numerator * other_f.denominator - self.denominator * other_f.numerator
+        else:
+            new_denominator = self.denominator
+            new_numerator = self.numerator - other_f.numerator
+        return Fraction(f'{new_numerator}/{new_denominator}')
+
+    def __mul__(self, other_f):
+        new_denominator = self.denominator * other_f.denominator
+        new_numerator = self.numerator * other_f.numerator
+        return Fraction(f'{new_numerator}/{new_denominator}')
+
+    def __gt__(self, other_f):
+        return self.numerator * other_f.denominator > self.denominator * other_f.numerator
+
+    def __lt__(self, other_f):
+        return self.numerator * other_f.denominator < self.denominator * other_f.numerator
+
+    def __eq__(self, other_f):
+        return self.numerator * other_f.denominator == self.denominator * other_f.numerator
+
+    def __radd__(self, other_f):
+        if self.denominator != other_f.denominator:
+            new_denominator = self.denominator * other_f.denominator
+            new_numerator = self.numerator * other_f.denominator + self.denominator * other_f.numerator
+        else:
+            new_denominator = self.denominator
+            new_numerator = self.numerator + other_f.numerator
+        return Fraction(f'{new_numerator}/{new_denominator}')
+
+    def __rsub__(self, other_f):
+        if self.denominator != other_f.denominator:
+            new_denominator = self.denominator * other_f.denominator
+            new_numerator = self.numerator * other_f.denominator - self.denominator * other_f.numerator
+        else:
+            new_denominator = self.denominator
+            new_numerator = self.numerator - other_f.numerator
+        return Fraction(f'{new_numerator}/{new_denominator}')
+
+    def __rmul__(self, other_f):
+        new_denominator = self.denominator * other_f.denominator
+        new_numerator = self.numerator * other_f.numerator
+        return Fraction(f'{new_numerator}/{new_denominator}')
 
 
 # Примеры создания дробей:
@@ -23,7 +96,6 @@ f3 = Fraction("2/4")
 f4 = Fraction("-2/4")
 f5 = Fraction("3/4")
 
-# TODO: Задание: реализуйте операции с дробями
 # Примечание: в начальной реализации получившиеся дроби упрощать не требуется.
 # При операциях с дробями их можно приводить к максимальному общему знаменателю.
 
@@ -32,7 +104,7 @@ f_sum = f1 + f2
 print(f"{f1} + {f2} = {f_sum}")
 # Вычитание
 f_sub = f3 - f4
-print(f"{f3} + {f4} = {f_sub}")
+print(f"{f3} - {f4} = {f_sub}")
 # Умножение
 f_mult = f3 * f4
 print(f"{f3} * {f4} = {f_mult}")
@@ -47,4 +119,4 @@ else:
 f_sum2 = f1 + 2
 print(f"{f1} + {2} = {f_sum2}")
 f_sum3 = 2 + f1
-print(f"{2} + {f1} = {f_sum2}")
+print(f"{2} + {f1} = {f_sum3}")
