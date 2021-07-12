@@ -7,3 +7,16 @@
 # 2. метод is_palindrome(), который возвращает True или False в зависимости от того,
 # является ли строка палиндромом. Регистрами символов пренебрегать.
 # Пустую строку считать палиндромом.
+ class SuperStr(str):
+     def is_repeatanse(self,s):
+         for i in self.split(s):
+             if i != '':
+                 return False
+         return True
+     def is_poly(self):
+         return self ==self[::-1]
+         
+             
+ n = SuperStr('ssssssss')
+ print(n.is_repeatanse('ss'))
+ print(n.is_poly())
