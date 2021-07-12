@@ -1,11 +1,33 @@
-# Задание "Простые дроби"
-
 class Fraction:
-    pass
-    # TODO: сюда копируем класс Дроби из предыдущей задачи
+    def __init__(self, fraction_str):  # Дробь в конструктор передается в виде строки
+        # А мы храним дробь в виде
+        pair = fraction_str.split()
+        if len(pair) == 2:
+            hole = int(pair[0])
+        else:
+            hole = 0
+        f = pair[-1]
+        numerator = int(f.split("/")[0])
+        denominator = int(f.split("/")[1])
+        self.numerator = numerator + hole * denominator  # числителя
+        self.denominator = denominator  # знаменатель
+        
+        a = self.numerator
+        b = self.denominator
+         
+        while a != 0 and b != 0:
+            if a > b:
+                a = a % b
+            else:
+                b = b % a
+        
+        self.numerator = self.numerator /(a+b)
+        self.denominator = self.denominator /(a+b)
 
-
-# Задание на доработку класса
-# Доработайте класс дробей так, чтобы при создании дроби, дробь упрощалась и сокращалась.
-# Подсказка: Для сокращения дроби вам понадобится "Наибольший общий делитель",
-# а для его поиска можете использовать алгоритм Эвклида(подробнее тут: https://younglinux.info/algorithm/euclidean).
+    def __str__(self):
+         hole = self.numerator // self.denominator
+        num = self.numerator % self.denominator
+        return f"{hole} {num}/{self.denominator}"
+    
+dr = Fraction('20/30')
+print(dr)
