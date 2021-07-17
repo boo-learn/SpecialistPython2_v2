@@ -7,29 +7,33 @@ class Node:
         self.value = value
         self.next = next
 
+    def __str__(self):
+        return self.value
+
 
 class LinkedList:
     def __init__(self):
         self.first = None
         self.last = None
+        self.pointer = self.first
+        self.limit = 0
 
     def __str__(self):
-        # FIXME: убрать вывод запятой после последнего элемента
         if self.first is not None:
             current = self.first
-            out = 'LinkedList [' + str(current.value) + ','
+            values = [str(current.value)]
             while current.next is not None:
                 current = current.next
-                out += str(current.value) + ','
-            return out + ']'
+                values.append(str(current.value))
+            return f'LinkedList [{", ".join(values)}]'
         return 'LinkedList []'
 
     def clear(self):
         """
         Очищаем список
         """
-        # TODO: реализовать очистку списка
-        raise TypeError("Not implemented")
+        self.first = None
+        self.last = None
 
     def add(self, value):
         """
@@ -43,6 +47,7 @@ class LinkedList:
         else:
             self.last.next = new_node
             self.last = new_node
+        self.limit += 1
 
     def push(self, value):
         """
@@ -54,13 +59,26 @@ class LinkedList:
         else:
             new_node = Node(value, self.first)
             self.first = new_node
+        self.limit += 1
 
     def insert(self, value, index):
         """
         Вставляет узел со значением value на позицию index
         """
-        # TODO: реализовать вставку
-        raise TypeError("Not implemented")
+        if index == 0:
+            self.push(value)
+        elif index >= self.limit:
+            self.add(value)
+        else:
+            current_node = self.first
+            cur_idx = 0
+            while cur_idx < index - 1:
+                current_node = current_node.next
+                cur_idx += 1
+            prev_next = current_node.next
+            current_node.next = Node(value, prev_next)
+            self.limit += 1
+        return
 
     def find(self, value):
         """
@@ -68,19 +86,28 @@ class LinkedList:
         :param value: значение искомого элемента
         :return: индекс искомого элемента, или ???, если элемент не найден
         """
-        # TODO: реализовать поиск элемента
-        #   подумать над возвращаемым значением, если элемент со значение value не найден
-        raise TypeError("Not implemented")
+        current_node = self.first
+        index = 0
+        while current_node and current_node.value != value:
+            current_node = current_node.next
+            index += 1
+        if not current_node:
+            return '???'
+        return index
 
     def len(self):
-        # TODO: сделать более быструю реализацию, т.к. каждый раз проходка по всем элементам - долго
-        length = 0
-        if self.first is not None:
-            current = self.first
-            while current.next is not None:
-                current = current.next
-                length += 1
-        return length + 1  # +1 для учета self.first
+        return self.limit
+
+    def __iter__(self):
+        self.pointer = self.first
+        return self
+
+    def __next__(self):
+        if not self.pointer:
+            raise StopIteration
+        to_return = self.pointer
+        self.pointer = self.pointer.next
+        return to_return.__str__()
 
 
 if __name__ == "__main__":
@@ -92,15 +119,24 @@ if __name__ == "__main__":
 
     print("list = ", L)
 
+    L.insert('5656', 2)
+    print("list = ", L)
+
+    L.insert('54656', 3)
+    print("list = ", L)
+
+    print(L.find(2))
+    print(L.find(22))
+
+    print(L)
+
     # TODO: реализовать интерфейс итерации
-    # for el in L:
-    #     print(el)
+    for el in L:
+        print(el)
     # Напомню принцип работы итератора:
-    # iterator_L = iter(L) L.__iter__()
-    # next(iterator_L) it.__next__()
-    # next(iterator_L)
-    # next(iterator_L)
-    # next(iterator_L)
+    iterator_L = iter(L)  # L.__iter__()
+    print(next(iterator_L))  # it.__next__()
+
 
     # TODO: реализовать обращение по индексу и изменение значение по индексу
     # print(L[0])
