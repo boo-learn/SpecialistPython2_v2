@@ -8,7 +8,10 @@ class Node:
         self.next = next
 
     def __str__(self):
-        return self.value
+        return str(self.value)
+
+    def __repr__(self):
+        return str(self.value)
 
 
 class LinkedList:
@@ -32,8 +35,7 @@ class LinkedList:
         """
         Очищаем список
         """
-        self.first = None
-        self.last = None
+        self.__init__()
 
     def add(self, value):
         """
@@ -107,7 +109,26 @@ class LinkedList:
             raise StopIteration
         to_return = self.pointer
         self.pointer = self.pointer.next
-        return to_return.__str__()
+        return to_return
+
+    def __getitem__(self, item):
+        cur_idx = 0
+        cur_node = self.first
+        while cur_idx < item:
+            cur_node = cur_node.next
+            cur_idx += 1
+        return cur_node
+
+    def __setitem__(self, key, value):
+        cur_idx = 0
+        cur_node = self.first
+        while cur_idx < key:
+            cur_node = cur_node.next
+            cur_idx += 1
+        cur_node.value = value
+
+    def __len__(self):
+        return self.limit
 
 
 if __name__ == "__main__":
@@ -129,6 +150,7 @@ if __name__ == "__main__":
     print(L.find(22))
 
     print(L)
+    print(L.first)
 
     # TODO: реализовать интерфейс итерации
     for el in L:
@@ -137,11 +159,10 @@ if __name__ == "__main__":
     iterator_L = iter(L)  # L.__iter__()
     print(next(iterator_L))  # it.__next__()
 
-
     # TODO: реализовать обращение по индексу и изменение значение по индексу
-    # print(L[0])
-    # L[0] = "new"
-    # print(L[0])
+    print('l0', L[3])
+    L[3] = "new"
+    print('l0', L[3])
 
     # TODO: реализовать создание нового списка с задание начальных элементов
     # L = LinkedList(2, 4, 6, -12)
