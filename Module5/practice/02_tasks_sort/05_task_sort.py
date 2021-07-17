@@ -1,4 +1,4 @@
-def sort_choice(nums):
+def sort_choice(nums, key=lambda x: x):
     i = 0
     while i < len(nums) - 1:
         m = i
@@ -47,7 +47,9 @@ staff = [
 
 # 1. Выведите список сотрудников, отсортированный по уменьшению их заработной платы.
 # Если у нескольких сотрудников одинаковая ЗП, то добавьте сортировку по Фамилии
-sort_choice(staff)
+
+staff.sort(key=lambda x: (x['salary'], x['surname'], x['name']))
+# sort_choice(staff)
 print("Список сотрудников отсортированный по уменьшению ЗП:")
 for el in staff:
     print(el)
@@ -56,3 +58,4 @@ print()
 # 2. Найдите сумму зарплат трех самых низкооплачиваемых сотрудников:
 print("Сумма зарплат трех самых низкооплачиваемых сотрудников:")
 print(sum((el['salary'] for el in staff[:3])))
+
