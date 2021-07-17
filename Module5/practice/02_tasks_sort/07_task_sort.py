@@ -11,3 +11,15 @@
 # 10 1 3 4 3 5 6 7 7 6 1
 # Выход
 # 5
+count_contestants = 10
+results = [1, 3, 4, 3, 5, 6, 7, 7, 6, 1]
+results.sort(reverse=True)
+print(results)
+i = 0
+j = 0
+while i < 3:
+    count = results.count(results[j])
+    i += 1
+    j += count
+
+print(f"Winners:{j} person")
