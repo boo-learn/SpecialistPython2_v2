@@ -8,7 +8,6 @@ def bubble_sort(nums) -> list:
                 nums[i], nums[i + 1] = nums[i + 1], nums[i]
                 swapped = True
         j += 1
-    return nums
 
 
 def sort_choice(nums) -> list:
@@ -22,7 +21,6 @@ def sort_choice(nums) -> list:
             j += 1
         nums[i], nums[m] = nums[m], nums[i]
         i += 1
-    return nums
 
 
 def quick_sort(nums):
@@ -51,7 +49,6 @@ def quick_sort(nums):
             _quick_sort(items, split_index + 1, high)
 
     _quick_sort(nums, 0, len(nums) - 1)
-    return nums
 
 
 # Напишите функцию для заполнения списка случайными числами
@@ -71,6 +68,15 @@ def gen_list(size, at=-100, to=100):
 
 my_list = gen_list(15)
 print(*my_list)
-print(f'Bubble sort: {bubble_sort(my_list)}')
-print(f'Sort choice: {sort_choice(my_list)}')
-print(f'Quick sort: {quick_sort(my_list)}')
+
+b_list = my_list[:]
+bubble_sort(b_list)
+print(f'Bubble sort: {b_list}')
+
+c_list = my_list[:]
+sort_choice(c_list)
+print(f'Sort choice: {c_list}')
+
+q_list = my_list[:]
+quick_sort(q_list)
+print(f'Quick sort: {q_list}')
