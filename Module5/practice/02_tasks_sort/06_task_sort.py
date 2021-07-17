@@ -13,3 +13,11 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+
+nums = [5, 2, 1, 10, 50, 10]
+len_receipt = nums[0]
+items_costs = nums[1:]
+items_costs.sort()
+i = len_list // 2
+max_sum_receipt = sum(items_costs[i:])
+print(max_sum_receipt)
