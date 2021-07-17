@@ -11,3 +11,11 @@
 # 10 1 3 4 3 5 6 7 7 6 1
 # Выход
 # 5
+
+lst = [1, 3, 4, 3, 5, 6, 7, 7, 6, 1]
+lst.sort(reverse=True)
+shift = 0
+for _ in range(3):
+    count = lst.count(lst[shift])
+    shift += count
+print(shift)
