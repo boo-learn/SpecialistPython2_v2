@@ -14,7 +14,15 @@ def print_node_by_index(start_node, index):
     Если index = 0, выводим значение ноды start_node
     Считаем, что index гарантированно > 0
     """
-    pass
+    current_node = start_node
+    c = 0
+    if c == index:
+        print(current_node.value)
+    while current_node:
+        current_node = current_node.next
+        c += 1
+        if c == index:
+            print(current_node.value)
 
 
 def gen_names_list(size=None):
@@ -27,15 +35,19 @@ def gen_names_list(size=None):
 
 
 # Дан список из произвольного количества имен
-names = gen_names_list()
-# print(names)
+names = gen_names_list(10)
+print(names)
 
-# TODO: скопируйте цепочку нод из предыдущей задачи
-...
+current_node = None
+first_node = None
+for name in names:
+    if current_node is None:
+        current_node = Node(name)
+        first_node = current_node
+    else:
+        current_node.next = Node(name)
+        current_node = current_node.next
 
 
-# TODO: Передайте первую ноду и индекс ноды, значение которой нужно вывести, в функцию print_node_by_index()
-#  напишите реализацию функции print_node_by_index()
-first_node = ...
-index = ...
+index = 5
 print_node_by_index(first_node, index)
