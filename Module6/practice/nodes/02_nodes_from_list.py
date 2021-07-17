@@ -27,11 +27,11 @@ def gen_names_list(size=None):
 # Дан список из произвольного количества имен
 names = gen_names_list()
 print(names)
+node_0 = Node(names[0])
+cur_node = node_0
+for name in names[1:]:
+    cur_node.next = Node(name)
+    cur_node = cur_node.next
 
-# TODO: создайте цепочку нод из имен списка
-...
-
-
-# TODO: Передайте первую ноду в функцию print_nodes_value(), чтобы получить значения всех нод в цепочке
-first_node = ...
+first_node = node_0
 print_nodes_value(first_node)
