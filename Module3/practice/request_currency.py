@@ -1,14 +1,18 @@
 from pprint import pprint
-# Внимание! Библиотеку requests нужно установить, выполните в консоли команду:
 # pip install requests
 import requests
+class Currency:
+    def __init__(self, type):
+        self.type = type
 
-url = 'https://www.cbr-xml-daily.ru/daily_json.js'
-# Отправляем запрос на указанный url
-response = requests.get(url)
+    def course(self, date):
+        date = date.split(".")
+        url = f'https://www.cbr-xml-daily.ru/archive/{date[2]}/{date[1]}/{date[0]}/daily_json.js'
+        response = requests.get(url)
+        return pprint(response.json()['Valute'][self.type]['Value'])
 
-pprint(response.json())
+usd = Currency("USD")  # Создаем валюту "Доллар"
+euro = Currency("EUR")
 
-# Если хотим получить курсы на определенную дату, то нужно отправить запрос на :
-# url: https://www.cbr-xml-daily.ru/archive/2021/04/07/daily_json.js
-# /2021(год)/04(месяц)/07(день)/
+
+print(euro.course('10.07.2021'))
