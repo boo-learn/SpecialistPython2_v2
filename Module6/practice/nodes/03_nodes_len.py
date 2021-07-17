@@ -18,19 +18,22 @@ def gen_names_list(size=None):
 
 
 def len_nodes(start_node):
-    """
-    Возвращает целое число - кол-во нод у цепочке
-    """
-    pass
+    count = 1
+    while start_node.next:
+        count += 1
+        start_node = start_node.next
+    return count
 
 
 # Дан список из произвольного количества имен
 names = gen_names_list()
 print(names)
 
-# TODO: скопируйте цепочку нод из предыдущей задачи
-...
+node_0 = Node(names[0])
+cur_node = node_0
+for name in names[1:]:
+    cur_node.next = Node(name)
+    cur_node = cur_node.next
 
-# TODO: Передайте первую ноду в функцию len_nodes(), чтобы получить количество нод в цепочке
-first_node = ...
-len_nodes(first_node)
+first_node = node_0
+print(len_nodes(first_node))
