@@ -14,7 +14,6 @@ def print_node_by_index(start_node, index):
     Если index = 0, выводим значение ноды start_node
     Считаем, что index гарантированно > 0
     """
-    pointer = 0
     current_node = start_node
     for _ in range(index):
         current_node = current_node.next
