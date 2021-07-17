@@ -13,3 +13,18 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+
+
+lst = [2, 1, 10, 50, 10, 6, 8, 3]
+lst.sort()
+res = []
+beg = 0
+end = len(lst) - 1
+for i in range(len(lst)):
+    if i % 2 == 0:
+        res.append(lst[end])
+        end -= 1
+    else:
+        res.append(lst[beg])
+        beg += 1
+print(res)
