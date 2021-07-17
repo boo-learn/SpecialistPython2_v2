@@ -1,7 +1,7 @@
 nums = [5, 2, 1, 8, 4]
 print("before sort = ", nums)
 swapped = True
-end = len(nums) - 1
+end = len(nums)
 while swapped:
     swapped = False
     end -= 1
