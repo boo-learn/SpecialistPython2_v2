@@ -13,7 +13,14 @@ def find_node_by_value(start_node, value):
     Возвращает индекс ноды с заданным значением(value).
     Если нода с указанным значение(value) не найдена, дублируйте поведение методы .index() списка
     """
-    pass
+    idx = 0
+    while start_node:
+        if start_node.value == value:
+            return idx
+        else:
+            idx += 1
+            start_node = start_node.next
+    raise ValueError(f"{value} is not in list")
 
 
 def gen_names_list(size=None):
@@ -27,14 +34,14 @@ def gen_names_list(size=None):
 
 # Дан список из произвольного количества имен
 names = gen_names_list()
-# print(names)
+print(names)
 
-# TODO: скопируйте цепочку нод из предыдущей задачи
-...
+node_0 = Node(names[0])
+cur_node = node_0
+for name in names[1:]:
+    cur_node.next = Node(name)
+    cur_node = cur_node.next
 
-
-# TODO: Передайте первую ноду и искомое значение в функцию find_node_by_value()
-#  напишите реализацию функции find_node_by_value()
-first_node = ...
-value = ...
-find_node_by_value(first_node, value)
+first_node = node_0
+value = "Василий"
+print(find_node_by_value(first_node, value))
