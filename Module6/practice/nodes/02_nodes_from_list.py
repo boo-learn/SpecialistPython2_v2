@@ -25,13 +25,17 @@ def gen_names_list(size=None):
 
 
 # Дан список из произвольного количества имен
-names = gen_names_list()
+names = gen_names_list(10)
 print(names)
 
-# TODO: создайте цепочку нод из имен списка
-...
+current_node = None
+first_node = None
+for name in names:
+    if current_node is None:
+        current_node = Node(name)
+        first_node = current_node
+    else:
+        current_node.next = Node(name)
+        current_node = current_node.next
 
-
-# TODO: Передайте первую ноду в функцию print_nodes_value(), чтобы получить значения всех нод в цепочке
-first_node = ...
 print_nodes_value(first_node)
