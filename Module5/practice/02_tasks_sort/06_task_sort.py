@@ -13,3 +13,30 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+
+def bubble_sort(lst):
+    swapped = True
+    not_process = 0
+    while swapped:
+        swapped = False
+        for i in range(len(lst) - 1 - not_process):
+            if lst[i] > lst[i + 1]:
+                # Меняем элементы
+                lst[i], lst[i + 1] = lst[i + 1], lst[i]
+                # Устанавливаем swapped в True для следующей итерации
+                swapped = True
+
+
+lst = [2, 1, 10, 50, 10, 6, 8, 3]
+bubble_sort(lst)
+res = []
+beg = 0
+end = len(lst) - 1
+for i in range(len(lst)):
+    if i % 2 == 0:
+        res.append(lst[end])
+        end -= 1
+    else:
+        res.append(lst[beg])
+        beg += 1
+print(res)
