@@ -9,3 +9,10 @@ employees = [
 ]
 # Выведите список сотрудников(без указания должности) в формате: Фамилия Имя, в отсортированном порядке.
 # Примечание: если фамилии сотрудников совпадают, при сортировке учесть имя.
+if __name__ == '__main__':
+
+    employees.sort(key=lambda iter_dict: (iter_dict['surname'].lower(), iter_dict['name'].lower()))
+    from pprint import pprint
+
+    pprint(employees)
+
