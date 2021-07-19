@@ -8,6 +8,8 @@ def distance():
     """
     Расстояние между двумя точками
     """
+    dist= (point2.x - points1.x)**2 + (point2.y - points1.y)**2
+    return dist
 
 
 # Дано две точки на координатной плоскости
@@ -18,4 +20,4 @@ point2 = Point(5, -2)
 
 # TODO: your core here...
 
-print("Расстояние между точками = ", ...)
+print("Расстояние между точками = ", distance())
