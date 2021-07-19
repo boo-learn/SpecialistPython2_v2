@@ -11,7 +11,7 @@ def distance(a_point, b_point):
 	ay = a_point.y
 	bx = b_point.x
 	by = b_point.y
-	return f'{math.sqrt((bx - ax)*82 + (by - ay)**2)}'
+	return f'{math.sqrt((bx - ax)**2 + (by - ay)**2)}'
 
 
 point1 = Point(2, 4)
