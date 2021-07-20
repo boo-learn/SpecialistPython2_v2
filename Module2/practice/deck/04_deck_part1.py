@@ -10,12 +10,15 @@ class Deck:
         self.cards = []
 
     def show(self):
+        # Принцип работы данного метода прописан в 00_task_deck.md
         pass
 
     def draw(self, x):
+        # Принцип работы данного метода прописан в 00_task_deck.md
         pass
 
     def shuffle(self):
+        # Обратите внимание на: https://www.w3schools.com/python/ref_random_shuffle.asp
         pass
 
 

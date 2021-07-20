@@ -1,7 +1,8 @@
 # Начнем с создания карты
 class Card:
     def __init__(self, value, suit):
-        pass
+        self.value = value  # Значение карты(2, 3... 10, J, Q, K, A)
+        self.suit = suit  # Масть карты
 
     def to_str(self):
         pass
