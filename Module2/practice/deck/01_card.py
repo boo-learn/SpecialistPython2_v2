@@ -4,11 +4,21 @@ class Card:
         self.value = value  # Значение карты(2, 3... 10, J, Q, K, A)
         self.suit = suit  # Масть карты
 
+    # Выводит значение в юникод формате
     def to_str(self):
-        pass
+        if self.suit == 'Hearts':
+            return f'{self.value}\u2665'
+        if self.suit == 'Diamonds':
+            return f'{self.value}\u2666'
+        if self.suit == 'Clubs':
+            return f'{self.value}\u2663'
+        if self.suit == 'Spades':
+            return f'{self.value}\u2660'
 
     def equal_suit(self, other_card):
-        pass
+        if other_card.suit == self.suit:
+            return True
+        return False
 
 
 # Создадим несколько карт
