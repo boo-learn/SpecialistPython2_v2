@@ -1,17 +1,19 @@
-import random
+count_coins = int(input('Введите количество монеток: '))
 
+coins_list = []
+count = 0
+while count < count_coins:
+    coins_list.append(Coin())
+    count += 1
 
-class Coin:
-    def __init__(self):
-        # heads-орел/tails-решка
-        self.side = None
+fliped_coins = list(map(Coin.flip, coins_list))
 
-    def flip(self):
-        """
-        Подбрасывание монетки
-        """
-        self.side = ...  # random: heads/tails
+f_count = 0
+h_count = 0
+for i in fliped_coins:
+    if i == 'heads':
+        h_count += 1
+    else:
+        f_count += 1
 
-
-# Задание: создайте список из n-монеток. Подбросьте(flip) все монетки.
-# выведите соотношение выпавших орлов и решек в процентах
+print(f'Соотношение орлов и решек составляет {h_count/count_coins*100} к {f_count/count_coins*100}')
