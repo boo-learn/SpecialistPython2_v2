@@ -5,10 +5,11 @@ class Card:
         self.suit = suit  # Масть карты
 
     def to_str(self):
-        pass
+        value_dict = {'Hearts': '\u2661', 'Diamonds': '\u2662', 'Clubs': '\u2667', 'Spades': '\u2664'}
+        return f'{self.value}{value_dict[self.suit]}'
 
     def equal_suit(self, other_card):
-        pass
+        return self.suit == other_card.suit
 
 
 # Создадим несколько карт
