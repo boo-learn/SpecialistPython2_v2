@@ -11,3 +11,13 @@
 # 10 1 3 4 3 5 6 7 7 6 1
 # Выход
 # 5
+
+point_list = [10, 1, 3, 4, 3, 5, 6, 7, 7, 6, 1]
+sorted_point_list = list(set(point_list))
+sorted_point_list.sort(reverse=True)
+winners = 0
+i = 2
+while i >= 0:
+    winners += point_list.count(sorted_point_list[i])
+    i -= 1
+print('Количество призеров: ', winners)
