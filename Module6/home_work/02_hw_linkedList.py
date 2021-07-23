@@ -20,9 +20,8 @@ class LinkedList:
         self.last = None
         self.pointer = self.first
         self.limit = 0
-        if len(args) > 0:
-            for arg in args:
-                self.add(arg)
+        for arg in args:
+            self.add(arg)
 
     def __str__(self):
         if self.first is not None:
