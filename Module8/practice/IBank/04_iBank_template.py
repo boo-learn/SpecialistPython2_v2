@@ -62,7 +62,8 @@ class Account(AccountBase):
         :param amount: сумма перевода
         :return:
         """
-        self.balance -= amount
+        if amount <= self.balance:
+            self.balance -= amount
         target_account.balance += amount
 
     def deposite(self, amount):
@@ -77,13 +78,17 @@ class Account(AccountBase):
         Снятие суммы с текущего счета
         :param amount: сумма
         """
-        self.balance -= amount
+        if amount <= self.balance:
+            self.balance -= amount
 
     def full_info(self):
         """
         Полная информация о счете в формате: "Иванов Иван Петрович баланс: 100 руб. паспорт: 12345678 т.89002000203"
         """
-        return f"{self.name}, баланс: {self.balance} руб., паспорт: {self.passport8}, т. {self.phone_number}"
+        if input('Введите номер паспорта: ') == self.passport8:
+            return f"{self.name}, баланс: {self.balance} руб., паспорт: {self.passport8}, т. {self.phone_number}"
+        else:
+            return 'Неверные паспортные данные'
 
     def __repr__(self):
         """
