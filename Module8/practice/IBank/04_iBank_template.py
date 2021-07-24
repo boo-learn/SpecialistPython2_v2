@@ -50,3 +50,29 @@ class AccountBase(ABC):
         return f"..."
 
 
+    class Account(AccountBase):
+    def transfer(self, target_account, amount):
+        if self.balance >= amount:
+            self.balance - amount
+            target_account.balance + amount
+            return "Operation completed successfully"
+        else:
+            return "On your account isn't enough money"
+
+    def deposite(self, amount):
+        self.balance = self.balance + amount
+
+
+    def withdraw(self, amount):
+        if self.balance >= amount:
+            return self.balance - amount
+        return "On your account isn't enough money"
+
+
+    def full_info(self):
+        return f"{self.name} баланс: {self.balance} руб. паспорт: {self.passport8} т.{self.phone_number}"
+
+
+    def __repr__(self, passport):
+        return f"{self.name} баланс: {self.balance} руб."
+
