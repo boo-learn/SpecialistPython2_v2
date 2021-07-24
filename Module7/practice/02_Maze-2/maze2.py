@@ -34,11 +34,12 @@ def dfs(v):
 
 
 my_dict = {1: 'S-1', 5: 'S-2', 15: 'S-3'}
+finish = 14
 
 for start in my_dict.keys():
     visited = [False] * (len(graph))
     dfs(start)
-    if visited[14]:
+    if visited[finish]:
         print(f'Из точки {my_dict[start]} можно дойти до финиша')
     else:
         print(f'Из точки {my_dict[start]} нельзя дойти до финиша')
