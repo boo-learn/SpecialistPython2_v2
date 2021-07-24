@@ -26,21 +26,23 @@ graph = [
 # Решите задачу и выведите ответ в нужном формате
 
 
-def dfs(v):
-    visited[v] = True
-    for w in graph[v]:
-        if not visited[w]:  # посещён ли текущий сосед?
-            dfs(w)
+def dfs(v, n, graph):
+    visited = [False] * n
+    def _dfs(v):
+        visited[v] = True
+        for w in graph[v]:
+            if not visited[w]:  # посещён ли текущий сосед?
+                _dfs(w)
+    _dfs(v)
+    return visited
 
 
-my_dict = {1: 'S-1', 5: 'S-2', 15: 'S-3'}
+start_points = {1: 'S-1', 5: 'S-2', 15: 'S-3'}
 finish = 14
 
-for start in my_dict.keys():
-    visited = [False] * (len(graph))
-    dfs(start)
+for start in start_points:
+    visited = dfs(start, len(graph), graph)
     if visited[finish]:
-        print(f'Из точки {my_dict[start]} можно дойти до финиша')
+        print(f'Из точки {start_points[start]} можно дойти до финиша')
     else:
-        print(f'Из точки {my_dict[start]} нельзя дойти до финиша')
-    #print(visited)
+        print(f'Из точки {start_points[start]} нельзя дойти до финиша')
