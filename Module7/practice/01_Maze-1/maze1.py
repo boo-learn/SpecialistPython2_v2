@@ -32,7 +32,7 @@ def dfs(v):
 
 my_dict = {0: 'S-1', 12: 'S-2', 3: 'S-3'}
 
-for start in [0, 3, 12]:
+for start in my_dict.keys():
     visited = [False] * (len(graph))
     dfs(start)
     if visited[14]:
