@@ -1,3 +1,6 @@
+from itertools import combinations
+
+
 def dfs(v, n, graph):
     visited = [False] * n
     def _dfs(v):
@@ -19,7 +22,7 @@ graph = [
     [5, 10],
     [3, 11],
 
-    [12],
+    [12, 9],
     [5, 8, 10], 
     [9, 6, 14],
     [7],
@@ -33,7 +36,7 @@ graph = [
 treasures = {
     1: 1, 
     2: 2,
-    3: 3,
+    4: 3,
     6: 5,
     7: 3,
     9: 5,
@@ -47,4 +50,10 @@ start_points = {0: 'S-1', 3: 'S-3', 12: 'S-2'}
 
 for start_point in start_points:
     visited = dfs(start_point, len(graph), graph)
-    treasures_collected = [treasures[point] for point in visited if point in treasures]
+    collected = []
+    for point, value in  treasures.items():
+        if visited[point]:
+            collected.append(value)
+    collected.sort()
+    print(f'Из точки {start_points[start_point]} можно собрать сокровищ' 
+          f'суммарной ценностью {sum(collected[-2:])}')
