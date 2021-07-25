@@ -13,3 +13,20 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+
+import math
+
+def bubble_sort(nums):
+    swapped = True
+    while swapped:
+        swapped = False
+        for i in range(len(nums) - 1):
+            if nums[i] < nums[i + 1]:
+                nums[i], nums[i + 1] = nums[i + 1], nums[i]
+                swapped = True
+
+input_array = [8, 100, 2, 3, 4, 10, 8, 100, 5]
+num_of_prod = math.ceil(input_array[0] / 2)
+prices = input_array[1:]
+bubble_sort(prices)
+print(sum(prices[:num_of_prod]))
