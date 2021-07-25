@@ -16,11 +16,11 @@
 # Возможен такой порядок: 10 2 50 1 10
 
 list_of_products = [int(i) for i in input(': ').split()]
-sorted(list_of_products)
+sorted(list_of_products, reverse=True)
 trick_list = []
 index_count = 1
-cheap = sorted(list_of_products[:int(len(list_of_products) / 2)], reverse=True)
-expensive = sorted(list_of_products[int(len(list_of_products) / 2):], reverse=True)
+cheap = sorted(list_of_products[:int(len(list_of_products) / 2)])
+expensive = sorted(list_of_products[int(len(list_of_products) / 2):])
 
 che_count = 0
 exp_count = 0
