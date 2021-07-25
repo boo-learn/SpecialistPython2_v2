@@ -18,7 +18,6 @@
 list_of_products = [int(i) for i in input(': ').split()]
 sorted(list_of_products, reverse=True)
 trick_list = []
-index_count = 1
 cheap = sorted(list_of_products[:int(len(list_of_products) / 2)])
 expensive = sorted(list_of_products[int(len(list_of_products) / 2):])
 
