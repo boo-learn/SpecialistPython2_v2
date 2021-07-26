@@ -13,3 +13,15 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+
+data = gen_list(11, 0, 50)
+sort_choice(data, reverse=True)
+i = 0 
+j = -(i+1)
+new_data = []
+while i < len(data)/2 + 1:
+    new_data.append(data[i])
+    if i < len(data)/2:
+        new_data.append(data[j])
+    i += 1
+print(new_data)
