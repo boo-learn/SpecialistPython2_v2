@@ -14,7 +14,12 @@ def print_node_by_index(start_node, index):
     Если index = 0, выводим значение ноды start_node
     Считаем, что index гарантированно > 0
     """
-    pass
+    current_node = start_node
+    current_index = 0
+    while current_index <= index:
+        current_index += 1
+        current_node = current_node.next
+    return current_node.value
 
 
 def gen_names_list(size=None):
