@@ -9,3 +9,20 @@ employees = [
 ]
 # Выведите список сотрудников(без указания должности) в формате: Фамилия Имя, в отсортированном порядке.
 # Примечание: если фамилии сотрудников совпадают, при сортировке учесть имя.
+
+def sort_choice(nums, key=lambda el: el, reverse=False):
+    i = 0
+    while i < len(nums) - 1:
+        m = i
+        j = i + 1
+        while j < len(nums):
+            comp = key(nums[j]) > key(nums[m]) if reverse else key(nums[j]) < key(nums[m])
+            if comp:
+                m = j
+            j += 1
+        nums[i], nums[m] = nums[m], nums[i]
+        i += 1
+
+sort_choice(employees, key=lambda x: (x['surname'], x['name']))
+for i in employees:
+    print(i['surname'], i['name'])
