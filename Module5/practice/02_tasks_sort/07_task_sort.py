@@ -11,3 +11,11 @@
 # 10 1 3 4 3 5 6 7 7 6 1
 # Выход
 # 5
+olimp=[10,1,3,4,3,5,6,7,7,6,1]
+winner=0
+for i in range(3):
+    count_max=olimp.count(max(olimp))
+    winner+=count_max
+    for j in range(count_max):
+        olimp.remove(max(olimp))
+print(winner)
