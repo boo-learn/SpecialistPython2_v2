@@ -2,8 +2,19 @@
 # возможность итерировать по цифрам числа
 
 class IterInt(int):
-    pass
-
+    def __init__(self,last_index=None):
+        int.__init__(self)
+        self.last_index=None
+    def __iter__(self):
+        return self
+    def __next__(self):
+        if self.last_index is None:
+            self.last_index=1
+        else:
+            self.last_index=self.last_index+1
+        if self.last_index>len(str(self)):
+            raise StopIteration
+        return self.last_index
 
 n = IterInt(12346)
 
