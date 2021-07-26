@@ -21,7 +21,12 @@ def len_nodes(start_node):
     """
     Возвращает целое число - кол-во нод у цепочке
     """
-    pass
+    current_node = start_node
+    length = 1
+    while current_node.next:
+        length += 1
+        current_node = current_node.next
+    return length
 
 
 # Дан список из произвольного количества имен
