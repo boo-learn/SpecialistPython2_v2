@@ -13,3 +13,18 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+
+price=[5,2,1,10,50,10]
+price.sort(reverse=True)
+check=[]
+total=0
+for i in range(len(price)//2):
+    check.append(price[i])
+    total+=price[i]
+    check.append(price[-i-1])
+if len(price)%2!=0:
+    check.append(price[i+1])
+    total +=price[i+1]
+print(check)
+print(total)
+
