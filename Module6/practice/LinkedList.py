@@ -14,22 +14,25 @@ class LinkedList:
         self.last = None
 
     def __str__(self):
-        # FIXME: убрать вывод запятой после последнего элемента
+        # FIXME: убрать вывод запятой после последнего элемента - FIXED
         if self.first is not None:
             current = self.first
-            out = 'LinkedList [' + str(current.value) + ','
+            out = 'LinkedList [' + str(current.value)
             while current.next is not None:
                 current = current.next
-                out += str(current.value) + ','
+                out += ',' + str(current.value)
             return out + ']'
         return 'LinkedList []'
-
-    def clear(self):
-        """
-        Очищаем список
-        """
-        # TODO: реализовать очистку списка
+    
+    def clear():
+        self.__init__(self)
         raise TypeError("Not implemented")
+
+
+
+
+
+######sdalas.exe
 
     def add(self, value):
         """
