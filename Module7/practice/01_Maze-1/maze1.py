@@ -36,7 +36,7 @@ while queue:
 for i in range(len(lengths)):
     print(f'Из точки S-{i} {"можно" if str(lengths[i]) != "None" else "нельзя"} дойти до финиша')
 
-print(lengths)
+# print(lengths)
 # visited = [False] * (len(graph))
 # start = 0
 #
