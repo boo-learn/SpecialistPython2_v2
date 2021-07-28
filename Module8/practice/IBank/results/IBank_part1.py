@@ -13,30 +13,51 @@ class Account:
         :param amount: сумма перевода
         :return:
         """
-        pass
+        try:
+            self.withdraw(amount)
+            target_account.deposit(amount)
+        except ValueError as error:
+            print('Не удалось перевести средства.', error)
 
-    def deposit(self, amount):
+    def deposit(self, amount): # TODO простое задание
         """
         Внесение суммы на текущий счет
         :param amount: сумма
         """
-        pass
+        self.balance += amount
 
     def withdraw(self, amount):
         """
         Снятие суммы с текущего счета
         :param amount: сумма
         """
-        pass
+        if self.balance >= amount:
+            self.balance -= amount
+            return
+        return ValueError('Недостаточно средств')
 
-    def full_info(self):
+    def full_info(self): # TODO простое задание
         """
         Полная информация о счете в формате: "Иван баланс: 100 руб. паспорт: 3200 123456 т.+7-900-200-02-03"
         """
-        return f"..."
+        return f"{self.name} баланс: {self.balance} руб. паспорт: {self.passport} т. +7-900-200-02-03"
 
-    def __repr__(self):
+    def __repr__(self): # TODO простое задание
         """
         :return: Информацию о счете в виде строки в формате "Иванов И.П. баланс: 100 руб."
         """
-        return f"..."
+        return f"{self.name} баланс: {self.balance} руб."
+
+person1 = Account('Анатолий', '3453 233443', '72223344922')
+
+print(person1.full_info())
+person1.deposit(500)
+print(person1.full_info())
+print(person1)
+person1.withdraw(300)
+print(person1)
+person2 = Account('Валентин', '5612 351843', '79934558123')
+person1.transfer(person2, 100)
+print(person1)
+person1.transfer(person2, 300)
+print(person1)
