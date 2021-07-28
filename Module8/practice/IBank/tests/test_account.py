@@ -6,8 +6,8 @@ from ... import Account
 #  затем исправьте недоработки класса, чтобы тест проходил
 class TestAccountTask2(unittest.TestCase):
     def setUp(self):
-        self.accounts = [Account("Петр", 12345678, "+79006001020", start_balance=300),
-                         Account("Иван", 12345676, "+79006001020", start_balance=100),
+        self.accounts = [Account("Петр", "3002 123456", "+7-900-600-10-20", start_balance=300),
+                         Account("Иван", "3002 123477", "+7-900-600-10-22", start_balance=100),
                          ]
 
     def test_deposit(self):
@@ -34,11 +34,12 @@ class TestAccountTask2(unittest.TestCase):
     def test_full_info(self):
         # Проверяем наличие информации в строке, а не строгий формат
         self.assertIn("300", self.accounts[0].full_info())
-        self.assertIn("+79006001020", self.accounts[0].full_info())
+        self.assertIn("3002 123456", self.accounts[0].full_info())
+        self.assertIn("+7-900-600-10-20", self.accounts[0].full_info())
         self.assertIn("Петр", self.accounts[0].full_info())
 
-    def test_unique_passport(self):
-        with self.assertRaises(ValueError):
-            self.accounts.append(
-                Account("Алексей", 12345676, "+79006001020", start_balance=100)
-            )
+    def test_validate_passport(self):
+        pass
+
+    def test_validate_phone(self):
+        pass

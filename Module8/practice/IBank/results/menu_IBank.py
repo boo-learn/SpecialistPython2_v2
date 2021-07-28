@@ -1,3 +1,4 @@
+from IBank_part5 import Account, CreditAccount
 EMPLOYEE_PASSWORD = "123"
 
 def close_account():

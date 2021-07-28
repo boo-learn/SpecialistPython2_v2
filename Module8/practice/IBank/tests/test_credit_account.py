@@ -1,11 +1,12 @@
 import unittest
 from ... import CreditAccount
 
+
 class TestCreditAccount(unittest.TestCase):
     def setUp(self):
-        self.account1 = CreditAccount("Иван", 12345678, "+7900-600-10-20",
-                                     start_balance=300, negative_limit=-500)
-        self.account2 = CreditAccount("Василий", 12345676, "+7900-600-10-22",
+        self.account1 = CreditAccount("Иван", "3002 123477", "+7-900-600-10-77",
+                                      start_balance=300, negative_limit=-500)
+        self.account2 = CreditAccount("Василий", "3002 123445", "+7-900-600-10-45",
                                       start_balance=100, negative_limit=-200)
 
     def test_deposit(self):
@@ -25,8 +26,8 @@ class TestCreditAccount(unittest.TestCase):
             self.account1.withdraw(800)
 
     def test_withdraw_inc_commission_on_negative_balance(self):
-        self.account1.withdraw(400) # уходим в -баланс. Тут 2%
-        self.account1.withdraw(200) # снимает при -балансе. Тут 5%
+        self.account1.withdraw(400)  # уходим в -баланс. Тут 2%
+        self.account1.withdraw(200)  # снимает при -балансе. Тут 5%
         self.assertEqual(self.account1.balance, -318)
 
     def test_withdraw_raise(self):
@@ -61,4 +62,4 @@ class TestCreditAccount(unittest.TestCase):
         self.assertIn("300", self.account1.full_info())
         self.assertIn("Иван", self.account1.full_info())
         self.assertIn("+7900-600-10-20", self.account1.full_info())
-        self.assertIn("<K>", self.account1.full_info())
+        self.assertIn("<К>", self.account1.full_info())

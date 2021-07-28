@@ -1,15 +1,11 @@
-# from generators import get_user_data
-from abc import ABC, abstractmethod
-
-
-class AccountBase(ABC):
-    def __init__(self, name, passport8, phone_number, start_balance=0):
+# Сюда отправляем готовое решение IBank часть-1
+class Account:
+    def __init__(self, name, passport, phone_number, start_balance=0):
         self.name = name
-        self.passport8 = passport8
+        self.passport = passport
         self.phone_number = phone_number
         self.balance = start_balance
 
-    @abstractmethod
     def transfer(self, target_account, amount):
         """
         Перевод денег на счет другого клиента
@@ -19,15 +15,13 @@ class AccountBase(ABC):
         """
         pass
 
-    @abstractmethod
-    def deposite(self, amount):
+    def deposit(self, amount):
         """
         Внесение суммы на текущий счет
         :param amount: сумма
         """
         pass
 
-    @abstractmethod
     def withdraw(self, amount):
         """
         Снятие суммы с текущего счета
@@ -35,18 +29,14 @@ class AccountBase(ABC):
         """
         pass
 
-    @abstractmethod
     def full_info(self):
         """
-        Полная информация о счете в формате: "Иванов Иван Петрович баланс: 100 руб. паспорт: 12345678 т.89002000203"
+        Полная информация о счете в формате: "Иван баланс: 100 руб. паспорт: 3200 123456 т.+7-900-200-02-03"
         """
         return f"..."
 
-    @abstractmethod
     def __repr__(self):
         """
         :return: Информацию о счете в виде строки в формате "Иванов И.П. баланс: 100 руб."
         """
         return f"..."
-
-
