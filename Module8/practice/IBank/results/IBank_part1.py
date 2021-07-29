@@ -1,11 +1,16 @@
 # Сюда отправляем готовое решение IBank часть-1
-class Account:
-    def __init__(self, name, passport, phone_number, start_balance=0):
+# from generators import get_user_data
+from abc import ABC, abstractmethod
+
+
+class AccountBase(ABC):
+    def __init__(self, name, passport8, phone_number, start_balance=0):
         self.name = name
-        self.passport = passport
+        self.passport8 = passport8
         self.phone_number = phone_number
         self.balance = start_balance
 
+    @abstractmethod
     def transfer(self, target_account, amount):
         """
         Перевод денег на счет другого клиента
@@ -15,6 +20,7 @@ class Account:
         """
         pass
 
+    @abstractmethod
     def deposit(self, amount):
         """
         Внесение суммы на текущий счет
@@ -22,6 +28,7 @@ class Account:
         """
         pass
 
+    @abstractmethod
     def withdraw(self, amount):
         """
         Снятие суммы с текущего счета
@@ -29,14 +36,109 @@ class Account:
         """
         pass
 
+    @abstractmethod
     def full_info(self):
         """
-        Полная информация о счете в формате: "Иван баланс: 100 руб. паспорт: 3200 123456 т.+7-900-200-02-03"
+        Полная информация о счете в формате: "Иванов Иван Петрович баланс: 100 руб. паспорт: 12345678 т.89002000203"
         """
         return f"..."
 
+    @abstractmethod
     def __repr__(self):
         """
         :return: Информацию о счете в виде строки в формате "Иванов И.П. баланс: 100 руб."
         """
         return f"..."
+
+
+class Operation:
+    DEPOSIT = 'Пополнение +'
+    WITHDRAW = 'Списание -'
+    TRANSFER = 'Перевод -'
+    CLOSE = 'Закрытие счета -'
+
+    def __init__(self, type, amount, fee=0, target=None):
+        self.type = type
+        self.amount = amount
+        self.fee = fee
+        self.target = target
+
+    def __str__(self):
+        if self.target is not None:
+            target_name = 'на счет клиента: ' + self.target.name
+        else:
+            target_name = ''
+        return f'{self.type}{self.amount:.2f} {target_name} с комиссией {self.fee:.02f}'
+
+
+class Account(AccountBase):
+    def __init__(self, name, passport8, phone_number, start_balance=0,):
+        AccountBase.__init__(self, name, passport8, phone_number, start_balance)
+
+    def transfer(self, target_account, amount):
+        """
+        Перевод денег на счет другого клиента
+        :param target_account: счет клиента для перевода
+        :param amount: сумма перевода
+        :return:
+        """
+        self.withdraw(amount)
+        target_account.deposit(amount)
+
+    def deposit(self, amount, record=True):
+        """
+        Внесение суммы на текущий счет
+        :param amount: сумма
+        """
+        self.balance += amount
+
+    def has_money(self, amount):
+        return amount > self.balance
+
+    def withdraw(self, amount, record=True):
+        """
+        Снятие суммы с текущего счета
+        :param amount: сумма
+        """
+        if self.has_money(amount):
+            raise ValueError('Недостаточно средств на счете')
+        self.balance -= amount
+
+    def full_info(self):
+        """
+        Полная информация о счете в формате: "Иванов Иван Петрович баланс: 100 руб. паспорт: 12345678 т.89002000203"
+        """
+        return f'Имя: {self.name}; баланс {self.balance:.2f}; Номер паспорта: {self.passport8}; тел.{self.phone_number}'
+
+    def __repr__(self):
+        """
+        :return: Информацию о счете в виде строки в формате "Иванов И.П. баланс: 100 руб."
+        """
+        return f"{self.name} баланс: {self.balance:.2f}"
+
+account1 = Account('Иван', '1234 565678', '+7-999-556-18-54', 100)
+account2 = Account('Петр', '2345 746781', '+7-999-985-17-45', 500)
+account3 = Account('Василий', '3456 587812', '+7-989-915-77-45', 1000)
+account4 = Account('Алексей', '4567 728123', '+7-989-915-77-45', 5000)
+
+try:
+    print('Перевод денег - 10 руб')
+    account1.transfer(account2, 10)
+    # print(account1.full_info())
+    # print(account2.full_info())
+    print(f'{account1 = }')
+    print(f'{account2 = }')
+
+    print('Положить на депозит 500руб')
+    account1.deposit(500)
+    # print(account1.full_info())
+    print(f'{account1 = }')
+
+    print('Снять 20руб')
+    account1.withdraw(20)
+    # print(account1.full_info())
+    print(f'{account1 = }')
+
+except ValueError as e:
+    print(e)
+
