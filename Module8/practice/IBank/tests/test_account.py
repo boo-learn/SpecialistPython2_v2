@@ -1,5 +1,5 @@
 import unittest
-from ... import Account
+from ..IBank import Account
 
 
 # FIXME: Допишите тест/тесты, который выявит недоработки в классе Account ,
@@ -37,9 +37,3 @@ class TestAccountTask2(unittest.TestCase):
         self.assertIn("3002 123456", self.accounts[0].full_info())
         self.assertIn("+7-900-600-10-20", self.accounts[0].full_info())
         self.assertIn("Петр", self.accounts[0].full_info())
-
-    def test_validate_passport(self):
-        pass
-
-    def test_validate_phone(self):
-        pass
