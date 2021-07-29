@@ -1,5 +1,4 @@
-# Сюда отправляем готовое решение IBank часть-2
-
+# Сюда отправляем готовое решение IBank часть-3
 class Operation:
     # класс для хранение информации об операциях
     DEPOSIT = "пополнение"
@@ -27,12 +26,14 @@ class Operation:
 
 class Account:
     FEE = 2
+
     def __init__(self, name, passport, phone_number, start_balance=0):
         self.name = name
         self.passport = passport
         self.phone_number = phone_number
         self.balance = start_balance
         self.__history = []
+        self.in_archive = False
 
     def transfer(self, target_account, amount):
         """
@@ -41,10 +42,10 @@ class Account:
         :param amount: сумма перевода
         :return:
         """
-        fee = int(amount * (self.FEE/100))
-        self.withdraw(amount, fee=fee, record=False)
+        self.withdraw(amount, record=False)
         target_account.deposit(amount, record=False)
-        op = Operation(Operation.TRANSFER, amount, target_account, fee=fee)
+
+        op = Operation(Operation.TRANSFER, amount, target_account, fee=int(amount * (self.FEE / 100)))
         self.__history.append(op)
 
         op = Operation(Operation.INCOME, amount, self)
@@ -60,15 +61,14 @@ class Account:
             op = Operation(Operation.DEPOSIT, amount)
             self.__history.append(op)
 
-    def withdraw(self, amount, fee=0, record=True):
+    def withdraw(self, amount, record=True):
         """
         Снятие суммы с текущего счета
         :param amount: сумма
         """
         if self.balance < amount:
             raise ValueError("Недостаточно средств на счете")
-        fee = int(amount * (self.FEE/100))
-        amount += fee
+
         self.balance -= amount
         if record:
             op = Operation(Operation.WITHDRAW, amount)
@@ -95,16 +95,32 @@ class Account:
             hist_str += str(op) + "\n"
         return hist_str
 
+    def to_archive(self):
+        """
+        Переводим аккаунт в архив
+        """
+        self.in_archive = True
 
-account1 = Account("Иван", "3445 123456", "+7-900-600-11-22")
-account2 = Account("Алекс", "3445 123426", "+7-900-600-11-33")
-account1.deposit(500)
-account1.withdraw(100)
-try:
-    account1.transfer(account2, 200)
-except ValueError as e:
-    print(e)
-print(account1.show_history())
-print("**********")
-print(account2.show_history())
-# print(account2)
+    def restore(self):
+        """
+        Восстанавливаем из архива
+        """
+        self.in_archive = False
+
+    account1 = Account("Иван", "3445 123456", "+7-900-600-11-22")
+    account2 = Account("Алекс", "3445 123426", "+7-900-600-11-33")
+    account1.deposit(500)
+    account1.withdraw(100)
+    try:
+        account1.transfer(account2, 200)
+    except ValueError as e:
+        print(e)
+    print(account1.show_history())
+    print("**********")
+    print(account2.show_history())
+
+    # print(account2)
+
+    # TODO: сюда копируем реализацию класса Account из предыдущей задачи
+    # TODO: добавляем комиссию
+    #  и переход/восстановление их архива. Свойство: in_archive --> True, если аккаунт в архиве, и False - если нет
