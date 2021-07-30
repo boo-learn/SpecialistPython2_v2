@@ -1,14 +1,28 @@
-# Разработать класс IterInt, который наследует функциональность стандартного типа int, но добавляет
+# Разработать класс IterInt, который наследует функциональность
+# стандартного типа int, но добавляет
 # возможность итерировать по цифрам числа
 
+
 class IterInt(int):
-    pass
+
+    pointer = 0
+
+    def __iter__(self):
+        self.pointer = 0
+        return self
+
+    def __next__(self):
+        if self.pointer >= len(str(self)):
+            raise StopIteration
+        res = int(str(self)[self.pointer])
+        self.pointer += 1
+        return res
 
 
 n = IterInt(12346)
 
 for digit in n:
-    print("digit = ", digit)
+    print("digit =", digit)
 
 # Выведет:
 # digit = 1
