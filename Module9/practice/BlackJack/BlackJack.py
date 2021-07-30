@@ -16,11 +16,16 @@ def sum_points(cards):
     # Совет: храните кол-во очков за карту внутри класса Колоды(колода "знает", сколько дает очков каждая карта)
 
     #  Сначала считаем сумму карт, считая ТУЗ за 11-очков
-    sum_points = ...
+    sum_points = 0
+    for summ in cards:
+        sum_points += sum_.score
     # Если сумма > 21, то перечитываем сумму, считая ТУЗ за 1(единицу)
     if sum_points > 21:
-        ...
-
+        sum_points = 0
+        for summ in cards:
+            if sum_.rank == 'A':
+                 sum_.score = 1
+            sum_points += summ.score
     return sum_points
 
 
