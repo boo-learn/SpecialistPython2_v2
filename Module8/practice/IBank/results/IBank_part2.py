@@ -15,7 +15,8 @@ class Operation:
 class Account:
     pass
     # TODO: сюда копируем реализацию класса Account из предыдущей задачи
-    # TODO: историю храним как список объектов класса Operation, добавив свойство в конструктор
+    # TODO: историю храним как список объектов класса Operation, добавив свойство в конструктор:
+    #   self.__history = []
 
     def show_history(self):
         """

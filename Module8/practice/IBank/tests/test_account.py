@@ -1,10 +1,10 @@
 import unittest
-from ..IBank import Account
+# Импортируем класс Account, в котором реализованы доработки из части 3
+from ..results.IBank_part3 import Account
 
 
-# FIXME: Допишите тест/тесты, который выявит недоработки в классе Account ,
-#  затем исправьте недоработки класса, чтобы тест проходил
-class TestAccountTask2(unittest.TestCase):
+# FIXME: исправьте недоработки класса, чтобы тест проходил
+class TestAccountPart3(unittest.TestCase):
     def setUp(self):
         self.accounts = [Account("Петр", "3002 123456", "+7-900-600-10-20", start_balance=300),
                          Account("Иван", "3002 123477", "+7-900-600-10-22", start_balance=100),
@@ -30,6 +30,17 @@ class TestAccountTask2(unittest.TestCase):
     def test_transfer_raise(self):
         with self.assertRaises(ValueError):
             self.accounts[0].transfer(self.accounts[1], 500)
+
+    def test_to_archive(self):
+        self.accounts[0].to_archive()
+        self.assertTrue(self.accounts[0].in_archive)
+
+    def test_restore_from_archive(self):
+        self.assertEqual(self.accounts[0].balance, 300)
+        self.accounts[0].to_archive()
+        self.accounts[0].restore()
+        self.assertEqual(self.accounts[0].balance, 0)
+        self.assertFalse(self.accounts[0].in_archive)
 
     def test_full_info(self):
         # Проверяем наличие информации в строке, а не строгий формат
