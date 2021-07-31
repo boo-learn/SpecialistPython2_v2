@@ -1,3 +1,4 @@
+import collections
 # Частотный анализ — это подсчёт, какие символы чаще встречаются в тексте.
 # Это важнейший инструмент взлома многих классических шифров —
 # от шифра Цезаря до шифровальной машины «Энигма».
@@ -6,4 +7,7 @@
 
 # Входные данные:
 # Произвольный текст
-# TODO: your code here...
+input_str = 'abababacdca'
+counter = collections.Counter(input_str)
+
+print(counter.most_common(1))
