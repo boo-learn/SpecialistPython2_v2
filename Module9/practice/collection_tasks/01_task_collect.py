@@ -6,4 +6,8 @@
 
 # Входные данные:
 # Произвольный текст
-# TODO: your code here...
+from collections import Counter
+
+text = input('Введите текст: ')
+symbols = Counter(text)
+print(symbols.most_common(1))
