@@ -1,88 +1,117 @@
-from IBank_part5 import Account, CreditAccount
+from .iBank import Account, CreditAccount
+
 
 EMPLOYEE_PASSWORD = "123"
 
-
-def close_account():
+def close_account(accounts):
     """
     Закрыть счет клиента.
     Считаем, что оставшиеся на счету деньги были выданы клиенту наличными, при закрытии счета
     """
-    pass
+    account = access_by_passport(accounts)
+    if account:
+        account.to_archive()
 
 
-def view_accounts_list():
+def view_accounts_list(accounts):
     """
-        Отображение всех клиентов банка в виде нумерованного списка
-        """
+    Отображение всех клиентов банка в виде нумерованного списка
+    """
+    idx = 1
+    for acc in accounts:
+        if not acc.in_archive:
+            print(idx, acc)
+            idx += 1
 
 
-def view_account_by_passport():
-    pass
+def view_account_by_passport(accounts):
+    account = access_by_passport(accounts)
+    if account:
+        archived = ('Нет', 'Да')[account.in_archive]
+        print(account, 'Аккаунт в архиве:', archived)
 
 
-def view_client_account():
+def view_client_account(account):
     """
     Узнать состояние своего счета
     """
-    pass
+    print(account)
 
 
-def put_account():
+def put_account(account):
     """
     Пополнить счет на указанную сумму.
     Считаем, что клиент занес наличные через банкомат
     """
-    pass
+    amount = int(input('Введите сумму: '))
+    account.deposit(amount)
 
 
-def withdraw():
+def withdraw(account):
     """
     Снять со счета.
     Считаем, что клиент снял наличные через банкомат
     """
-    pass
+    amount = int(input('Введите сумму: '))
+    try:
+        account.withdraw(amount)
+    except ValueError as e:
+        print(e)
 
 
-def transfer():
+def transfer(account):
     """
     Перевести на счет другого клиента по номеру телефона
     """
-    pass
+    phone = input('Введите номер телефона клиента: ')
+    target = None
+    for acc in accounts:
+        if phone == acc.phone_number:
+            target = acc
+    if not target:
+        print('Введен несуществующий номер, повторите попытку')
+    else:
+        amount = int(input('Введите сумму: '))
+        account.transfer(target, amount)
 
 
-def create_new_account():
+def create_new_account(accounts):
     print("Укажите данные клиента")
     name = input("Имя:")
     passport = input("Номер паспорта: ")
     phone_number = input("Номер телефона: ")
-    # TODO: тут создаем новый аккаунт пользователя account = ...
-    #   и добавляем его в accounts.append(account)
+    credit = input('Создать кредитный аккаунт (y/n)? ')
+    if credit == 'y':
+        limit = int(input('Введите доступный лимит: '))
+        account = CreditAccount(name, passport, phone_number, negative_limit=abs(limit) * (-1))
+    else:
+        account = Account(name, passport, phone_number)
+    accounts.append(account)
 
 
 def client_menu(account):
     while True:
-        print("***********Меню клиента <Иванов И.И.>*************")
+        print(f"***********Меню клиента {account.name}*************")
         print("1. Состояние счета")
         print("2. Пополнить счет")
         print("3. Снять со счета")
         print("4. Перевести деньги другому клиенту банка")
         print("5. Exit")
-        choice = input(":")
+        choice = input(": ")
         if choice == "1":
-            view_client_account()
+            view_client_account(account)
         elif choice == "2":
-            put_account()
+            put_account(account)
         elif choice == "3":
-            withdraw()
+            withdraw(account)
         elif choice == "4":
-            transfer()
+            transfer(account)
         elif choice == "5":
             return
     # input("Press Enter")
 
 
-def employee_menu():
+def employee_menu(accounts):
     while True:
         print("***********Меню сотрудника*************")
         print("1. Создать новый счет")
@@ -92,13 +121,13 @@ def employee_menu():
         print("5. Exit")
         choice = input(":")
         if choice == "1":
-            create_new_account()
+            create_new_account(accounts)
         elif choice == "2":
-            close_account()
+            close_account(accounts)
         elif choice == "3":
-            view_accounts_list()
+            view_accounts_list(accounts)
         elif choice == "4":
-            view_account_by_passport()
+            view_account_by_passport(accounts)
         elif choice == "5":
             return
 
@@ -119,7 +148,8 @@ def client_access(accounts):
     Или возвращает False, если аккаунт не найден
     """
     try:
-        passport = int(input("Номер паспорта: "))
+        passport = input("Номер паспорта: ")
+        int(passport)
     except ValueError:
         return False
     for account in accounts:
@@ -129,7 +159,17 @@ def client_access(accounts):
     return False
 
 
-def start_menu():
+def access_by_passport(accounts):
+    account = client_access(accounts)
+    if account is False:
+        print('Неверные паспортные данные, повторите попыту')
+        return
+    else:
+        return account
+        
+
+
+def start_menu(accounts):
     while True:
         print("Укажите вашу роль:")
         print("1. Сотрудник банка")
@@ -141,7 +181,7 @@ def start_menu():
             break
         elif choice == "1":
             if employee_access():
-                employee_menu()
+                employee_menu(accounts)
             else:
                 print("Указан неверный пароль, укажите роль и повторите попытку...")
         elif choice == "2":
@@ -156,4 +196,4 @@ def start_menu():
 
 if __name__ == "__main__":
     accounts = []
-    start_menu()
+    start_menu(accounts)
