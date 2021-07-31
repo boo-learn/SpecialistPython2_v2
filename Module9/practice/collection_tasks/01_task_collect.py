@@ -4,6 +4,15 @@
 # Выполним простой частотный анализ: выясним, какой символ чаще всего
 # встречается в данном тексте.
 
+
 # Входные данные:
 # Произвольный текст
 # TODO: your code here...
+
+import collections
+c = collections.Counter()
+
+for word in ['uhwufehsuwreuftVYyv', 'grfrg', 'grfrg', 'gehgh']:
+    c[word] += 1
+
+print(c['grfrg'])
