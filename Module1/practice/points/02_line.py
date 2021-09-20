@@ -12,3 +12,6 @@ points = [Point(2, 4), Point(7, 5), Point(5, -2), Point(0, 6), Point(-12, 0)]
 # TODO: your core here...
 
 print("Длина ломаной линии = ", ...)
+
+#тест тест тест
+print('Был тест')
