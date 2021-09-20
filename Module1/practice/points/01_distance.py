@@ -19,3 +19,5 @@ point2 = Point(5, -2)
 # TODO: your core here...
 
 print("Расстояние между точками = ", ...)
+
+fffffffffffffffffffffff
