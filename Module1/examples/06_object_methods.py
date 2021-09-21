@@ -1,10 +1,10 @@
 class Point:
-    # Конструктор
+    # Конструктор - тоже является методом, но с зарезервированным именем
     def __init__(self, x, y):
         self.x = x
         self.y = y
 
-    # Метод
+    # Метод - функция внутри класса
     def dist_to(self, other_point):
         return ((self.x - other_point.x) ** 2 + (self.y - other_point.y) ** 2) ** 0.5
 
