@@ -1,3 +1,6 @@
+coins = [1,2,3,4,5,6,78]
+
+
 import random
 
 
@@ -6,12 +9,17 @@ class Coin:
         # heads-орел/tails-решка
         self.side = None
 
+
     def flip(self):
-        """
-        Подбрасывание монетки
-        """
-        self.side = ...  # random: heads/tails
+        heads = 0
+        tails = 0
+        for coin in coins:
+            random.seed(coin)
+            side = random.random()
+            if side >= 0.5:
+                heads+=1
+            if side <  0.5:
+                tails+=1
+        print('соотношение:', ((heads*100)/(heads+tails)))
 
-
-# Задание: создайте список из n-монеток. Подбросьте(flip) все монетки.
-# выведите соотношение выпавших орлов и решек в процентах
+Coin.flip(coins)
