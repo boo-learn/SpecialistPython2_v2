@@ -1,3 +1,4 @@
+
 # Начнем с создания карты
 class Card:
     def __init__(self, value, suit):
@@ -5,7 +6,15 @@ class Card:
         self.suit = suit  # Масть карты
 
     def to_str(self):
-        pass
+        if self.suit == "Hearts":
+            self.suit = '\u2665'
+        if self.suit == "Diamonds":
+            self.suit = '\u2666'
+        if self.suit == "Spades":
+            self.suit = '\u2660'
+        if self.suit == "Clubs":
+            self.suit = '\u2663'
+        return self.suit
 
     def equal_suit(self, other_card):
         pass
