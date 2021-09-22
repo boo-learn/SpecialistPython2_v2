@@ -1,14 +1,54 @@
 class Card:
-    pass
-    # TODO: сюда копируем реализацию класса карты из предыдущего задания
+    _symbols = {
+        "Spades": "\u2660",
+        "Diamonds": "\u2666",
+        "Hearts": "\u2665",
+        "Clubs": "\u2663"
+    }
+
+    def __init__(self, value, suit):
+        self.value = value  # Значение карты(2, 3... 10, J, Q, K, A)
+        self.suit = suit  # Масть карты
+
+    def __repr__(self):
+        return f"{self.value}{self._symbols[self.suit]}"
+
+    def to_str(self):
+        return f"{self.value}{self._symbols[self.suit]}"
+
+    def get_suit(self, suit):
+        if suit not in self._symbols:
+            raise KeyError("Такой масти нет")
+        return self._symbols[suit]
+
+    def equal_suit(self, other_card):
+        return self.suit == other_card.suit
 
 
+# карта для возможности иметь обьект класс
+card_com = Card("J", "Clubs")
+
+# старшие карты
+grown_up_cards = ["J", "Q", "K", "A"]
+# общая колода
+common_deck = []
+for i in range(2, 11, 1):
+    common_deck.append(i)
+common_deck = common_deck + grown_up_cards
+# 1
 hearts_cards = []
-# TODO-1: добавьте в список hearts_cards все червовые карты(от 2-ки до туза)
+symbol = Card.get_suit(card_com, "Hearts")
 
+for card in common_deck:
+    hearts_cards.append(f"{card}{symbol}")
+
+# 2
 diamonds_cards = []
-# TODO-2: добавьте в список diamonds_cards все бубновые карты(от туза до 2-ки)
+symbol1 = Card.get_suit(card_com, "Diamonds")
+common_deck_rev = list(reversed(common_deck))
 
-# TODO-3: выведите все карты из списка hearts_cards в терминал через запятую в одну строку:
-# Пример вывода: 2♥, 3♥, 4♥ ... A♥
+for card in common_deck_rev:
+    diamonds_cards.append(f"{card}{symbol}")
 
+# 3
+print(', '.join(hearts_cards))
