@@ -5,14 +5,19 @@ class Card:
         self.suit = suit  # Масть карты
 
     def to_str(self):
-        pass
-
-    def equal_suit(self, other_card):
-        pass
-
+        symbols = {
+            'Hearts': '\u2665',
+            'Diamonds': '\u2666',
+            'Clubs': '\u2663',
+            'Spades': '\u2660'
+        }
+        return f'{self.value}{symbols[self.suit]}'
+    
+    def equal_suit(self, other_card): #проверяет, одинаковые ли масти у карт
+        return self.suit == other_card.suit
 
 # Создадим несколько карт
-card1 = Card("10", "Hearts")
+card1 = Card("10", "Diamonds")
 card2 = Card("A", "Diamonds")
 
 # Выведем карты на экран в виде: 10♥ и A♦
