@@ -1,17 +1,40 @@
 class Card:
-    pass
-    # TODO: сюда копируем реализацию класса карты из предыдущего задания
+    def __init__(self, value, suit):
+        self.value = value  # Значение карты(2, 3... 10, J, Q, K, A)
+        self.suit = suit  # Масть карты
+
+    def to_str(self):
+        symbols = {
+            "Spades": "\u2660",
+            "Hearts": "\u2665",
+            "Diamonds": "\u2666",
+            "Clubs": "\u2663"
+        }
+        return f"{self.value}{symbols[self.suit]}"
+
+    def equal_suit(self, other_card):
+        return self.suit == other_card.suit
+
+
+values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']     # Список значений карт
+suits = ['Hearts', 'Diamonds', 'Spades', 'Clubs']       # Список мастей карт
 
 
 # Задание: Теперь создадим колоду из 52-ух карт и реализуем все методы
 class Deck:
     def __init__(self):
         # Список карт в колоде. Каждым элементом списка будет объект класса Card
+        values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']  # Список значений карт
+        suits = ['Hearts', 'Diamonds', 'Spades', 'Clubs']  # Список мастей карт
         self.cards = []
+        for value in values:
+            for suit in suits:
+                self.cards.append(Card(value, suit))
 
     def show(self):
         # Принцип работы данного метода прописан в 00_task_deck.md
-        pass
+        cards_str = ', '.join([card.to_str() for card in self.cards])
+        return f"cards[{len(self.cards)}] {cards_str}"
 
     def draw(self, x):
         # Принцип работы данного метода прописан в 00_task_deck.md
