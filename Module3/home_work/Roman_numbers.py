@@ -1,5 +1,6 @@
 # Задание:
 # Напишите класс для работы с римскими цифрами.
+# Подробнее про Римские цифры тут: http://graecolatini.bsu.by/htm-different/num-converter-roman.htm
 class Roman:
     def __init__(self, number):
         pass
