@@ -1,20 +1,49 @@
-# Задание "Простые дроби"
 import math
 
 
 class Fraction:
-    def __init__(self, raw_fraction):  # Дробь в конструктор передается в виде строки
+    def __init__(self, raw_fraction: str):  # Дробь в конструктор передается в виде строки
         # А мы храним дробь в виде
-        self.numerator = ...  # числителя
-        self.denominator = ...  # знаменателя
+        self.sign = 1
+        if raw_fraction.startswith("-"):
+            self.sign = -1
+            raw_fraction = raw_fraction[1:]
+        pair = raw_fraction.split()
+        self.whole = 0
+        if len(pair) == 2:
+            self.whole = int(pair[0])
+            raw_fraction = pair[-1]
+        pair = raw_fraction.split('/')
+        self.numerator = int(pair[0])  # числителя
+        self.denominator = int(pair[1])  # знаменателя
+        #numerator = int(pair[0])
+        #denominator = int(pair[1])
+        #return {"sign": sign, "whole": whole, "numerator": numerator, "denominator": denominator}
+
 
     def __str__(self):
         """
         Возвращает строковое представление в формате: <Целая часть> <числитель>/<знаменатель>
         Пример: "-3 5/7"
         """
+        #fraction_parse = parse_fraction(fraction)
+        #numerator = fraction_parse['numerator']
+        #denominator = fraction_parse['denominator']
+        gcd = math.gcd(self.numerator, self.denominator)
+        self.numerator = self.numerator // gcd
+        self.denominator = self.denominator // gcd
+        new_whole = 0
+        if self.numerator > self.denominator:
+            new_whole = self.numerator // self.denominator
+            self.numerator = self.numerator % self.denominator
 
-        return f"..."
+        whole = self.whole + new_whole
+        whole = whole * self.sign
+        if whole:
+            return f'{whole} {self.numerator}/{self.denominator}'
+        else:
+            self.numerator = self.numerator * self.sign
+            return f'{self.numerator}/{self.denominator}'
 
 
 # Простые дроби заданы в виде строки
