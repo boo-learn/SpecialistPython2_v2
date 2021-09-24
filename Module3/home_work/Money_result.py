@@ -13,13 +13,28 @@ class Money:
         return f"{self.rub} руб {self.kop} коп"
 
     def plus(self, other_sum):
-        return f"{self.rub + other_sum.rub} руб {self.kop + other_sum.kop} kop"
+        if self.kop + other_sum.kop > 100:
+            kop_to_rub = (self.kop + other_sum.kop) // 100
+            left_kop = (self.kop + other_sum.kop) % 100
+            return f"{self.rub + other_sum.rub + kop_to_rub} руб {left_kop} koп"
+        else:
+            return f"{self.rub + other_sum.rub} руб {self.kop + other_sum.kop} koп"
 
     def minus(self, other_sum):
-        return f"{self.rub - other_sum.rub} руб {self.kop - other_sum.kop} kop"
+        if self.kop - other_sum.kop < 0:
+            kop_to_rub = abs((self.kop - other_sum.kop) // 100)
+            left_kop = 100 - abs(self.kop - other_sum.kop)
+            return f"{self.rub - other_sum.rub - kop_to_rub} руб {left_kop} koп"
+        else:
+            return f"{self.rub - other_sum.rub} руб {self.kop - other_sum.kop} koп"
 
     def multiply(self, num):
-        return f"{self.rub * num} руб {self.kop * num} коп"
+        if self.kop * num > 100:
+            kop_to_rub = (self.kop * num) // 100
+            left_kop = (self.kop * num) % 100
+            return f"{self.rub * num + kop_to_rub} руб {left_kop} коп"
+        else:
+            return f"{self.rub * num} руб {self.kop * num} коп"
 
     def __gt__(self, other_sum):
         if self.rub == other_sum.rub:
@@ -68,15 +83,15 @@ class Money:
         return f"Сумма в {currency}: {(self.rub + (self.kop/100))/ curr_rate}"
 
 
-sum_money1 = Money(3000, 65)
-sum_money2 = Money(1450, 14)
+sum_money1 = Money(3000, 15)
+sum_money2 = Money(10, 95)
 print(sum_money1)
 print(sum_money2)
 print(sum_money1.plus(sum_money2))
 print(sum_money1.minus(sum_money2))
-print(sum_money2.multiply(5))
+print(sum_money2.multiply(7))
 print(sum_money1 > sum_money2)
-print(sum_money1.sum_percent(10))
+print(sum_money1.sum_percent(15))
 print(sum_money1.convert("USD"))
 print(sum_money2.convert("EUR"))
 print(sum_money1.convert("GBP"))
