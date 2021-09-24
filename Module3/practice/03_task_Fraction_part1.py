@@ -16,19 +16,12 @@ class Fraction:
         pair = raw_fraction.split('/')
         self.numerator = int(pair[0])  # числителя
         self.denominator = int(pair[1])  # знаменателя
-        #numerator = int(pair[0])
-        #denominator = int(pair[1])
-        #return {"sign": sign, "whole": whole, "numerator": numerator, "denominator": denominator}
-
 
     def __str__(self):
         """
         Возвращает строковое представление в формате: <Целая часть> <числитель>/<знаменатель>
         Пример: "-3 5/7"
         """
-        #fraction_parse = parse_fraction(fraction)
-        #numerator = fraction_parse['numerator']
-        #denominator = fraction_parse['denominator']
         gcd = math.gcd(self.numerator, self.denominator)
         self.numerator = self.numerator // gcd
         self.denominator = self.denominator // gcd
