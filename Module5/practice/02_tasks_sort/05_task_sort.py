@@ -32,3 +32,7 @@ staff = [
 print("Список сотрудников отсортированный по уменьшению ЗП:")
 
 # 2. Найдите сумму зарплат трех самых низкооплачиваемых сотрудников:
+
+import operator
+
+staff.sort(key=operator.itemgetter('salary',"surname"))
