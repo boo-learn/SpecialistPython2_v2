@@ -7,14 +7,20 @@ class Node:
         self.value = value
         self.next = next
 
+    def __str__(self):
+        return f"Node:{self.value}, next:{self.next}"
+
+
 
 def print_node_by_index(start_node, index):
-    """
-    Выводит в терминал значение(value) ноды с заданным индексом(index). Индексация начинается с нуля.
-    Если index = 0, выводим значение ноды start_node
-    Считаем, что index гарантированно > 0
-    """
-    pass
+    i = 0
+    current_node = start_node
+    while current_node:
+        if index == i:
+            return current_node.value
+        i+=1
+        current_node = current_node.next
+
 
 
 def gen_names_list(size=None):
@@ -28,14 +34,19 @@ def gen_names_list(size=None):
 
 # Дан список из произвольного количества имен
 names = gen_names_list()
-# print(names)
+print(names)
 
-# TODO: скопируйте цепочку нод из предыдущей задачи
-...
+
+
+first_node = Node(names[0])
+prev_node = first_node
+for name in names[1:]:
+    next_node = Node(name)
+    prev_node.next = next_node
+    prev_node = next_node
 
 
 # TODO: Передайте первую ноду и индекс ноды, значение которой нужно вывести, в функцию print_node_by_index()
 #  напишите реализацию функции print_node_by_index()
-first_node = ...
-index = ...
-print_node_by_index(first_node, index)
+index = 0
+print(print_node_by_index(first_node, index))
