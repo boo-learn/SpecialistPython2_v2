@@ -7,13 +7,22 @@ class Node:
         self.value = value
         self.next = next
 
+    def __str__(self):
+        return f"Node:{self.value}, next:{self.next}"
 
 def find_node_by_value(start_node, value):
     """
     Возвращает индекс ноды с заданным значением(value).
     Если нода с указанным значение(value) не найдена, дублируйте поведение методы .index() списка
     """
-    pass
+    current_node = start_node
+    i = 0
+    while current_node:
+        if current_node.value == value:
+            return i
+        i+=1
+        current_node = current_node.next
+    print("нет значения")
 
 
 def gen_names_list(size=None):
@@ -27,14 +36,18 @@ def gen_names_list(size=None):
 
 # Дан список из произвольного количества имен
 names = gen_names_list()
-# print(names)
+print(names)
 
-# TODO: скопируйте цепочку нод из предыдущей задачи
-...
 
+first_node = Node(names[0])
+prev_node = first_node
+for name in names[1:]:
+    next_node = Node(name)
+    prev_node.next = next_node
+    prev_node = next_node
 
 # TODO: Передайте первую ноду и искомое значение в функцию find_node_by_value()
 #  напишите реализацию функции find_node_by_value()
-first_node = ...
-value = ...
-find_node_by_value(first_node, value)
+
+value = "Линус"
+print(find_node_by_value(first_node, value))
