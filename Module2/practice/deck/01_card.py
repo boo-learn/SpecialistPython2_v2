@@ -4,8 +4,15 @@ class Card:
         self.value = value  # Значение карты(2, 3... 10, J, Q, K, A)
         self.suit = suit  # Масть карты
 
-    def to_str(self):
-        pass
+        def to_str(self):
+        if self.suit == 'Diamonds':
+            return '\u2662'
+        if self.suit == 'Hearts':
+            return '\u2661'
+        if self.suit == 'Spades':
+            return '\u2664'
+        if self.suit == 'Clubs':
+            return '\u2667'
 
     def equal_suit(self, other_card):
         pass
