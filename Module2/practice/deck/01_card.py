@@ -5,14 +5,24 @@ class Card:
         self.suit = suit  # Масть карты
 
     def to_str(self):
-        pass
+        if self.suit == "Hearts":
+            return f"{self.value}\u2665"
+        elif self.suit == "Diamonds":
+            return f"{self.value}\u2666"
+        elif self.suit == "Spades":
+            return f"{self.value}\u2660"
+        elif self.suit == "Clubs":
+            return f"{self.value}\u2663"
+
+
 
     def equal_suit(self, other_card):
-        pass
+        return self.suit == other_card.suit
+
 
 
 # Создадим несколько карт
-card1 = Card("10", "Hearts")
+card1 = Card("10", "Diamonds")
 card2 = Card("A", "Diamonds")
 
 # Выведем карты на экран в виде: 10♥ и A♦
