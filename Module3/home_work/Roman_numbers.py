@@ -1,60 +1,122 @@
-# Задание:
-# Напишите класс для работы с римскими цифрами.
-# Подробнее про Римские цифры тут: http://graecolatini.bsu.by/htm-different/num-converter-roman.htm
 class Roman:
     def __init__(self, number):
-        pass
+        self.number = number
+
+    @staticmethod
+    def convertation(num):
+        romano = ''
+        if num // 1000:
+            romano += 'M' * (num // 1000)
+        num = num % 1000
+        if num // 500:
+            if num // 100 == 9:
+                romano = romano + 'CM'
+            else:
+                sum_c = num // 100 - 5
+                romano = romano + 'D'
+                if sum_c > 0:
+                    romano = romano + 'C' * sum_c
+        else:
+            if num // 100 == 4:
+                romano = romano + 'CD'
+            else:
+                sum_c = num // 100
+                if sum_c > 0:
+                    romano = romano + 'C' * sum_c
+
+        num = num % 100
+        if num // 50:
+            if num // 10 == 9:
+                romano = romano + 'XC'
+            else:
+                sum_c = num // 10 - 5
+                romano = romano + 'L'
+                if sum_c > 0:
+                    romano = romano + 'X' * sum_c
+        else:
+            if num // 10 == 4:
+                romano = romano + 'XL'
+            else:
+                sum_c = num // 10
+                if sum_c > 0:
+                    romano = romano + 'X' * sum_c
+
+        num = num % 10
+        if num // 5:
+            if num == 9:
+                romano = romano + 'IX'
+            else:
+                sum_c = num - 5
+                romano = romano + 'V'
+                if sum_c > 0:
+                    romano = romano + 'I' * sum_c
+        else:
+            if num == 4:
+                romano = romano + 'IV'
+            else:
+                sum_c = num
+                if sum_c > 0:
+                    romano = romano + 'I' * sum_c
+
+        return romano
 
 
-# Реализуйте операции:
-# Сложение
-# Вычитание
-# Умножение
-# Целочисленное деление
-# Сравнение (> < == !=)
-# Пример:
+    def __repr__(self):
+        return Roman.convertation(self.number)
+
+    def __add__(self, other):
+        sum_romano = self.number + other.number
+        return Roman.convertation(sum_romano)
+
+    def __sub__(self, other):
+        sub_romano = self.number - other.number
+        return Roman.convertation(sub_romano)
+
+    def __mul__(self, num):
+        return Roman.convertation(self.number * num)
+
+    def __rmul__(self, num):
+        return Roman.convertation(self.number * num)
+
+    def __floordiv__(self, num):
+        return Roman.convertation(self.number // num)
+
+    def __rfloordiv__(self, num):
+        return Roman.convertation(self.number // num)
+
+
+
+    def __eq__(self, other):
+        if self.number == other.number:
+            return f'Число {Roman.convertation(self.number)} равно {Roman.convertation(other.number)}'
+        else:
+            return f'Число {Roman.convertation(self.number)} не равно {Roman.convertation(other.number)}'
+
+    def __ne__(self, other):
+        return self.number != other.number
+
+    def __gt__(self, other):
+        if int(self.number) > int(other.number):
+            return f'Число {Roman.convertation(self.number)} больше чем {Roman.convertation(other.number)}'
+        else:
+            return f'Число {Roman.convertation(self.number)} не больше чем {Roman.convertation(other.number)}'
+
+    def __lt__(self, other):
+        if int(self.number) < int(other.number):
+            return f'Число {Roman.convertation(self.number)} меньше чем {Roman.convertation(other.number)}'
+        else:
+            return f'Число {Roman.convertation(self.number)} не меньше числа {Roman.convertation(other.number)}'
+
+
+
+
+
+
 n1 = Roman(10)
 n2 = Roman(14)
 print(n1)  # X
 print(n2)  # XIV
 n3 = n1 + n2
 print(n3)  # XXIV
-n3 *= 2
-print(n3)  # XLVIII
-
-# ограничение: 4-значные числа.
-# Алгоритм
-# 1. Выделяем (если есть) количество целых тысяч.
-# Полученное значение позволить сгенерировать строку с n количеством «M» (читаем, n*1000).
-# Пример: 2012 после первого пункта даст «MM»
-#
-# 2. Получаем остаток после деления на 1000, чтобы выделить в дальнейшем следующие значения.
-#
-# 3. Выделяем (если возможно), целые 500. При этом учитываем что если полученное значение равно 4 (5+4=9),
-# то следует записывать как значение 1000-100, что в римский СС равнозначно «CM».
-# Пример: 1887 после этого пункта даст нам «MD».
-# 1945 соответственно «MCM».
-#
-# 4. Получаем остаток от деления на 500.
-#
-# 5. Делим на 100 чтобы выделить целые сотни и складываем к предыдущему результату. Учитываем что если получили 4,
-# что равнозначно 400, то записываем как 500-100, то есть «CD».
-# Пример: 1709 даст после этого шага «MDCCC».
-#
-# 6. Получаем остаток от деления на 100.
-#
-# 7. Выделяем из него целые полсотни. Если значение будет равно 4 (то есть 90), то записываем как 100-10,
-# что равно «XC». Иначе прибавляем к строке «L»
-# Пример: 1986 после всего выдаст нам «MCML».
-#
-# 8. Выделяем остаток от 50.
-#
-# 9. Выделяем целое количество десятков и складываем к строке n раз символ «X».
-# При этом учитываем что 40 пишется как 50-10, то есть «XL».
-# Пример: 1986 после всего выдаст нам «MCMLXXX».
-#
-# 10. Получаем остаток от деления на 10. Этот шаг отличается от других тем,
-# что можно сразу приравнять остаток к его эквиваленту. 1=I, 7=VII и так далее.
-#
-# После перебора числа этим алгоритмом мы получаем примерно такое:
-# 2012 == MMXII
+n1 *= 2
+print(n1)  # XLVIII
