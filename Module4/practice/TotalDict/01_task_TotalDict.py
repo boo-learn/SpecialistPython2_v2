@@ -1,6 +1,33 @@
 # Разработать класс TotalDict со следующими возможностями:
+import operator
+
 class TotalDict(dict):
-    pass
+
+
+    def __str__(self):
+        res = dict.__str__(self)
+        return f"TD:{res}"
+
+    def __add__(self, other):
+        new_dict = self
+        for key in other:
+            if key in new_dict.keys():
+               new_dict[key] += other[key]
+            else:
+                new_dict[key] = other[key]
+
+        return new_dict
+
+    def most_expensive(self, num=None):
+        new_dict = self
+        #res = sorted(new_dict.items(), key=operator.itemgetter(1))
+        #альтернативный вариант
+
+        res = sorted(new_dict.items(), key=lambda x: x[1])
+        if num:
+            return res[:num]
+        return res
+
 
 
 # 1. Объект выводит себя в консоли как обычный словарь, НО с символами TD: в начал
