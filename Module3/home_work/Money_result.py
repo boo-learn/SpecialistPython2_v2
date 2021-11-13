@@ -14,7 +14,6 @@ class Money:
         return f'{self.sum_kop() // 100}руб {self.sum_kop() % 100}коп'
 
     def __add__(self, other):
-        # new_sum = Money(self.rub + other.rub, self.kop + other.kop)
         new_sum = Money.sum_kop(self) + Money.sum_kop(other)
         return Money(new_sum // 100, new_sum % 100)
 
