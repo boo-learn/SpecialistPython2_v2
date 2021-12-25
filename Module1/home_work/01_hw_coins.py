@@ -3,19 +3,21 @@ import random
 
 class Coin:
     def __init__(self):
-        # heads-орел/tails-решка
         self.side = None
 
     def flip(self):
-        """
-        Подбрасывание монетки
-        """
-        self.side = ...  # random: heads/tails
-
-
-# Задание: создайте список из n-монеток. Подбросьте(flip) все монетки.
-# выведите соотношение выпавших орлов и решек в процентах
-
-# Пояснение: когда вы создаете монетку, то она находится в неопределенном состоянии self.side = None, т.е.
-# она находится у вас в руке и не выпала ни орлом ни решкой. Монетка "определеяется" со стороной(орел/решка),
-# только после того, как вы ее подбрасываете(вызываете метод flip())
+        self.side = random.randint(0,1)
+        if self.side == 0:
+            return 'head'
+        else:
+            return 'tails'
+heads = []
+tails = []
+coins = [Coin(),Coin(),Coin(),Coin()]
+for i in coins:
+    a = i.flip()
+    if a == 'head':
+        heads.append(a)
+    else:
+        tails.append(a)
+print(len(heads)/len(tails))
