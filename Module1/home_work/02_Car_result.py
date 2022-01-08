@@ -26,8 +26,10 @@ class Car:
         if ride_km > drive:
             road = f'Проехали {drive} км, нужно заправиться, для продолжения поездки'
             self.run += drive
+            self.gas -= drive * self.gas_per_km
         else:
-            road = f'Проехали {ride_km} км, осталось {self.gas - ride_km * self.gas_per_km}л бензина'
+            self.gas -= ride_km * self.gas_per_km
+            road = f'Проехали {ride_km} км, осталось {self.gas}л бензина'
             self.run += ride_km
         return road
 
@@ -44,6 +46,7 @@ print(f'В баке {car1.gas}л бензина')
 drive_go = car1.ride(100)
 print(drive_go)
 print(f'Пробег после поездки {car1.run} км')
+print(f'Осталось бензина после поездки {car1.gas}л бензина')
 
 
 
