@@ -3,15 +3,30 @@ import random
 
 class Coin:
     def __init__(self):
-        # heads-орел/tails-решка
         self.side = None
 
-    def flip(self):
-        """
-        Подбрасывание монетки
-        """
-        self.side = ...  # random: heads/tails
+    def flip(self, i):
+        self.side = i
 
+    def get_side(self):
+        return self.side
+
+
+n = 10
+mas_coin = []
+mas_side = ["heads", "tails"]
+counter = 0
+for i in range(n):
+    a = Coin()
+    mas_coin.append(a)
+for i in range(n):
+    j = random.randint(0, 1)
+    mas_coin[i].flip(mas_side[j])
+    if mas_coin[i].get_side() == "heads":
+        counter += 1
+print(
+    f"За {n} подбрасываний выпало:\nОрлов: {counter}\nРешек: {n-counter}\nПроцент орлов:{counter/n*100}"
+)
 
 # Задание: создайте список из n-монеток. Подбросьте(flip) все монетки.
 # выведите соотношение выпавших орлов и решек в процентах
