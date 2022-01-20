@@ -3,12 +3,10 @@ class Point:
         self.x = x
         self.y = y
 
+a= 0
+l = [Point(2, 4), Point(7, 5), Point(5, -2), Point(0, 6), Point(-12, 0)]
 
-# Ломаная линия задана произвольным количеством последовательных точек
-points = [Point(2, 4), Point(7, 5), Point(5, -2), Point(0, 6), Point(-12, 0)]
+for i in range(len(l)-1):
+    a = a + ((l[i].x - l[(i+1)].x)**2 + (l[i].y - l[(i+1)].y))**0.5
 
-# Задание: Найдите длину ломаной линии
-
-# TODO: your core here...
-
-print("Длина ломаной линии = ", ...)
+print("Длина ломаной линии = ",a)
