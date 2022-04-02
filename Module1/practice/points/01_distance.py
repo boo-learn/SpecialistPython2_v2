@@ -5,10 +5,7 @@ class Point:
 
 
 def distance(p1, p2):
-    """
-    Расстояние между двумя точками
-    """
-    # TODO: напишите тело функции
+   return ((point2.x - point1.x) ** 2 + (point2.y - point1.y) ** 2) ** 0.5
 
 # Дано две точки на координатной плоскости
 point1 = Point(2, 4)
