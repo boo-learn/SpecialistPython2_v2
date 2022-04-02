@@ -9,15 +9,15 @@ class Point:
 
 class Circle:
     def __init__(self, center_coords, radius):
-        ...
+        self.center = Point(*(center_coords))
+        self.radius = radius
 
     def point_into(self, point):
         """
         Проверяет лежит ли точка point внутри текущей окружности
         :return: True/False
         """
-        # TODO-1: реализуйте метод
-        ...
+        return self.radius > self.center.dist_to(point)
 
 
 # Окружность задана координатами центра и радиусом:
