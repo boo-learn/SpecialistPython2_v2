@@ -9,7 +9,8 @@ class Point:
 
 class Circle:
     def __init__(self, center_coords, radius):
-        ...
+        self.center_coords = center_coords
+        self.radius = radius
 
     def point_into(self, point):
         """
@@ -17,7 +18,7 @@ class Circle:
         :return: True/False
         """
         # TODO-1: реализуйте метод
-        ...
+        return ((self.center_coords[0]-point.x)**2+(self.center_coords[1]-point.y)**2 <= self.radius**2)
 
 
 # Окружность задана координатами центра и радиусом:
