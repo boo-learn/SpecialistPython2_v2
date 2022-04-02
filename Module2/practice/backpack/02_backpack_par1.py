@@ -1,5 +1,14 @@
 class Item:
-    ...
+    def __init__(self, name, weight, cost):
+        self.name = name  # Название предмета
+        self.weight = weight  # Вес предмета, в килограммах
+        self.cost = cost  # Цена предмета, пусть будет, в рублях
+
+    def show(self):
+        """
+        Возвращает строковое представление объекта Item
+        """
+        return f"{self.name} вес:{self.weight} цена:{self.cost}"
     # TODO: сюда копируем реализацию класса из предыдущего задания
 
 
@@ -12,12 +21,15 @@ class BackPack:  # рюкзак
         Добавляет предмет(item) в этот рюкзак
         """
         # TODO: реализуйте метод
+        self.items.append(item)
 
     def show_items(self):
         """
         Вывод все предметы, содержащиеся в рюкзаке в виде нумерованного списка
         """
         # TODO: реализуйте метод
+        for i,item in enumerate(self.items, start=1):
+            print(i, item.show())
 
 
 # Создаем предметы
