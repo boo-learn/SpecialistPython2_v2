@@ -4,12 +4,20 @@ class People:
         self.surname = surname
         self.age = age
 
-    def change_age(self, new_age):
+  def change_age(self, new_age):
         # Корректным возрастом считаем целое число от 1 до 100
         # Если задан некорректный возраст, выводим "некорректное значение для возраста" и оставляем старое значение
         # Метод ничего не возвращает в качестве результата, а только меняем свойство self.age на значение new_age
         # TODO: напишите реализацию данного метода
-        ...
+        try:
+            age = int(new_age)
+        except ValueError:
+            age = self.age
+            print("Age is not a number")
+        if age > 100 or age < 1:
+            print("Age is incorrect")
+        else:
+            self.age = age
 
     def full_name(self):
         return f"{self.surname} {self.name}"
