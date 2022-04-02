@@ -1,24 +1,61 @@
 class Item:
-    ...
-    # TODO: сюда копируем реализацию класса из предыдущего задания
+    def __init__(self, name, weight, cost):
+        self.name = name  # Название предмета
+        self.weight = weight  # Вес предмета, в килограммах
+        self.cost = cost  # Цена предмета, пусть будет, в рублях
+
+    def show(self):
+        return f"{self.name} вес:{self.weight} цена:{self.cost}"
+
 
 
 class BackPack:  # рюкзак
     ...
     # TODO: сюда копируем реализацию класса из предыдущего задания
     # TODO: добавьте новое свойство .max_weight - максимальный суммарный вес предметов, которые можно положить в рюкзак
+    def __init__(self, max_weight):
+        self.items = []  # Предметы, которые хранятся в рюкзаке
+        self.max_weight = max_weight
+        self.__weight = 0
+        self.__cost = 0
+
+    def add_item(self, item: Item):
+        """
+        Добавляет предмет(item) в этот рюкзак
+        """
+        if self.__weight + item.weight <= self.max_weight:
+            self.items.append(item)
+            self.__weight += item.weight
+            self.__cost += item.cost
+        else:
+            print(f"Предмет {item.name} слишком тяжел для рюкзака")
+
+    def pop_item(self, item: Item):
+        if item in self.items:
+            self.items.pop(self.items.index(item))
+            self.__weight -= item.weight
+            self.__cost -= item.cost
+        else:
+            print(f"Предмет {item.name} не находится в рюкзаке")
+
+    def show_items(self):
+        """
+        Вывод все предметы, содержащиеся в рюкзаке в виде нумерованного списка
+        """
+        for i, item in enumerate(self.items):
+            print(f"{i+1}.", item.show())
 
     def sum_weight(self):
         """
         Возвращает суммарный вес всех предметов в рюкзаке
         """
-        # TODO: реализуйте метод
+        return self.__weight
 
     def sum_cost(self):
         """
         Возвращает суммарную стоимость всех предметов в рюкзаке
         """
-        # TODO: реализуйте метод
+        return self.__cost
 
 
 # Создаем предметы
@@ -40,4 +77,9 @@ backpack.add_item(item4)
 #  Если предмет помещает, то добавляем его в рюкзак.
 
 # Выводим все предметы в рюкзаке
+backpack.show_items()
+
+backpack.pop_item(item3)
+backpack.pop_item(item2)
+
 backpack.show_items()
