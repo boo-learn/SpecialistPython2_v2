@@ -9,8 +9,11 @@ class People:
         # Если задан некорректный возраст, выводим "некорректное значение для возраста" и оставляем старое значение
         # Метод ничего не возвращает в качестве результата, а только меняем свойство self.age на значение new_age
         # TODO: напишите реализацию данного метода
-        ...
+        if type(new_age)==int and (new_age>=1) and (new_age<=100):
+            self.age = new_age
+        else:
 
+            print("некорректное значение для возраста")
     def full_name(self):
         return f"{self.surname} {self.name}"
 
@@ -30,7 +33,7 @@ print(people3.full_info())
 print("Меняем возраст людей")
 people1.change_age(45)
 people2.change_age("help")
-people2.change_age(-30)
+people3.change_age(-30)
 
 print(people1.full_info())
 print(people2.full_info())
