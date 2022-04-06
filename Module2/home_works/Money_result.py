@@ -65,3 +65,9 @@ class Money:
         else:
             print('Введите валюту правильно - "USD" или "EUR"')
 
+
+money1 = Money(20, 20)
+money2 = Money(30, 30)
+money3 = money2 + money1
+print(money3)
+print(money1)
