@@ -44,83 +44,63 @@ class Roman:
         return self.roman_number
 
     def __add__(self, other):
-        roman = copy.copy(self)
         if type(other) is Roman:
-            roman.dec_number += other.dec_number
+            return Roman(self.dec_number + other.dec_number)
         else:
-            roman.dec_number += other
-        if roman.dec_number < 0:
-            roman.dec_number = 0
-        return Roman(roman.dec_number)
+            return Roman(self.dec_number + other)
 
     def __sub__(self, other):
-        roman = copy.copy(self)
         if type(other) is Roman:
-            roman.dec_number -= other.dec_number
+            return Roman(self.dec_number - other.dec_number) if (self.dec_number - other.dec_number) >= 0 else Roman(0)
         else:
-            roman.dec_number -= other
-        if roman.dec_number < 0:
-            roman.dec_number = 0
-        return Roman(roman.dec_number)
+            return Roman(self.dec_number - other) if (self.dec_number - other) >= 0 else Roman(0)
 
     def __mul__(self, other):
-        roman = copy.copy(self)
         if type(other) is Roman:
-            roman.dec_number *= other.dec_number
+            return Roman(self.dec_number * other.dec_number) if other.dec_number > 0 else Roman(0)
         else:
-            roman.dec_number *= other
-        if roman.dec_number < 0:
-            roman.dec_number = 0
-        return Roman(roman.dec_number)
+            return Roman(self.dec_number * other) if other > 0 else Roman(0)
 
-    def __mod__(self, other):
-        roman = copy.copy(self)
+    def __floordiv__(self, other):
         if type(other) is Roman:
-            roman.dec_number //= other.dec_number
+            return Roman(self.dec_number // other.dec_number) if other.dec_number > 0 else Roman(0)
         else:
-            roman.dec_number //= other
-        if roman.dec_number < 0:
-            roman.dec_number = 0
-        return Roman(roman.dec_number)
+            return Roman(self.dec_number // other) if other > 0 else Roman(0)
 
     def __le__(self, other):
-        roman = self
         if type(other) is Roman:
-            return roman.dec_number <= other.dec_number
+            return self.dec_number <= other.dec_number
         else:
-            return roman.dec_number <= other
+            return self.dec_number <= other
 
     def __lt__(self, other):
-        roman = self
         if type(other) is Roman:
-            return roman.dec_number < other.dec_number
+            return self.dec_number < other.dec_number
         else:
-            return roman.dec_number < other
+            return self.dec_number < other
 
     def __ge__(self, other):
-        roman = self
         if type(other) is Roman:
-            return roman.dec_number >= other.dec_number
+            return self.dec_number >= other.dec_number
         else:
-            return roman.dec_number >= other
+            return self.dec_number >= other
 
     def __gt__(self, other):
-        roman = self
         if type(other) is Roman:
-            return roman.dec_number > other.dec_number
+            return self.dec_number > other.dec_number
         else:
-            return roman.dec_number > other
+            return self.dec_number > other
 
     def __eq__(self, other):
-        roman = self
         if type(other) is Roman:
-            return roman.dec_number == other.dec_number
+            return self.dec_number == other.dec_number
         else:
-            return roman.dec_number == other
+            return self.dec_number == other
 
     def __ne__(self, other):
-        roman = self
         if type(other) is Roman:
-            return roman.dec_number != other.dec_number
+            return self.dec_number != other.dec_number
         else:
-            return roman.dec_number != other
+            return self.dec_number != other
+
+

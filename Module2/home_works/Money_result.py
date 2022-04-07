@@ -10,20 +10,13 @@ class Money:
         return f'{int(self.common_cost // 100)} руб {int(self.common_cost % 100)} коп'
 
     def __add__(self, other):
-        money = self
-        money.common_cost += other.common_cost
-        return money
+        return Money((self.common_cost + other.common_cost) // 100, (self.common_cost + other.common_cost) % 100)
 
     def __sub__(self, other):
-        money = self
-        money.common_cost -= other.common_cost
-        return money
+        return Money((self.common_cost - other.common_cost) // 100, (self.common_cost - other.common_cost) % 100)
 
     def __mul__(self, other):
-        money = self
-        money.common_cost *= other
-        money.common_cost = int(money.common_cost)
-        return money
+        return Money((self.common_cost * other) // 100, (self.common_cost * other) % 100)
 
     def __lt__(self, other):
         return self.common_cost < other.common_cost
@@ -44,10 +37,7 @@ class Money:
         return self.common_cost == other.common_cost
 
     def __mod__(self, other):
-        money = self
-        money.common_cost *= other / 100
-        money.common_cost = int(money.common_cost)
-        return money
+        return Money((self.common_cost * other / 100) // 100, (self.common_cost * other / 100) % 100)
 
     def convert(self, valute: str):
         data = urllib.request.urlopen('https://www.cbr-xml-daily.ru/daily_json.js').read()
@@ -66,8 +56,3 @@ class Money:
             print('Введите валюту правильно - "USD" или "EUR"')
 
 
-money1 = Money(20, 20)
-money2 = Money(30, 30)
-money3 = money2 + money1
-print(money3)
-print(money1)
