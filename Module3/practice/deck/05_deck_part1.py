@@ -28,10 +28,10 @@ class Deck:
                 self.cards.append(Card(value, suit))
 
     def show(self):
+        # TODO-2: Принцип работы данного метода прописан в 00_task_deck.md
         card_line = f"deck[{len(self.cards)}]: "
-        for card in self.cards:
-            card_line += card.to_str() + ', '
-        return card_line[:len(card_line) - 2]
+        card_str = [card.to_str() for card in self.cards]
+        return card_line + ', '.join(card_str)
 
 
 # Создаем колоду
