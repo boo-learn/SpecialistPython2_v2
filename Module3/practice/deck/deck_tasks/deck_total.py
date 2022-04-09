@@ -2,6 +2,11 @@ import random
 
 
 class Card:
+    HEARTS = "Hearts"
+    DIAMONDS = "Diamonds"
+    CLUBS = "Clubs"
+    SPADES = "Spades"
+
     def __init__(self, value, suit):
         self.value = value  # Значение карты(2, 3... 10, J, Q, K, A)
         self.suit = suit  # Масть карты
@@ -16,7 +21,7 @@ class Card:
     def __gt__(self, other_card):
 
         if Deck.values.index(self.value) == Deck.values.index(other_card.value):
-            return list(reversed(Deck.suits)).index(self.suit) > list(reversed(Deck.suits)).index.get(other_card.suit)
+            return list(reversed(Deck.suits)).index(self.suit) > list(reversed(Deck.suits)).index(other_card.suit)
         return Deck.values.index(self.value) > Deck.values.index(other_card.value)
 
     def __lt__(self, other_card):
@@ -24,6 +29,12 @@ class Card:
         if Deck.values.index(self.value) == Deck.values.index(other_card.value):
             return list(reversed(Deck.suits)).index(self.suit) < list(reversed(Deck.suits)).index(other_card.suit)
         return Deck.values.index(self.value) < Deck.values.index(other_card.value)
+
+    def __eq__(self, other_card):
+        if Deck.values.index(self.value) == Deck.values.index(other_card.value):
+            return list(reversed(Deck.suits)).index(self.suit) < list(reversed(Deck.suits)).index(other_card.suit)
+        return Deck.values.index(self.value) == Deck.values.index(other_card.value) and Deck.suits.index(self.suit) == Deck.suits.index(other_card.suit)
+
 
 
 class Deck:
@@ -42,6 +53,18 @@ class Deck:
         # TODO-2: Принцип работы данного метода прописан в 00_task_deck.md
         cards_str = [card.__str__() for card in self.cards]
         return f'cards[{len(self.cards)}]{", ".join(cards_str)}'
+
+    def __iter__(self):
+        self.index_next_card = 0
+        return self
+
+    def __next__(self):
+        try:
+            card = self.cards[self.index_next_card]
+        except IndexError:
+            raise StopIteration
+        self.index_next_card += 1
+        return card
 
     def __getitem__(self, item):
         return self.cards[item]

@@ -6,6 +6,7 @@ from deck_total import Card, Deck
 #   Сравните эти карты и выведите сообщение формата: “карта A♦ больше J♣”
 deck = Deck()
 deck.shuffle()
+print(deck)
 card1, card2 = deck.draw(2)
 if card1 > card2:
     print(f"{card1} больше {card2}")
