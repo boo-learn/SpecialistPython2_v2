@@ -33,8 +33,8 @@ class Card:
     def __eq__(self, other_card):
         if Deck.values.index(self.value) == Deck.values.index(other_card.value):
             return list(reversed(Deck.suits)).index(self.suit) < list(reversed(Deck.suits)).index(other_card.suit)
-        return Deck.values.index(self.value) == Deck.values.index(other_card.value) and Deck.suits.index(self.suit) == Deck.suits.index(other_card.suit)
-
+        return Deck.values.index(self.value) == Deck.values.index(other_card.value) and Deck.suits.index(
+            self.suit) == Deck.suits.index(other_card.suit)
 
 
 class Deck:
@@ -72,7 +72,7 @@ class Deck:
     def draw(self, x):
         # TODO-1: Принцип работы данного метода прописан в 00_task_deck.md
         draws = self.cards[:x]
-        del self.cards[:x]
+        self.cards = self.cards[x:]
         return draws
 
     def shuffle(self):
@@ -85,6 +85,10 @@ class Deck:
         #  Принцип работы: перемещает num_card с верха колоды под низ
         self.cards += self.cards[:num_card]
         del self.cards[:num_card]
+
+    def __add__(self, other):
+        self.cards += other.cards
+        return self
 
 
 # В этом файле дорабатываем классы, если это требуется для решения задачи
