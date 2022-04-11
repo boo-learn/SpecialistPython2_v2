@@ -13,3 +13,12 @@ class Vector:
 
     def __mul__(self, other):
         return Vector((self.x * other, self.y * other))
+
+    def __str__(self):
+        return f'{self.x, self.y}'
+
+
+if __name__ == "__main__":
+    vector1 = Vector((0, 5))
+    vector2 = Vector((0, 3))
+    print(vector1 * 3)
