@@ -5,7 +5,7 @@ class Author:
 
     def short_name(self):
         # TODO-0: скопируйте реализацию метода из предыдущей задачи
-        ...
+        return f"{self.name[0]}.{self.surname}"
 
 
 class Book:
@@ -17,7 +17,7 @@ class Book:
 
     def to_str(self):
         # TODO-0: скопируйте реализацию метода из предыдущей задачи
-        ...
+        return f' "{self.name}" author: {self.author.short_name()} publish: {self.year}'
 
 
 author1 = Author("Михаил", "Булгаков")
@@ -34,3 +34,11 @@ print("Найти все книги по фамилии автора")
 surname = input("Фамилия автора: ")
 # TODO-1: Выведите нумерованный список книг автора с фамилией surname
 #  примечание: если книг для автора с указанной фамилией нет - выведите "Книги не найдены"
+books_found=0
+for i, books in enumerate(books_catalog, 1):
+    if books.author.surname == surname:
+        print(f"{i} - {books.to_str()}")
+        books_found+=1
+
+if books_found == 0:
+    print("Книги не найдены")
