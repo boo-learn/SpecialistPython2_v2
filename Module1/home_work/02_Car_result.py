@@ -1,5 +1,48 @@
-# Сюда отправляем решение задачи "Автомобиль"
-# Само задание в файле 02_Сar_task.md
-
 class Car:
-    pass
+    def __init__(self, name, gas, capacity, gas_per_km, mileage = 0):
+        self.name = name
+        self.gas = gas
+        self.capacity = capacity
+        self.gas_per_km = gas_per_km
+        self.mileage = mileage
+
+    def fill(self, volume):
+        if volume > 0:
+            if volume > self.capacity - self.gas:
+                print(f'{volume - (self.capacity - self.gas)} литров не вместилось в бак.')
+                self.gas = self.capacity
+            else:
+                self.gas = self.gas + volume
+        else:
+            print('Вы ввели некорретное значение.')
+
+    def ride(self, path):
+        fuel_dist = self.gas / self.gas_per_km
+        if path > 0:
+            if fuel_dist >= path:
+                self.mileage = self.mileage + path
+                print(f'Вы проехали {path} км.')
+            else:
+                self.mileage = self.mileage + fuel_dist
+                print(f'Вам не хватило бензина. Вы проехали {fuel_dist} км.')
+        else:
+            print('Вы ввели некорретное значение.')
+
+
+# вспомогательная функция
+def show_car(car):
+    return f"{car.name} {car.gas} {car.capacity} {car.gas_per_km} {car.mileage}"
+
+car = Car('Ford', 10, 60, 0.5)
+
+print(show_car(car))
+
+volume = int(input('Сколько литров Вы хотите залить? '))
+car.fill(volume)
+
+print(show_car(car))
+
+path = int(input('Сколько километров Вы хотите проехать? '))
+car.ride(path)
+
+print(show_car(car))
