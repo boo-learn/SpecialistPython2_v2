@@ -7,7 +7,7 @@ class Deck:
     def __init__(self):
         # Список карт в колоде. Каждым элементом списка будет объект класса Card
         values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
-        suits = ["Hearths", "Diamonds", "Spades", "Clubs"]
+        suits = ["Hearts", "Diamonds", "Spades", "Clubs"]
         self.cards = []
         # TODO-0: конструктор копируем из предыдущей задачи
 
