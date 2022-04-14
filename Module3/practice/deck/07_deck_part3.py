@@ -1,17 +1,68 @@
+import random
+
 class Card:
-    # TODO-0: сюда копируем реализацию класса карты из предыдущего задания
+    def __init__(self, value, suit):
+        self.value = value  # Значение карты(2, 3... 10, J, Q, K, A)
+        self.suit = suit  # Масть карты
+
+    def to_str(self):
+        dict_1 = {"Hearts": '\u2665', "Diamonds": '\u2666', "Clubs": '\u2663', "Spades": '\u2660'}
+        return f"{self.value}{dict_1[self.suit]}"
+
+    def equal_suit(self, other_card):
+        return self.suit == other_card.suit
 
     # TODO-1: реализуем новые методы
     def more(self, other_card):
-        ...
+        values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+        suits = ["Hearts", "Diamonds", "Spades", "Clubs"]
+        if (values.index(self.value)>values.index(other_card.value)):
+            return True
+        elif (values.index(self.value)==values.index(other_card.value) and suits.index(self.suit)<suits.index(other_card.suit)):
+            return True
+        else:
+            return False
+
 
     def less(self, other_card):
-        ...
+        values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+        suits = ["Hearts", "Diamonds", "Spades", "Clubs"]
+        if (values.index(self.value)<values.index(other_card.value)):
+            return True
+        elif (values.index(self.value)==values.index(other_card.value) and suits.index(self.suit)>suits.index(other_card.suit)):
+            return True
+        else:
+            return False
 
 
 class Deck:
-    # TODO-0: сюда копируем реализацию класса колоды из предыдущего задания
-    ...
+    def __init__(self):
+        values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+        suits = ["Hearts", "Diamonds", "Spades", "Clubs"]
+        self.cards = []
+        for i in range(len(suits)):
+            for value in values:
+                self.cards.append(Card(value, suits[i]))
+
+    def show(self):
+        cards_str = list()
+
+        for card in self.cards:
+            cards_str.append(card.to_str())
+
+        return (f"cards:[{len(self.cards)}] " + ", ".join(cards_str))
+
+
+    def draw(self, x):
+        hand=list()
+        for i in range(x):
+            hand.append(self.cards[i])
+        for i in range(x):
+            del self.cards[0]
+        return hand
+
+    def shuffle(self):
+        random.shuffle(self.cards)
 
 
 # Создаем колоду
