@@ -13,3 +13,14 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+
+check = [5, 2, 1, 10, 50, 10, 9, 7, 40]
+check_prices = check[1:]
+check_prices.sort()
+final_check = []
+for i in range(len(check_prices)//2):
+    final_check.append(check_prices[len(check_prices) - 1 - i])
+    final_check.append(check_prices[i])
+if len(check_prices) % 2 != 0:
+    final_check.append(check_prices[len(check_prices) //2])
+print(final_check)
