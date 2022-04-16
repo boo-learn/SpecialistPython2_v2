@@ -27,8 +27,32 @@ staff = [
     },
 ]
 
+
+def bubble_sort(nums):
+    swapped = True
+    while swapped:
+        swapped = False
+        for i in range(len(nums) - 1):
+            if nums[i]["salary"] == nums[i + 1]["salary"]:
+                if nums[i]["surname"] == nums[i + 1]["surname"]:
+                    if nums[i]["name"] > nums[i + 1]["name"]:
+                        nums[i], nums[i + 1] = nums[i + 1], nums[i]
+                        swapped = True
+                if nums[i]["surname"] > nums[i + 1]["surname"]:
+                    nums[i], nums[i + 1] = nums[i + 1], nums[i]
+                    swapped = True
+            if nums[i]["salary"] < nums[i + 1]["salary"]:
+                nums[i], nums[i + 1] = nums[i + 1], nums[i]
+                swapped = True
+
 # 1. Выведите список сотрудников, отсортированный по уменьшению их заработной платы.
 # Если у нескольких сотрудников одинаковая ЗП, то добавьте сортировку по Фамилии
+bubble_sort(staff)
 print("Список сотрудников отсортированный по уменьшению ЗП:")
+print(staff)
 
 # 2. Найдите сумму зарплат трех самых низкооплачиваемых сотрудников:
+summa = 0
+for i in range(3):
+    summa += staff[len(staff) - 1 - i]["salary"]
+print(summa)
