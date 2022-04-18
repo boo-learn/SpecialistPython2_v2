@@ -13,3 +13,13 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+
+nums = [5, 2, 1, 10, 50, 10]
+nums.sort()
+print(nums)
+nums[-1], nums[0] = nums[0], nums[-1]
+print(nums)
+nums[-2], nums[2] = nums[2], nums[-2]
+print(nums)
+nums[-3], nums[4] = nums[4], nums[-3]
+print(nums)
