@@ -12,33 +12,40 @@ class Account:
         :param amount: сумма перевода
         :return:
         """
-        pass
+        try:
+            self.withdraw(amount)
+            target_account.deposit(amount)
+        except ValueError as e:
+            print(e)
+        #return amount
 
     def deposit(self, amount):
         """
         Внесение суммы на текущий счет
         :param amount: сумма
         """
-        pass
+        self.__balance += amount
 
     def withdraw(self, amount):
         """
         Снятие суммы с текущего счета
         :param amount: сумма
         """
-        pass
+        if self.__balance < amount:
+            raise ValueError("Недостаточно средств")
+        self.__balance -= amount
 
     def full_info(self):
         """
         Полная информация о счете в формате: "Иван баланс: 100 руб. паспорт: 3200 123456 т.+7-900-200-02-03"
         """
-        return f"..."
+        return f"{self.name} баланс: {self.__balance} руб. паспорт: {self.passport} т.{self.phone_number}"
 
     def __repr__(self):
         """
-        :return: Информацию о счете в виде строки в формате "Иван баланс: 100 руб."
+        :return: Информацию о счете в виде строки в формате "Иванов И.П. баланс: 100 руб."
         """
-        return f"..."
+        return f"{self.name} баланс: {self.__balance} руб."
 
 
 account1 = Account("Иван", "3230 634563", "+7-900-765-12-34", 1000)
