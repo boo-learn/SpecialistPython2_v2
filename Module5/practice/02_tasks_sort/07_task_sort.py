@@ -11,3 +11,20 @@
 # 10 1 3 4 3 5 6 7 7 6 1
 # Выход
 # 5
+
+points = [10, 1, 3, 4, 3, 5, 6, 7, 7, 6, 1, 5]
+points = points[1:]
+points.sort(reverse=True)
+print(points)
+number_prize = 0
+prize = 0
+point = points[0]
+for point_next in points:
+    if point_next != point:
+        prize +=1
+        point = point_next
+    if prize != 3:
+        number_prize += 1
+    else:
+        break
+print(number_prize)
