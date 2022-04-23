@@ -11,3 +11,9 @@
 # 10 1 3 4 3 5 6 7 7 6 1
 # Выход
 # 5
+data = gen_list(10, 1, 10)
+count_winners = 0 
+for i in data:
+    if i <= list(set(data))[3]:
+        count_winners += 1
+print (count_winners)
