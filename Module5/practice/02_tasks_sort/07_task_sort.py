@@ -11,3 +11,20 @@
 # 10 1 3 4 3 5 6 7 7 6 1
 # Выход
 # 5
+def winners(quantity, participants):
+    summ = 0
+    participants.sort(reverse=True)
+    dict_winners = {}
+    for participant in participants:
+        dict_winners.update({participant: participants.count(participant)})
+    if quantity <= 3:
+        return sum(dict_winners.values())
+    keys = list(dict_winners.keys())
+    for i in range(3):
+        summ += dict_winners.get(keys[i])
+    return summ
+
+
+
+
+print(winners(10, [1, 3, 4, 3, 5, 6, 7, 7, 6, 1]))
