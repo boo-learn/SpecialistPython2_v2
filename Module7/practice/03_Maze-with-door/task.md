@@ -1,7 +1,7 @@
 ### Задание-3 "Лабиринт с дверьми"
 Дана схема лабиринта:
 
-<img src="img/maze-with-door-task.png" width="300">
+<img src="img/maze-with-door-task.png" width="10">
 
 S-1,S-2,S-3 - точки старта \
 K - ключи \
