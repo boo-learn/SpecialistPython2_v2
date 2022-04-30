@@ -42,24 +42,6 @@ class TestCreditAccount(unittest.TestCase):
         self.assertEqual(self.account1.balance, 96)
         self.assertEqual(self.account2.balance, 300)
 
-    def test_to_archive(self):
-        self.account1.to_archive()
-        self.assertTrue(self.account1.in_archive)
-
-    def test_restore_from_archive(self):
-        self.account1.to_archive()
-        self.account1.restore()
-        self.assertEqual(self.account1.balance, 0)
-        self.assertFalse(self.account1.in_archive)
-
-    def test_to_archive_negative_balance(self):
-        self.account1.withdraw(500)
-        self.assertEqual(self.account1.balance, -210)
-        with self.assertRaises(ValueError) as error:
-            self.account1.to_archive()
-        # Можно так, если нужно проверить определенный текст ошибки (как правило так не делают):
-        # self.assertTrue('Нельзя убрать счет с отрицательным балансом в архив' in str(error.exception))
-
     def test_full_info(self):
         # Проверяем наличие информации в строке, а не строгий формат
         self.assertIn("300", self.account1.full_info())

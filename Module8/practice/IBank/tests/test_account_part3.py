@@ -31,17 +31,6 @@ class TestAccountPart3(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.accounts[0].transfer(self.accounts[1], 500)
 
-    def test_to_archive(self):
-        self.accounts[0].to_archive()
-        self.assertTrue(self.accounts[0].in_archive)
-
-    def test_restore_from_archive(self):
-        self.assertEqual(self.accounts[0].balance, 300)
-        self.accounts[0].to_archive()
-        self.accounts[0].restore()
-        self.assertEqual(self.accounts[0].balance, 0)
-        self.assertFalse(self.accounts[0].in_archive)
-
     def test_full_info(self):
         # Проверяем наличие информации в строке, а не строгий формат
         self.assertIn("300", self.accounts[0].full_info())
