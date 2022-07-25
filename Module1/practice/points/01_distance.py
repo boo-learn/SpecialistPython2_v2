@@ -3,12 +3,14 @@ class Point:
         self.x = x
         self.y = y
 
-
+from math import sqrt
 def distance(p1, p2):
     """
     Расстояние между двумя точками
     """
     # TODO: напишите тело функции
+    return sqrt((point1.x-point2.x)**2+(point1.y-point2.y)**2)
+
 
 
 # Даны две точки на координатной плоскости
