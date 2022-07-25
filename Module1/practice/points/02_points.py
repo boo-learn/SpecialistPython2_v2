@@ -13,3 +13,16 @@ random_point = Point(-12, 10)
 # Совет: используйте функцию distance() из предыдущего задания
 # Подсказка: смотри пример, Module1/examples/05_objects_list.py
 
+
+def distance(p1, p2):
+    """
+    Расстояние между двумя точками
+    """
+    # TODO: напишите тело функции
+    d = ((p2.x - p1.x) ** 2 + (p2.y - p1.y) ** 2) ** 0.5
+    return d
+
+
+for point in points:
+    dist = distance(point,random_point)
+    print(dist)
