@@ -1,11 +1,29 @@
+from math import sqrt
+
+
 class Point:
-    def __init__(self, x, y):
+    def __init__(self, x, y, color):
         self.x = x
         self.y = y
-        self.color = ...
+        self.color = color
 
     def dist_to(self, other_point):
-        ...
+        return sqrt((self.x - other_point.x) ** 2 + (self.y - other_point.y) ** 2)
+
+
+def calc_trianle(tri_points):
+    """
+    S = v(p(p - a)(p - b)(p - c)),
+    где
+    a, b, c – стороны
+    треугольника, p – полупериметр.p = (a + b + c) / 2
+    """
+
+    a = tri_points[0].dist_to(tri_points[1])
+    b = tri_points[1].dist_to(tri_points[2])
+    c = tri_points[2].dist_to(tri_points[0])
+    p = (a + b + c) / 2
+    return sqrt(p * (p - a) * (p - b) * (p - c))
 
 
 # Дан список точек нарисованных красным(red) и зеленым(green) цветами
@@ -26,5 +44,18 @@ points = [
 
 # your core here...
 
-print("Площадь красного треугольника = ", ...)
-print("Площадь зеленого треугольника = ", ...)
+
+red_list = []
+green_list = []
+
+for point in points:
+    if point.color == "red":
+        red_list.append(point)
+    if point.color == "green":
+        green_list.append(point)
+
+if len(red_list):
+    print("Площадь красного треугольника = ", calc_trianle(red_list))
+
+if len(green_list):
+    print("Площадь зеленого треугольника = ", calc_trianle(green_list))
