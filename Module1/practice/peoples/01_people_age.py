@@ -1,3 +1,6 @@
+from hmac import new
+
+
 class People:
     def __init__(self, name, surname, age):
         self.name = name
@@ -9,7 +12,10 @@ class People:
         # Если задан некорректный возраст, выводим "некорректное значение для возраста" и оставляем старое значение
         # Метод ничего не возвращает в качестве результата, а только меняем свойство self.age на значение new_age
         # TODO: напишите реализацию данного метода
-        ...
+        if type(new_age) == int and new_age>=1 and new_age <= 100:
+            self.age = new_age
+        else:
+            print ("некорректное значение для возраста")
 
     def full_name(self):
         return f"{self.surname} {self.name}"
