@@ -1,3 +1,6 @@
+import math
+
+
 class Point:
     def __init__(self, x, y):
         self.x = x
@@ -8,7 +11,8 @@ def distance(p1, p2):
     """
     Расстояние между двумя точками
     """
-    # TODO: напишите тело функции
+    # Решение Науменко Иван
+    return math.sqrt(((point1.x - point2.x) ** 2) + ((point1.y - point2.y) ** 2))
 
 
 # Даны две точки на координатной плоскости
