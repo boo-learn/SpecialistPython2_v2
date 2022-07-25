@@ -1,7 +1,10 @@
+import math
+from math import sqrt
+
+#   Расстояние между двумя точками
 def distance(p1, p2):
-    """
-    Расстояние между двумя точками
-    """
+    return  math.sqrt((p2.get("x")-p1.get("x"))**2 + (p2.get("y")-p1.get("y"))**2)
+
     # TODO: напишите тело функции
 
 
