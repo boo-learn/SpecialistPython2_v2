@@ -9,14 +9,16 @@ class People:
         # Если задан некорректный возраст, выводим "некорректное значение для возраста" и оставляем старое значение
         # Метод ничего не возвращает в качестве результата, а только меняем свойство self.age на значение new_age
         # TODO: напишите реализацию данного метода
-        ...
+        if type(new_age) == int and new_age >= 1 and new_age <= 100:
+            self.age = new_age
+        else:
+            raise ValueError("некорректное значение для возраста")
 
     def full_name(self):
         return f"{self.surname} {self.name}"
 
     def full_info(self):
         return f"Человек: {self.surname} {self.name} и ему {self.age} лет"
-
 
 # Создадим двух человек:
 people1 = People("Иван", "Уткин", 27)
