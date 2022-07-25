@@ -1,7 +1,18 @@
+import math
+
+
 class Point:
     def __init__(self, x, y):
         self.x = x
         self.y = y
+
+
+def distance(p1: Point, p2: Point) -> float:
+    """
+    Расстояние между двумя точками
+    """
+    # TODO: напишите тело функции
+    return math.sqrt((p2.x - p1.x) ** 2 + (p2.y - p1.y) ** 2)
 
 
 # Дан список из произвольного количества точек:
@@ -13,3 +24,6 @@ random_point = Point(-12, 10)
 # Совет: используйте функцию distance() из предыдущего задания
 # Подсказка: смотри пример, Module1/examples/05_objects_list.py
 
+for p in points:
+    dist = distance(p, random_point)
+    print(f"Расстояние между точками A({p.x},{p.y}) и B({random_point.x},{random_point.y}) = ", dist)
