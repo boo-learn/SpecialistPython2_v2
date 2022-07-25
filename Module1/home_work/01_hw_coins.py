@@ -10,7 +10,8 @@ class Coin:
         """
         Подбрасывание монетки
         """
-        self.side = ...  # random: heads/tails
+        self.side = random.choice(['heads','tails'])  # random: heads/tails
+        return self.side
 
 
 # Задание: создайте список из n-монеток. Подбросьте(flip) все монетки.
@@ -19,3 +20,9 @@ class Coin:
 # Пояснение: когда вы создаете монетку, то она находится в неопределенном состоянии self.side = None, т.е.
 # она находится у вас в руке и не выпала ни орлом ни решкой. Монетка "определеяется" со стороной(орел/решка),
 # только после того, как вы ее подбрасываете(вызываете метод flip())
+n = 10
+coins = [Coin().flip() for i in range(n)]
+print(coins)
+heads_percent = coins.count('heads')/n*100
+tails_percent = 100 - heads_percent
+print(f"Heads: {heads_percent}%, tails: {tails_percent}%")
