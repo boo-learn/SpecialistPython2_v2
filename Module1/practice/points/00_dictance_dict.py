@@ -1,8 +1,14 @@
+import math
+
+
 def distance(p1, p2):
     """
     Расстояние между двумя точками
     """
-    # TODO: напишите тело функции
+    return math.sqrt(
+        math.pow((p2.get("x") - p1.get("x")), 2) +
+        math.pow((p2.get("y") - p1.get("y")), 2)
+    )
 
 
 # Даны две точки на координатной плоскости
