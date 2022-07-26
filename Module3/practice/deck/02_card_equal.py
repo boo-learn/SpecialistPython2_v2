@@ -1,3 +1,4 @@
+
 # Начнем с создания карты
 class Card:
     def __init__(self, value, suit):
@@ -5,13 +6,13 @@ class Card:
         self.suit = suit  # Масть карты
 
     def to_str(self):
-        # TODO-0: скопируйте реализацию метода из предыдущей задачи
-        ...
+        # TODO-1: метод возвращает строковое представление карты в виде: 10♥ и A♦
+        suits = {'Diamonds': '\u2666', 'Hearts': '\u2665', 'Spades': '\u2660', 'Clubs': '\u2663'}
+        return f"{self.value}{suits[self.suit]}"
 
     def equal_suit(self, other_card):
         # TODO-1: метод возвращает True - если масти карт равны или False - если нет
-        ...
-
+        return self.suit == other_card.suit
 
 # Создадим несколько карт
 card1 = Card("10", "Hearts")
