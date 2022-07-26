@@ -1,24 +1,59 @@
+# Начнем с создания карты
+import random
+
+
 class Card:
-    # TODO-0: сюда копируем реализацию класса карты из предыдущего задания
+    def __init__(self, value, suit):
+        self.value = value  # Значение карты(2, 3... 10, J, Q, K, A)
+        self.suit = suit  # Масть карты
+        self.suit_dict = {"Hearts": '\u2665', "Diamonds": '\u2666', "Spades": '\u2660', "Clubs": '\u2663'}
+        self.ordered_values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+
+    def to_str(self):
+        return f"{self.value}{self.suit_dict[self.suit]}"
+
+    def equal_suit(self, other_card):
+        return self.suit == other_card.suit
 
     # TODO-1: реализуем новые методы
     def more(self, other_card):
-        ...
+
+     return self.ordered_values.index(self.value)>self.ordered_values.index(other_card.value)
 
     def less(self, other_card):
-        ...
-
-
+        return self.ordered_values.index(self.value) < self.ordered_values.index(other_card.value)
 class Deck:
-    # TODO-0: сюда копируем реализацию класса колоды из предыдущего задания
-    ...
+    def __init__(self):
+        # Список карт в колоде. Каждым элементом списка будет объект класса Card
+        values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+        suits = ["Hearts", "Diamonds", "Spades", "Clubs"]
+
+        # TODO-1: конструктор добавляет в список self.cards все(52) карты
+        self.cards = [Card(val, suit_val) for suit_val in suits for val in values]
+
+    def show(self):
+        # TODO-2: Принцип работы данного метода прописан в 00_task_deck.md
+         print(f"cards[{len(self.cards)}]", ','.join([card.to_str() for card in self.cards]))
+
+
+
+    def draw(self, x):
+    # TODO-1: Принцип работы данного метода прописан в 00_task_deck.md
+      res_list = []
+      for idx in range(x):
+        res_list.append(self.cards.pop())
+      return  res_list
+
+
+    def shuffle(self):
+      random.shuffle(self.cards)
 
 
 # Создаем колоду
 deck = Deck()
 # Тусуем колоду
 deck.shuffle()
-print(deck.show())
+deck.show()
 # Берем две карты из колоды
 card1, card2 = deck.draw(2)
 
@@ -27,3 +62,4 @@ if card1.more(card2):
     print(f"{card1.to_str()} больше {card2.to_str()}")
 if card1.less(card2):
     print(f"{card1.to_str()} меньше {card2.to_str()}")
+
