@@ -4,6 +4,7 @@ class Author:
         self.surname = surname
 
     def short_name(self):
+        return f'{self.name[0]}. {self.surname}'
         # TODO-1: метод возвращает строку в формате: М.Булгаков
         #  пояснение: Первую букву имени, фамилию целиком
         ...
@@ -17,13 +18,17 @@ class Book:
         self.pages = pages
 
     def to_str(self):
+        return f'"{self.name}", author: {self.author.short_name()}, publish: {self.year}'
         # TODO-2: метод возвращает строку в формате: "Вьюга" author:М.Булгаков publish:1926 год
         #  пояснение: Название книги выводим в кавычках(""), у имени автора только первую букву
         ...
 
 
-author = Author("Михаил", "Булгаков")
-book = Book("Вьюга", author, 1926, 25)
+author1 = Author("Михаил", "Булгаков")
+author2 = Author("Александр", "Пушкин")
+book1 = Book("Вьюга", author1, 1926, 25)
+book2 = Book("Евгений Онегин", author2, 1883, 300)
 
 # TODO-3: Измените имя, фамилию автора и название книги, проверьте, что программа корректно работает с новыми значениями
-print(book.to_str())
+print(book1.to_str())
+print(book2.to_str())
