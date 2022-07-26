@@ -6,7 +6,18 @@ class Card:
 
     def to_str(self):
         # TODO-1: метод возвращает строковое представление карты в виде: 10♥ и A♦
-        ...
+        #
+        match self.suit:
+            case "Hearts":
+                suit_symbol = '\u2665'
+            case "Diamonds":
+                suit_symbol = '\u2666'
+            case "Spades":
+                suit_symbol = '\u2660'
+            case "Clubs":
+                suit_symbol = '\u2663'
+
+        return f"{self.value}{suit_symbol}"
 
 
 # Создадим несколько карт
@@ -18,7 +29,7 @@ print(card1.to_str())
 print(card2.to_str())
 
 # Пример, вывод иконок мастей:
-print('\u2661', '\u2665')
-print('\u2662', '\u2666')
-print('\u2667', '\u2663')
-print('\u2664', '\u2660')
+#print('\u2661', '\u2665')
+#print('\u2662', '\u2666')
+#print('\u2667', '\u2663')
+#print('\u2664', '\u2660')
