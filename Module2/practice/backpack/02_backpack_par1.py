@@ -11,13 +11,16 @@ class BackPack:  # рюкзак
         """
         Добавляет предмет(item) в этот рюкзак
         """
-        # TODO: реализуйте метод
+        self.items.append(item)
 
     def show_items(self):
         """
         Вывод все предметы, содержащиеся в рюкзаке в виде нумерованного списка
         """
-        # TODO: реализуйте метод
+        n = 1
+        for item in self.items:
+            print(f"{n}: {item.show()}")
+            n += 1
 
 
 # Создаем предметы
