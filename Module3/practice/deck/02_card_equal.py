@@ -5,19 +5,28 @@ class Card:
         self.suit = suit  # Масть карты
 
     def to_str(self):
-        # TODO-0: скопируйте реализацию метода из предыдущей задачи
-        ...
+        if self.suit == "Hearts":
+            vsuit='\u2665'
+        if self.suit == "Diamonds":
+            vsuit='\u2666'
+        if self.suit == "Spades":
+            vsuit='\u2663'
+        if self.suit == "Clubs":
+            vsuit='\u2660'
+        return f'{self.value}{vsuit}'
 
     def equal_suit(self, other_card):
-        # TODO-1: метод возвращает True - если масти карт равны или False - если нет
-        ...
+        return self.suit == other_card.suit
 
 
 # Создадим несколько карт
 card1 = Card("10", "Hearts")
 card2 = Card("A", "Diamonds")
 
-# Проверим, одинаковые ли масти у карт
+# Выведем карты на экран в виде: 10♥ и A♦
+print(card1.to_str())
+print(card2.to_str())
+
 if card1.equal_suit(card2):
     print(f"У карт: {card1.to_str()} и {card2.to_str()} одинаковые масти")
 else:
