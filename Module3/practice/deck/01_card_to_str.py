@@ -5,10 +5,13 @@ class Card:
         self.suit = suit  # Масть карты
 
     def to_str(self):
+        return (f"{self.value}{suit_d[self.suit]}")
         # TODO-1: метод возвращает строковое представление карты в виде: 10♥ и A♦
         ...
 
+suit_d = {"Hearts":'\u2665',"Diamonds":'\u2666',"Spades":'\u2663',"Clubs":'\u2660' }
 
+print(suit_d)
 # Создадим несколько карт
 card1 = Card("10", "Hearts")
 card2 = Card("A", "Diamonds")
