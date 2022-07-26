@@ -3,14 +3,23 @@ import random
 
 class Coin:
     def __init__(self):
-        # heads-орел/tails-решка
         self.side = None
 
     def flip(self):
         """
         Подбрасывание монетки
         """
-        self.side = ...  # random: heads/tails
+        self.side = random.choice(['heads', 'tails'])
+
+
+coins = [Coin(), Coin(), Coin(), Coin()]
+sides = []
+for coin in coins:
+    coin.flip()
+    sides.append(coin.side)
+
+print(f'Процентное соотношение: \nорлов - {100 * sides.count("tails") / len(coins)} % '
+      f'\nрешек - {100 * sides.count("heads") / len(coins)} %')
 
 
 # Задание: создайте список из n-монеток. Подбросьте(flip) все монетки.
