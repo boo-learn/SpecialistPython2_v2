@@ -1,5 +1,5 @@
 class People:
-    def __init__(self, name, surname, age):
+    def __init__(self, name, surname, age: float):
         self.name = name
         self.surname = surname
         self.age = age
@@ -25,11 +25,14 @@ people1.age = 45  # Меняем возраст первого человека
 people2.age = "hello"  # Меняем возраст второго, на некорректное значение
 
 # Снова пытаемся определить кто старше:
-if people1.age < people2.age:  # И падаем с ошибкой...
-    print(f"{people1.full_name()} младше {people2.full_name()}")
-elif people1.age > people2.age:
-    print(f"{people2.full_name()} младше {people1.full_name()}")
-else:
-    print(f"{people1.full_name()} и {people2.full_name()} одногодки")
+try:
+    if people1.age < people2.age:  # И падаем с ошибкой...
+        print(f"{people1.full_name()} младше {people2.full_name()}")
+    elif people1.age > people2.age:
+        print(f"{people2.full_name()} младше {people1.full_name()}")
+    else:
+        print(f"{people1.full_name()} и {people2.full_name()} одногодки")
+except TypeError:
+    print("Некорректное значение возраста")
 
 # Как защититься от установки некорректных свойств?
