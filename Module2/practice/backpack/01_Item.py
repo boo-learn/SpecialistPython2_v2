@@ -1,15 +1,15 @@
 class Item:
-    def __init__(self, ):
-        self.name = ...  # Название предмета
-        self.weight = ...  # Вес предмета, в килограммах
-        self.cost = ...  # Цена предмета, пусть будет, в рублях
+    def __init__(self, name, weight, cost):
+        self.name = name  # Название предмета
+        self.weight = weight  # Вес предмета, в килограммах
+        self.cost = cost  # Цена предмета, пусть будет, в рублях
 
 
 def show_item(item: Item):
     """
     Возвращает строковое представление объекта Item
     """
-    return f"{item.name} вес:{item.weight} цена:{item.cost}"
+    return f"{item.name} вес: {item.weight} кг  цена: {item.cost} руб."
 
 
 # TODO-1: Дополните конструктор класса Item
