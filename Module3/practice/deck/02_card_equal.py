@@ -5,12 +5,17 @@ class Card:
         self.suit = suit  # Масть карты
 
     def to_str(self):
-        # TODO-0: скопируйте реализацию метода из предыдущей задачи
-        ...
+        to_unic_char = {
+            "Hearts": "\u2665",
+            "Diamonds": "\u2666",
+            "Spades": "\u2660",
+            "Clubs": "\u2663"
+        }
+
+        return f"{self.value}{to_unic_char[self.suit]}"
 
     def equal_suit(self, other_card):
-        # TODO-1: метод возвращает True - если масти карт равны или False - если нет
-        ...
+        return self.suit == other_card.suit
 
 
 # Создадим несколько карт
