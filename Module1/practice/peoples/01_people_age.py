@@ -10,6 +10,11 @@ class People:
         # Метод ничего не возвращает в качестве результата, а только меняем свойство self.age на значение new_age
         # TODO: напишите реализацию данного метода
         ...
+        if type(new_age)==int and 100>=new_age>=1  :
+            self.age=new_age
+        else:
+            print("некорректное значение для возраста")
+            
 
     def full_name(self):
         return f"{self.surname} {self.name}"
