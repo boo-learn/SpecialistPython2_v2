@@ -26,5 +26,21 @@ peoples = [
 # TODO-1: найдите самого молодого человека и выведите его Фамилию и Имя
 #  Примечание: Если самых молодых несколько, выведите любого
 
+youngs = min(peoples, key=lambda people: people.age)
+print(youngs.full_name(), youngs.age)
+
 # TODO-2: найдите всех одногодок и выведите их Фамилии и Имена
 #  Примечание: Если одногодок нет, выведите сообщение "одногодок нет"
+
+odnogodki = []
+
+for people in peoples:
+    for n in range(len(peoples)):
+        if people.age == peoples[n].age:
+            if people.full_name() in odnogodki or people.full_name() == peoples[n].full_name():
+                continue
+            else:
+                odnogodki.append(people.full_name())
+
+print(odnogodki) if odnogodki else print("Одногодков нет")
+
