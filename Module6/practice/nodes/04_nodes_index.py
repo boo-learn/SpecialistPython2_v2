@@ -1,20 +1,20 @@
 class Node:
-    """
-    Класс для узла списка. Хранит значение и указатель на следующий узел.
-    """
-
     def __init__(self, value=None, next=None):
         self.value = value
         self.next = next
 
 
 def print_node_by_index(start_node, index):
-    """
-    Выводит в терминал значение(value) ноды с заданным индексом(index). Индексация начинается с нуля.
-    Если index = 0, выводим значение ноды start_node
-    Считаем, что index гарантированно > 0
-    """
-    pass
+    current_node = start_node
+    count = 0
+    while current_node:
+        if index == count:
+            print(current_node.value)
+            return
+        count += 1
+        current_node = current_node.next
+
+    raise IndexError(f"Нода с индексом {index} не найдена")
 
 
 def gen_names_list(size=None):
@@ -28,14 +28,13 @@ def gen_names_list(size=None):
 
 # Дан список из произвольного количества имен
 names = gen_names_list()
-# print(names)
+print(names)
 
-# TODO: скопируйте цепочку нод из предыдущей задачи
-...
-
-
-# TODO: Передайте первую ноду и индекс ноды, значение которой нужно вывести, в функцию print_node_by_index()
-#  напишите реализацию функции print_node_by_index()
-first_node = ...
-index = ...
+current_node = Node(names[0])
+first_node = current_node
+for name in names[1:]:
+    next_node = Node(name)
+    current_node.next = next_node
+    current_node = next_node
+index = 2
 print_node_by_index(first_node, index)
