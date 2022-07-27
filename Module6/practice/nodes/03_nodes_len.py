@@ -21,16 +21,26 @@ def len_nodes(start_node):
     """
     Возвращает целое число - кол-во нод у цепочке
     """
-    pass
+    cnt = 0
+    current_node = start_node
+    while current_node:
+        cnt += 1
+        current_node = current_node.next
+    print(cnt)
 
 
 # Дан список из произвольного количества имен
 names = gen_names_list()
 print(names)
 
-# TODO: скопируйте цепочку нод из предыдущей задачи
-...
+# TODO: создайте цепочку нод из имен списка
+node_start = Node(value=names[0])
+node_prev = node_start
+for name in names[1:]:
+    node_next = Node(value=name)
+    node_prev.next = node_next
+    node_prev = node_next
 
 # TODO: Передайте первую ноду в функцию len_nodes(), чтобы получить количество нод в цепочке
-first_node = ...
+first_node = node_start
 len_nodes(first_node)
