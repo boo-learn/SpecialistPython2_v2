@@ -13,3 +13,13 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+import math
+list_price = [20, 100, 150, 25, 2, 5, 30, 2, 4]
+# list_price2 = list_price.copy()
+list_price.sort(reverse=True)
+# list_price2.sort(reverse=True)
+# print(list_price2)
+t = math.ceil(len(list_price) / 2) # вместо числа товаров на вход
+
+print(sum(list_price[:t]))
+
