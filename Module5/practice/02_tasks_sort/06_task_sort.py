@@ -13,3 +13,8 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+
+summs = [5,2,1,10,50,10]
+summs.sort(reverse=True)
+print(summs)
+print(sum(summs[:len(summs)//2:]))
