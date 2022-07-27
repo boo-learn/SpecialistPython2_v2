@@ -7,7 +7,16 @@ class Card:
     def to_str(self):
         # TODO-1: метод возвращает строковое представление карты в виде: 10♥ и A♦
         ...
-
+        if self.suit == 'Hearts':
+            suits_image = '\u2665'
+        elif self.suit == 'Diamonds':
+            suits_image = '\u2666'
+        elif self.suit == 'Spades':
+            suits_image = '\u2660'
+        elif self.suit == 'Clubs':
+            suits_image = '\u2663'
+            
+        return f"{self.value} {suits_image}"
 
 # Создадим несколько карт
 card1 = Card("10", "Hearts")
