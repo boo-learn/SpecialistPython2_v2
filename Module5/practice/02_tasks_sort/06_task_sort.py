@@ -13,3 +13,13 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+
+costs = [5, 2, 1, 10, 50, 10]
+costs.sort()
+median = len(costs)//2
+a = costs[:median]
+b = costs[median:]
+sum_final = 0
+for i in b:
+    sum_final += i
+print(sum_final)
