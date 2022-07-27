@@ -1,11 +1,14 @@
 class Node:
-    """
-    Класс для узла списка. Хранит значение и указатель на следующий узел.
-    """
-
     def __init__(self, value=None, next=None):
         self.value = value
         self.next = next
+
+
+def print_nodes_value(start_node):
+    current_node = start_node
+    while current_node:
+        print(current_node.value)
+        current_node = current_node.next
 
 
 def gen_names_list(size=None):
@@ -18,19 +21,25 @@ def gen_names_list(size=None):
 
 
 def len_nodes(start_node):
-    """
-    Возвращает целое число - кол-во нод у цепочке
-    """
-    pass
+    current_node = start_node
+    count = 0
+    while current_node:
+        count += 1
+        current_node = current_node.next
+
+    return count
 
 
 # Дан список из произвольного количества имен
 names = gen_names_list()
 print(names)
 
-# TODO: скопируйте цепочку нод из предыдущей задачи
-...
+current_node = Node(names[0])
+first_node = current_node
+for name in names[1:]:
+    next_node = Node(name)
+    current_node.next = next_node
+    current_node = next_node
+print_nodes_value(first_node)
 
-# TODO: Передайте первую ноду в функцию len_nodes(), чтобы получить количество нод в цепочке
-first_node = ...
-len_nodes(first_node)
+print(len_nodes(first_node))
