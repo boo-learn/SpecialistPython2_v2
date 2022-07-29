@@ -4,3 +4,16 @@
 
 numbers = [2.5, 13.6, 13, -22.4, -12.8, 6.7, 12.8, 21, 4, -22.1]
 a = ...  # Задайте самостоятельно, выбрав произвольное число
+
+numbers = [2.5, 13.6, 13, -22.4, -12.8, 6.7, 12.8, 21, 4, -22.1]
+a = 5.8
+sort_choice(numbers)
+data = []
+i = 0
+j = numbers[i]
+for j in numbers:
+    if a < j:
+        data.append(j)
+        i += 1
+
+print(data)
