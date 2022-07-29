@@ -12,33 +12,42 @@ class Account:
         :param amount: сумма перевода
         :return:
         """
-        pass
+        self.withdraw(amount)
+        target_account.deposit(amount)
 
     def deposit(self, amount):
         """
         Внесение суммы на текущий счет
         :param amount: сумма
         """
-        pass
+        self.set_balance(self.get_balance() + amount)
 
     def withdraw(self, amount):
         """
         Снятие суммы с текущего счета
         :param amount: сумма
         """
-        pass
+        if amount > self.get_balance():
+            raise ValueError('Баланс меньше снимаемой суммы')
+        self.deposit(-amount)
 
     def full_info(self):
         """
         Полная информация о счете в формате: "Иван баланс: 100 руб. паспорт: 3200 123456 т.+7-900-200-02-03"
         """
-        return f"..."
+        return f"{self.name} баланс: {self.get_balance()} руб. паспорт: {self.passport} т.{self.phone_number}"
 
     def __repr__(self):
         """
         :return: Информацию о счете в виде строки в формате "Иван баланс: 100 руб."
         """
-        return f"..."
+        return f"{self.name} баланс: {self.get_balance()} руб."
+
+    def get_balance(self):
+        return self.__balance
+
+    def set_balance(self, amount):
+        self.__balance = amount
 
 
 account1 = Account("Иван", "3230 634563", "+7-900-765-12-34", 1000)
@@ -55,7 +64,10 @@ print(account1)
 print(account2)
 
 # Переводим еще с первого аккаунт на второй:
-account1.transfer(account2, 600)
+try:
+    account1.transfer(account2, 600)
+except ValueError as e:
+    print(e)
 
 # Проверяем изменения баланса:
 print(account1)
