@@ -3,7 +3,36 @@ class Account:
         self.name = name
         self.passport = passport
         self.phone_number = phone_number
-        self.__balance = start_balance
+        self.balance = start_balance
+
+    def full_info(self):
+        """
+        Полная информация о счете в формате: "Иван баланс: 100 руб. паспорт: 3200 123456 т.+7-900-200-02-03"
+        """
+        return f"{self.name} balance: {self.balance} rub. passport:{self.passport } ph.:{self.phone_number}"
+
+    def __repr__(self):
+        """
+        :return: Информацию о счете в виде строки в формате "Иван баланс: 100 руб."
+        """
+        return f"{self.name} balance: {self.balance} rub"
+
+    def deposit(self, amount):
+        """
+        Внесение суммы на текущий счет
+        :param amount: сумма
+        """
+        self.balance += amount
+
+    def withdraw(self, amount):
+        """
+        Снятие суммы с текущего счета
+        :param amount: сумма
+        """
+        if self.balance >= amount:
+            self.balance -= amount
+        else:
+            raise ValueError("Недостаточно средств")
 
     def transfer(self, target_account, amount):
         """
@@ -12,33 +41,11 @@ class Account:
         :param amount: сумма перевода
         :return:
         """
-        pass
-
-    def deposit(self, amount):
-        """
-        Внесение суммы на текущий счет
-        :param amount: сумма
-        """
-        pass
-
-    def withdraw(self, amount):
-        """
-        Снятие суммы с текущего счета
-        :param amount: сумма
-        """
-        pass
-
-    def full_info(self):
-        """
-        Полная информация о счете в формате: "Иван баланс: 100 руб. паспорт: 3200 123456 т.+7-900-200-02-03"
-        """
-        return f"..."
-
-    def __repr__(self):
-        """
-        :return: Информацию о счете в виде строки в формате "Иван баланс: 100 руб."
-        """
-        return f"..."
+        if self.balance >= amount:
+            self.balance -= amount
+            target_account.balance += amount
+        else:
+            raise ValueError("Недостаточно средств")
 
 
 account1 = Account("Иван", "3230 634563", "+7-900-765-12-34", 1000)
