@@ -3,36 +3,36 @@ class Account:
         self.name = name
         self.passport = passport
         self.phone_number = phone_number
-        self.__balance = start_balance  # Закрываем прямой доступ к балансу
+        self.balance = start_balance
 
-    # TODO: совместно с преподавателем реализуйте getter для просмотра баланса
-    #  Можете попробовать самостоятельно: https://pythobyte.com/using-getters-and-setters-in-python-5205-840ed13f/
+    def full_info(self):
+        """
+        Полная информация о счете в формате: "Иван баланс: 100 руб. паспорт: 3200 123456 т.+7-900-200-02-03"
+        """
+        return f"{self.name} balance: {self.balance} rub. passport:{self.passport } ph.:{self.phone_number}"
+
+    def __repr__(self):
+        """
+        :return: Информацию о счете в виде строки в формате "Иван баланс: 100 руб."
+        """
+        return f"{self.name} balance: {self.balance} rub"
 
     def deposit(self, amount):
         """
         Внесение суммы на текущий счет
         :param amount: сумма
         """
-        pass
+        self.balance += amount
 
     def withdraw(self, amount):
         """
         Снятие суммы с текущего счета
         :param amount: сумма
         """
-        pass
-
-    def full_info(self):
-        """
-        Полная информация о счете в формате: "Иван баланс: 100 руб. паспорт: 3200 123456 т.+7-900-200-02-03"
-        """
-        return f"..."
-
-    def __repr__(self):
-        """
-        :return: Информацию о счете в виде строки в формате "Иван баланс: 100 руб."
-        """
-        return f"..."
+        if self.balance >= amount:
+            self.balance -= amount
+        else:
+            raise ValueError("Недостаточно средств")  
 
 
 # Создаем тестовый аккаунт:
