@@ -13,3 +13,11 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+
+check = [2, 1, 10, 50, 10]
+
+check.sort()
+
+mid = len(check) // 2
+max_sum = sum(check[mid:])
+print(max_sum)
