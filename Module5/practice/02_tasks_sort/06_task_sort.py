@@ -13,3 +13,30 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+
+price = [7, 19, 2, 17, 54, 44]
+count = len(price) // 2
+print("Товары без скидки=", count)
+
+
+def sort_choice(nums):
+    i = 0
+    while i < len(nums) - 1:
+        m = i
+        j = i + 1
+        while j < len(nums):
+            if nums[j] < nums[m]:
+                m = j
+            j += 1
+        nums[i], nums[m] = nums[m], nums[i]
+        i += 1
+
+
+sort_choice(price)
+
+if len(price) % 2 != 0:
+    print(price[(-count - 1):])
+    print(sum(price[-count - 1:]))
+else:
+    print(price[-count:])
+    print(sum(price[-count:]))
