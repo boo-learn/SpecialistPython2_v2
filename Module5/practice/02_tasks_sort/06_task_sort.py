@@ -1,15 +1,20 @@
-# Рекламная акция
-# В сети магазинов "Н-Аудио" проводится рекламная акция. Каждый второй товар – бесплатно.
-# Естественно, кассирам дано указание пробивать товары в таком порядке, чтобы магазин потерял как можно меньше денег.
-# По списку товаров определите максимальную сумму в чеке.
-#
-# Вход:дано N натуральных чисел – цены товаров.
-# Выход: одно число – максимальная сумма чека.
+import random
 
-# Пример
-# Вход:
-# 2 1 10 50 10
-# Выход:
-# 70
-# Пояснение:
-# Возможен такой порядок: 10 2 50 1 10
+number_items = int(input("Enter amount of items sold "))
+item_price_list = []
+
+for i in range(number_items):
+    item_price_list.append(random.randint(1, 100))
+
+print(f"Items at price  {item_price_list}")
+
+item_price_list.sort()
+item_price_list.reverse()
+
+print(f"Items sorted by price  {item_price_list}")
+
+middle_index = round(len(item_price_list) / 2)
+
+print(
+    f"List of most expensive items sold {item_price_list[:middle_index]}\nSum of most expensive items: {sum(item_price_list[:middle_index])}")
+
