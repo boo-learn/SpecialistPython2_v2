@@ -3,13 +3,10 @@ class Account:
 
     # TODO-1: напишите реализацию метода transfer()
     def transfer(self, target_account: 'Account', amount: int) -> None:
-        """
-        Перевод денег на счет другого клиента
-        :param target_account: счет клиента для перевода
-        :param amount: сумма перевода
-        :return:
-        """
-        pass
+        if self.__balance < amount:
+            raise ValueError("Недостаточно средств на счете. Перевод невозможен")
+        target_account.__balance += amount
+        self.__balance -= amount
 
 
 account1 = Account("Иван", "3230 634563", "+7-900-765-12-34", 1000)
