@@ -3,3 +3,58 @@
 
 
 # Решите задачу и выведите ответ в нужном формате
+
+graph_doors_open = [
+    [1],  # 0
+    [0, 5],  # 1
+    [6],  # 2
+    [7],  # 3
+    [5, 8],  # 4
+    [1, 4],  # 5
+    [2, 10],  # 6
+    [3, 11],  # 7
+    [4, 12, 9],  # 8
+    [8, 10],  # 9
+    [6, 9],  # 10
+    [7, 15],  # 11
+    [8, 13],  # 12
+    [12],  # 13
+    [15],  # 14
+    [11, 14],  # 15
+]
+graph_doors_closed = [
+    [1],  # 0
+    [0, 5],  # 1
+    [6],  # 2
+    [7],  # 3
+    [8],  # 4
+    [1],  # 5
+    [2, 10],  # 6
+    [3, 11],  # 7
+    [4, 12, 9],  # 8
+    [8, 10],  # 9
+    [6, 9],  # 10
+    [7, 15],  # 11
+    [8],  # 12
+    [],  # 13
+    [],  # 14
+    [11],  # 15
+]
+start_point = [3, 5, 8, 13]
+keys = [7, 10]
+finish = 0
+
+for start in start_point:
+    result = dfs(graph_doors_closed, start)
+    if result[finish] is True:
+        print(f'Из точки {start} можно дойти до финиша')
+    else:
+        for key in keys:
+            if result[key] is True:
+                result = dfs(graph_doors_open, start)
+                if result[finish] is True:
+                    print(f'Из точки {start} можно дойти до финиша, используя ключ')
+                else:
+                    print(f'Из точки {start} нельзя дойти до финиша')
+
+print(f'Из точки {start} нельзя дойти до финиша')
