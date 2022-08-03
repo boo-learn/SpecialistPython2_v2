@@ -22,21 +22,13 @@ class Account:
     #  Можете попробовать самостоятельно: https://pythobyte.com/using-getters-and-setters-in-python-5205-840ed13f/
     @property
     def balance(self) -> int:
-        return ...
+        return self.__balance
 
     def deposit(self, amount: int) -> None:
-        """
-        Внесение суммы на текущий счет
-        :param amount: сумма
-        """
-        pass
+        self.__balance += amount
 
     def withdraw(self, amount: int) -> None:
-        """
-        Снятие суммы с текущего счета
-        :param amount: сумма
-        """
-        pass
+        self.__balance -= amount
 
 
 # Создаем тестовый аккаунт:
