@@ -6,7 +6,7 @@ class Operation:
         # Тут добавляем свойства для хранение информации об операции
         pass
 
-    def __repr__(self):
+    def __repr__(self) -> None:
         """
         :return: возвращает строковое представление операции
         """
@@ -17,7 +17,7 @@ class Account:
     # TODO: историю храним как список объектов класса Operation, добавив свойство в конструктор:
     #   self.__history = []
 
-    def show_history(self):
+    def show_history(self) -> str:
         """
         :return: возвращаем историю операций в виде строки, в указанном формате
         """
