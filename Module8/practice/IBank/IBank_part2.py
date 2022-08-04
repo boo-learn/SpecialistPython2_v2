@@ -15,7 +15,7 @@ class Operation:
         # TODO: Тут добавляем свойства для хранение информации об операции
         pass
 
-    def __repr__(self) -> None:
+    def __repr__(self) -> str:
         """
         :return: возвращает строковое представление операции. Формат указан в 02_IBank_part2.md
         """
