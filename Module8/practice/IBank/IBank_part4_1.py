@@ -13,4 +13,6 @@ class Account:
 class CreditAccount(Account):
     def __init__(self, name, passport, phone_number, start_balance=0, negative_limit=0):
         # TODO-1: Пока реализуем ТОЛЬКО первый пункт задания "возможность уходить в отрицательный баланс"
+        #   Договоримся, что negative_limit будет положительным числом.
+        #   Например, negative_limit = 500 означает, что мы можем уйти в минус на 500 рублей, self.__balance = -500
         pass
