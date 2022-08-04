@@ -1,8 +1,4 @@
 class Node:
-    """
-    Класс для узла списка. Хранит значение и указатель на следующий узел.
-    """
-
     def __init__(self, value=None, next=None):
         self.value = value
         self.next = next
@@ -28,10 +24,10 @@ def gen_names_list(size=None):
 names = gen_names_list()
 print(names)
 
-# TODO: создайте цепочку нод из имен списка
-...
-
-
-# TODO: Передайте первую ноду в функцию print_nodes_value(), чтобы получить значения всех нод в цепочке
-first_node = ...
+current_node = Node(names[0])
+first_node = current_node
+for name in names[1:]:
+    next_node = Node(name)
+    current_node.next = next_node
+    current_node = next_node
 print_nodes_value(first_node)
