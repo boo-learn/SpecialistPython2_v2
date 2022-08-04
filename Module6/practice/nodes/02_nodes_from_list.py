@@ -29,9 +29,11 @@ names = gen_names_list()
 print(names)
 
 # TODO: создайте цепочку нод из имен списка
-...
-
+for i, name in enumerate(names):
+    globals()[f"node{i}"] = Node(value=name)
+    if i > 0:
+        globals()[f"node{i - 1}"].next = globals()[f"node{i}"]
 
 # TODO: Передайте первую ноду в функцию print_nodes_value(), чтобы получить значения всех нод в цепочке
-first_node = ...
+first_node = node0
 print_nodes_value(first_node)
