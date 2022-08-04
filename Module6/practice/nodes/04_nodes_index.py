@@ -14,7 +14,15 @@ def print_node_by_index(start_node, index):
     Если index = 0, выводим значение ноды start_node
     Считаем, что index гарантированно > 0
     """
-    pass
+    current_node = start_node
+    i = 0
+    while current_node:
+        if index == i:
+            print(current_node.value)
+            return
+        i += 1
+        current_node = current_node.next
+    raise IndexError(f'Нет такого индекса {index}')
 
 
 def gen_names_list(size=None):
@@ -25,17 +33,27 @@ def gen_names_list(size=None):
     random.shuffle(names)
     return names[:size]
 
-
+def print_nodes_value(start_node):
+    current_node = start_node
+    while current_node:
+        print(current_node.value)
+        current_node = current_node.next
 # Дан список из произвольного количества имен
 names = gen_names_list()
-# print(names)
+print(names)
 
 # TODO: скопируйте цепочку нод из предыдущей задачи
-...
+current_node = Node(names[0])
+first_node = current_node
+for name in names[1:]:
+    next_node = Node(name)
+    current_node.next = next_node
+    current_node = next_node
 
 
 # TODO: Передайте первую ноду и индекс ноды, значение которой нужно вывести, в функцию print_node_by_index()
 #  напишите реализацию функции print_node_by_index()
-first_node = ...
-index = ...
+
+index = 1
 print_node_by_index(first_node, index)
+print_nodes_value(first_node)
