@@ -10,7 +10,19 @@ class Coin:
         """
         Подбрасывание монетки
         """
-        self.side = ...  # random: heads/tails
+        if random.randint(0,1) == 0:
+            self.side = "heads"  # random: heads/tails
+
+n = 100
+coins = [Coin() for i in range(n)]
+
+heads = 0
+for coin in coins: 
+    coin.flip()
+    if coin.side == "heads":
+        heads += 1
+print(f"Процент выпадения орла - {(heads/n)*100}, процент выпадения решки - {(1 - heads/n)*100}")
+
 
 
 # Задание: создайте список из n-монеток. Подбросьте(flip) все монетки.
