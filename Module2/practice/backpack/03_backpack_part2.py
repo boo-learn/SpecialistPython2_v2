@@ -1,24 +1,35 @@
 class Item:
-    ...
-    # TODO: сюда копируем реализацию класса из предыдущего задания
-
-
+    def __init__(self, name, weight, cost ):
+        self.name = name  # Название предмета
+        self.weight = weight  # Вес предмета, в килограммах
+        self.cost = cost  # Цена предмета, пусть будет, в рублях
+    def show(self):
+        return f"{self.name}  вес: {self.weight}, цена: {self.cost}"
+    
 class BackPack:  # рюкзак
-    ...
-    # TODO: сюда копируем реализацию класса из предыдущего задания
-    # TODO: добавьте новое свойство .max_weight - максимальный суммарный вес предметов, которые можно положить в рюкзак
+    def __init__(self, max_weight):
+        self.max_weight = max_weight
+        self.items = []  # Предметы, которые хранятся в рюкзаке
+
+    def show_items(self):
+        for n, item in enumerate(self.items, 1):
+            print(n, item.show())
 
     def sum_weight(self):
-        """
-        Возвращает суммарный вес всех предметов в рюкзаке
-        """
-        # TODO: реализуйте метод
+        # summar = 0
+        # for item in self.items:
+        #     summar += item.weight
+        # return summar
+        return sum([item.weight for item in self.items])
 
+    def add_item(self, item: Item):
+        if self.sum_weight() + item.weight <= self.max_weight:
+            self.items.append(item)
+        else:
+            print(f"Предмет {item.name} слишком тяжёлый")
+        
     def sum_cost(self):
-        """
-        Возвращает суммарную стоимость всех предметов в рюкзаке
-        """
-        # TODO: реализуйте метод
+        return sum([item.cost for item in self.items])
 
 
 # Создаем предметы
