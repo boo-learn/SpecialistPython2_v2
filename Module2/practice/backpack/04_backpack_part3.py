@@ -60,6 +60,8 @@ class BackPack:  # рюкзак
         for item in newlitems:
             if self.sum_weight() + item.weight <= self.max_weight:
                 self.items.append(item)
+            else:
+                break
 
 # Создаем предметы
 items = [
