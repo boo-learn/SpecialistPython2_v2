@@ -1,15 +1,22 @@
 class Point:
-    def __init__(self, x, y):
+    def __init__(self, x, y, color):
         self.x = x
         self.y = y
-        self.color = ...
+        self.color = color
 
     def dist_to(self, other_point):
-        ...
+        return ((self.x - other_point.x)**2 + (self.y - other_point.y)**2)**0.5
+    
+    def triangle_square(self, point2, point3):
+        a = self.dist_to(point2)
+        b = self.dist_to(point3)
+        c = point2.dist_to(point3)
+        perimeter = (a + b + c)/2
+        square = (perimeter * (perimeter - a) * (perimeter - b) * (perimeter - c)) ** 0.5
+        print(square)
+        return square
 
 
-# Дан список точек нарисованных красным(red) и зеленым(green) цветами
-# Точно известно что точек каждого цвета ровно три, но порядок точек в списке произвольный
 points = [
     Point(2, 7, "red"),
     Point(12, 7, "green"),
@@ -18,13 +25,11 @@ points = [
     Point(10, -2, "green"),
     Point(-12, 0, "red")
 ]
-# Все точки одного цвета соединены линиями и образуют треугольник
 
-# TODO-1: доработайте конструктор class Point для хранения цвета точки
-# TODO-2: реализуйте метод dist_to()
-# TODO-3: вычислите площади треугольников образованных точками разных цветов
+points_red = [point for point in points if point.color == "red"]
+points_green = [point for point in points if point.color == "green"]
 
-# your core here...
 
-print("Площадь красного треугольника = ", ...)
-print("Площадь зеленого треугольника = ", ...)
+
+print("Площадь красного треугольника = ", points_red[0].triangle_square(points_red[1], points_red[2]))
+print("Площадь зеленого треугольника = ", points_green[0].triangle_square(points_green[1], points_green[2]))
