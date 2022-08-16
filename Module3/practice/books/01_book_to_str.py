@@ -6,7 +6,7 @@ class Author:
     def short_name(self):
         # TODO-1: метод возвращает строку в формате: М.Булгаков
         #  пояснение: Первую букву имени, фамилию целиком
-        ...
+        return self.name[0]+"."+self.surname
 
 
 class Book:
@@ -19,7 +19,7 @@ class Book:
     def to_str(self):
         # TODO-2: метод возвращает строку в формате: "Вьюга" author:М.Булгаков publish:1926 год
         #  пояснение: Название книги выводим в кавычках(""), у имени автора только первую букву
-        ...
+        return f'"{self.name}" {self.author.short_name()}'
 
 
 author = Author("Михаил", "Булгаков")
