@@ -5,7 +5,8 @@ class Author:
 
     def short_name(self):
         # TODO-0: скопируйте реализацию метода из предыдущей задачи
-        ...
+        res = self.name[0] + '. ' + self.surname
+        return res
 
 
 class Book:
@@ -17,7 +18,8 @@ class Book:
 
     def to_str(self):
         # TODO-0: скопируйте реализацию метода из предыдущей задачи
-        ...
+        res = '"' + self.name + '" author:' + self.author.short_name() + ' publish:' + str(self.year) + ' год'
+        return res
 
 
 author1 = Author("Михаил", "Булгаков")
@@ -32,3 +34,6 @@ books_catalog = [
 ]
 
 # TODO-1: Выведите нумерованный список книг, используя для каждой книги ее строковое представление(метод .to_str())
+
+for n, book in enumerate(books_catalog):
+    print(str(n) + ' ' + book.to_str())
