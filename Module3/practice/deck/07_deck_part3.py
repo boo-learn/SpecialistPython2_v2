@@ -1,17 +1,77 @@
+import random
+
+
 class Card:
-    # TODO-0: сюда копируем реализацию класса карты из предыдущего задания
+    def __init__(self, value, suit):
+        self.value = value  # Значение карты(2, 3... 10, J, Q, K, A)
+        self.suit = suit  # Масть карты
+
+    def __get_suit_symbol(self, suit):
+        suits = {
+            "Hearts": "\u2665",
+            "Diamonds": "\u2666",
+            "Spades": "\u2663",
+            "Clubs": "\u2660"
+
+        }
+        return suits[suit]
+
+    def to_str(self):
+        # TODO-1: метод возвращает строковое представление карты в виде: 10♥ и A♦
+        return f"{self.value}{self.__get_suit_symbol(self.suit)}"
+
+    def equal_suit(self, other_card):
+        # TODO-1: метод возвращает True - если масти карт равны или False - если нет
+        return self.suit == other_card.suit
 
     # TODO-1: реализуем новые методы
+    def __more_or_less(self):
+        values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+        dictcard = {}
+        for n, value in enumerate(values, 1):
+            dictcard[value] = n
+        return dictcard
+
     def more(self, other_card):
-        ...
+        dictcards = self.__more_or_less()
+        return dictcards[self.value] > dictcards[other_card.value]
 
     def less(self, other_card):
-        ...
+        dictcards = self.__more_or_less()
+        return dictcards[self.value] < dictcards[other_card.value]
 
 
 class Deck:
-    # TODO-0: сюда копируем реализацию класса колоды из предыдущего задания
-    ...
+    def __init__(self):
+        # Список карт в колоде. Каждым элементом списка будет объект класса Card
+        values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+        suits = ["Hearts", "Diamonds", "Spades", "Clubs"]
+        self.cards = []
+        for suit in suits:
+            for value in values:
+                self.cards.append(Card(value, suit))
+        # TODO-1: конструктор добавляет в список self.cards все(52) карты
+
+    def __get_list_cards(self):
+        cards_list = []
+        for card in self.cards:
+            cards_list.append(card.to_str())
+        return cards_list
+
+    def show(self):
+        # TODO-2: Принцип работы данного метода прописан в 00_task_deck.md
+        cards_list = self.__get_list_cards()
+        return f"cards[{len(self.cards)}]{' ,'.join(cards_list)}"
+
+    def draw(self, x):
+        x_cards = self.cards[:x]
+        self.cards = self.cards[x:]
+        return x_cards
+
+    def shuffle(self):
+        # TODO-2: Принцип работы данного метода прописан в 00_task_deck.md
+        #   Подсказка: https://www.w3schools.com/python/ref_random_shuffle.asp
+        random.shuffle(self.cards)
 
 
 # Создаем колоду
@@ -21,6 +81,7 @@ deck.shuffle()
 print(deck.show())
 # Берем две карты из колоды
 card1, card2 = deck.draw(2)
+
 
 # Тестируем методы .less() и .more()
 if card1.more(card2):
