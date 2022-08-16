@@ -48,8 +48,7 @@ class Deck:
         return f"cards[{len(self.cards)}]{' ,'.join(cards_list)}"
 
     def draw(self, x):
-        cards_list = self.__get_list_cards()
-        x_cards = cards_list[:x]
+        x_cards = self.cards[:x]
         self.cards = self.cards[x:]
         return x_cards
 
