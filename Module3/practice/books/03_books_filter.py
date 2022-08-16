@@ -4,8 +4,9 @@ class Author:
         self.surname = surname
 
     def short_name(self):
-        # TODO-0: скопируйте реализацию метода из предыдущей задачи
-        ...
+        # TODO-1: метод возвращает строку в формате: М.Булгаков
+        #  пояснение: Первую букву имени, фамилию целиком
+        return self.name[0]+"."+self.surname
 
 
 class Book:
@@ -17,7 +18,7 @@ class Book:
 
     def to_str(self):
         # TODO-0: скопируйте реализацию метода из предыдущей задачи
-        ...
+        return f'"{self.name}" {self.author.short_name()}'
 
 
 author1 = Author("Михаил", "Булгаков")
@@ -31,6 +32,12 @@ books_catalog = [
     Book("Оно", author2, 1986, 320),
 ]
 print("Найти все книги по фамилии автора")
-surname = input("Фамилия автора: ")
+#surname = input("Фамилия автора: ")
+surname="Булгаков"
 # TODO-1: Выведите нумерованный список книг автора с фамилией surname
 #  примечание: если книг для автора с указанной фамилией нет - выведите "Книги не найдены"
+n=0
+for book in books_catalog:
+    if book.author.surname==surname:
+        n += 1
+        print(n,book.to_str())
