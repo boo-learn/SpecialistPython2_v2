@@ -4,8 +4,9 @@ class Author:
         self.surname = surname
 
     def short_name(self):
-        # TODO-0: скопируйте реализацию метода из предыдущей задачи
-        ...
+        # TODO-1: метод возвращает строку в формате: М.Булгаков
+        #  пояснение: Первую букву имени, фамилию целиком
+        return self.name[0]+"."+self.surname
 
 
 class Book:
@@ -17,7 +18,7 @@ class Book:
 
     def to_str(self):
         # TODO-0: скопируйте реализацию метода из предыдущей задачи
-        ...
+        return f'"{self.name}" {self.author.short_name()}'
 
 
 author1 = Author("Михаил", "Булгаков")
@@ -32,3 +33,5 @@ books_catalog = [
 ]
 
 # TODO-1: Выведите нумерованный список книг, используя для каждой книги ее строковое представление(метод .to_str())
+for book in books_catalog:
+    print(book.to_str())
