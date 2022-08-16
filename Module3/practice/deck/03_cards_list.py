@@ -33,12 +33,10 @@ diamonds_cards = []
 # Пример вывода: 2♥, 3♥, 4♥ ... A♥
 
 for value in values:
-    card = Card(value, "Hearts")
-    hearts_cards.append(card.to_str())
+    card_hearts = Card(value, "Hearts")
+    hearts_cards.append(card_hearts.to_str())
 
-
-for value in values:
-    card = Card(value, "Diamonds")
-    diamonds_cards.append(card.to_str())
+    card_diamonds = Card(value, "Diamonds")
+    diamonds_cards.append(card_diamonds.to_str())
 
 print(', '.join(hearts_cards))
