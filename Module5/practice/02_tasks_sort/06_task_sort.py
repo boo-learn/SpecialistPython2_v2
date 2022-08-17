@@ -13,3 +13,6 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+prices = [10, 2, 50, 1, 10]
+prices.sort()
+print(sum(prices[round(len(prices)/2 - 1):]))
