@@ -1,21 +1,49 @@
-# Алгоритм:
-# 1. Выбор опорного элемента из массива.
-# 2. Перераспределение элементов в массиве таким образом, что элементы меньше опорного помещаются перед ним,
-# а больше или равные — после.
-# 3. Рекурсивное применение первых двух шагов к двум подмассивам слева и справа от опорного элемента.
-# Рекурсия не применяется к массиву, в котором только один или отсутствуют элементы.
+from random import randint
 
-def partition(nums, low, high):
+
+def sort_choice(nums):
+    i = 0
+    while i < len(nums) - 1:
+        m = i
+        j = i + 1
+        while j < len(nums):
+            if nums[j] < nums[m]:
+                m = j
+            j += 1
+        nums[i], nums[m] = nums[m], nums[i]
+        i += 1
+
+    return nums
+
+
+def bubble_sort(nums):
+    swapped = True
+    while swapped:
+        swapped = False
+        # print("*****")
+        for i in range(len(nums) - 1):
+            # print("i = ", i)
+            if nums[i] > nums[i + 1]:
+                # Меняем элементы
+                nums[i], nums[i + 1] = nums[i + 1], nums[i]
+                # Устанавливаем swapped в True для следующей итерации
+                swapped = True
+    return nums
+
+
+def quick_sort(nums):
+
+    def partition(nums, low, high):
     # Выбираем средний элемент в качестве опорного
     # Также возможен выбор первого, последнего
     # или произвольного элементов в качестве опорного
-    pivot = nums[(low + high) // 2]
-    i = low - 1
-    j = high + 1
-    while True:
-        i += 1
-        while nums[i] < pivot:
+        pivot = nums[(low + high) // 2]
+        i = low - 1
+        j = high + 1
+        while True:
             i += 1
+            while nums[i] < pivot:
+                i += 1
 
         j -= 1
         while nums[j] > pivot:
@@ -27,10 +55,8 @@ def partition(nums, low, high):
         # Если элемент с индексом i (слева от опорного) больше, чем
         # элемент с индексом j (справа от опорного), меняем их местами
         nums[i], nums[j] = nums[j], nums[i]
-
-
-def quick_sort(nums):
     # Создадим вспомогательную функцию, которая вызывается рекурсивно
+
     def _quick_sort(items, low, high):
         if low < high:
             # Индекс опорного элемента
@@ -40,9 +66,16 @@ def quick_sort(nums):
 
     _quick_sort(nums, 0, len(nums) - 1)
 
+# Напишите функцию для заполнения списка случайными числами
 
-# Проверяем, что оно работает
-nums = [22, 5, 1, 18, 99, 32, 12, 18, 5]
-print("before sort = ", nums)
-quick_sort(nums)
-print("after sort = ", nums)
+
+def gen_list(size, at=-100, to=100):
+    array = [random.randint(at, to) for i in range(size)]
+    return array
+
+
+# протестируйте функции сортировки, используя gen_list() для создания сортируемых списков
+nums = [3, 5, 1, -6, 2, 8]
+a = []
+print(sort_choice(nums))
+print(bubble_sort(nums))
