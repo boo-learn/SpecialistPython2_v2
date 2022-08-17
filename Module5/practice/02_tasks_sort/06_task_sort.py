@@ -13,3 +13,14 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+check = [2, 1, 15, 10, 50, 10]
+check.sort()
+total_check = 0
+if len(check) % 2 == 0:
+    for item in check[len(check) // 2:]:
+        total_check += item
+else:
+    for item in check[len(check) // 2:]:
+        total_check += item
+
+print(f'Максимальная сумма чека: {total_check}')
