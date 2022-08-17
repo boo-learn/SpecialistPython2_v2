@@ -13,3 +13,12 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+import math
+
+
+staff = [10, 2, 50, 1, 10]
+staff.sort(reverse=True)
+len_staff = math.ceil(len(staff) / 2)
+
+print(sum(staff[:len_staff]))
+
