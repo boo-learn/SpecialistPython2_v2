@@ -12,16 +12,17 @@
 #        / \ /  /
 #       0---1--4
 
-def dfs(graph, graph_doors, start, keys):
+def dfs(graph, graph_doors, start, keys, with_key=False):
     visited = [False] * len(graph)
 
     def _dfs(v):
         visited[v] = True
 
-        if v in keys:
-            for door in graph_doors:
-                graph[door[0]].append(door[1])
-                graph[door[1]].append(door[0])
+        if with_key:
+            if v in keys:
+                for door in graph_doors:
+                    graph[door[0]].append(door[1])
+                    graph[door[1]].append(door[0])
 
         for w in graph[v]:
             if not visited[w]:  # посещён ли текущий сосед?
@@ -61,11 +62,14 @@ def main():
 
     start = {'s-1': 5, 's-2': 13, 's-3': 3, 's-4': 8}
     finish_point = 0
-    for i in start:
-        visited = dfs(graph, graph_doors, start[i], keys)
-        if visited[finish_point]:
-            print(f'Из точки {i} можно дойти до финиша')
-            continue
-        print(f'Из точки {i} нельзя дойти до финиша')
+    for i in [True, False]:
+        text = 'with key' if i else 'without key'
+        print(text)
+        for i in start:
+            visited = dfs(graph, graph_doors, start[i], keys, i)
+            if visited[finish_point]:
+                print(f'Из точки {i} можно дойти до финиша')
+                continue
+            print(f'Из точки {i} нельзя дойти до финиша')
 
 main()
