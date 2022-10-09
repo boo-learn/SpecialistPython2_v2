@@ -5,9 +5,10 @@ class Item:
 
 class BackPack:  # рюкзак
     ...
+
     # TODO: сюда копируем реализацию класса из предыдущего задания
 
-    def add_items(self, items):
+    def add_items(self, items: list[Item]):
         """
         :param items: Список вещей(объектов класса Item)
         """

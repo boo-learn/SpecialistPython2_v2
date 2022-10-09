@@ -1,10 +1,13 @@
+from __future__ import annotations
+
+
 class Point:
-    def __init__(self, x, y):
+    def __init__(self, x: int, y: int, color: str):
         self.x = x
         self.y = y
         self.color = ...
 
-    def dist_to(self, other_point):
+    def dist_to(self, other_point: Point) -> float:
         ...
 
 

@@ -1,21 +1,21 @@
 class Author:
-    def __init__(self, name, surname):
+    def __init__(self, name: str, surname: str):
         self.name = name
         self.surname = surname
 
-    def short_name(self):
+    def short_name(self) -> str:
         # TODO-0: скопируйте реализацию метода из предыдущей задачи
         ...
 
 
 class Book:
-    def __init__(self, name, author: Author, year, pages):
+    def __init__(self, name: str, author: Author, year: int, pages: int):
         self.name = name
         self.author = author
         self.year = year
         self.pages = pages
 
-    def to_str(self):
+    def to_str(self) -> str:
         # TODO-0: скопируйте реализацию метода из предыдущей задачи
         ...
 

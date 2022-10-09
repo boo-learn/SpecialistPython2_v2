@@ -1,22 +1,22 @@
 class Author:
-    def __init__(self, name, surname):
+    def __init__(self, name: str, surname: str):
         self.name = name
         self.surname = surname
 
-    def short_name(self):
+    def short_name(self) -> str:
         # TODO-1: метод возвращает строку в формате: М.Булгаков
         #  пояснение: Первую букву имени, фамилию целиком
         ...
 
 
 class Book:
-    def __init__(self, name, author: Author, year, pages):
+    def __init__(self, name: str, author: Author, year: int, pages: int):
         self.name = name
         self.author = author
         self.year = year
         self.pages = pages
 
-    def to_str(self):
+    def to_str(self) -> str:
         # TODO-2: метод возвращает строку в формате: "Вьюга" author:М.Булгаков publish:1926 год
         #  пояснение: Название книги выводим в кавычках(""), у имени автора только первую букву
         ...

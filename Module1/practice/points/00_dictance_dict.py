@@ -1,4 +1,4 @@
-def distance(p1, p2):
+def distance(p1: dict, p2: dict) -> float:
     """
     Расстояние между двумя точками
     """

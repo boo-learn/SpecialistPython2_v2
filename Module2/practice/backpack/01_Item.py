@@ -1,11 +1,11 @@
 class Item:
-    def __init__(self, ):
+    def __init__(self, name: str, weight: float, cost: int):
         self.name = ...  # Название предмета
         self.weight = ...  # Вес предмета, в килограммах
         self.cost = ...  # Цена предмета, пусть будет, в рублях
 
 
-def show_item(item: Item):
+def show_item(item: Item) -> str:
     """
     Возвращает строковое представление объекта Item
     """
@@ -30,8 +30,8 @@ print(show_item(item4))
 # print(item3.show())
 # print(item4.show())
 
-# TODO-4: поместите все объекты item1, item2 ... itemN в список.
-#  Выведите элементы в виде нумерованного списка, при выводе используйте метод .show()
-items = []
+# Помещаем все объекты item в список:
+items = [item1, item2, item3, item4]
+# TODO-4:  Выведите элементы в виде нумерованного списка, при выводе используйте метод .show()
 for item in items:
     ...

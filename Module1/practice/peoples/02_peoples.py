@@ -1,17 +1,17 @@
 class People:
-    def __init__(self, name, surname, age):
+    def __init__(self, name: str, surname: str, age: int):
         self.name = name
         self.surname = surname
         self.age = age
 
-    def change_age(self, new_age):
+    def change_age(self, new_age: int) -> None:
         # TODO: скопируйте реализацию метода из предыдущей задачи
         ...
 
-    def full_name(self):
+    def full_name(self) -> str:
         return f"{self.surname} {self.name}"
 
-    def full_info(self):
+    def full_info(self) -> str:
         return f"Человек: {self.surname} {self.name} и ему {self.age} лет"
 
 

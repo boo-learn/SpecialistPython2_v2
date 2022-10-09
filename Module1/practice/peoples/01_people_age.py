@@ -1,20 +1,20 @@
 class People:
-    def __init__(self, name, surname, age):
+    def __init__(self, name: str, surname: str, age: int):
         self.name = name
         self.surname = surname
         self.age = age
 
-    def change_age(self, new_age):
+    def change_age(self, new_age: int) -> None:
         # Корректным возрастом считаем целое число от 1 до 100
         # Если задан некорректный возраст, выводим "некорректное значение для возраста" и оставляем старое значение
-        # Метод ничего не возвращает в качестве результата, а только меняем свойство self.age на значение new_age
+        # Метод меняет свойство self.age на значение new_age
         # TODO: напишите реализацию данного метода
         ...
 
-    def full_name(self):
+    def full_name(self) -> str:
         return f"{self.surname} {self.name}"
 
-    def full_info(self):
+    def full_info(self) -> str:
         return f"Человек: {self.surname} {self.name} и ему {self.age} лет"
 
 

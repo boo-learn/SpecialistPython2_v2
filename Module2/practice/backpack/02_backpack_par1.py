@@ -7,15 +7,15 @@ class BackPack:  # рюкзак
     def __init__(self):
         self.items = []  # Предметы, которые хранятся в рюкзаке
 
-    def add_item(self, item: Item):
+    def add_item(self, item: Item) -> None:
         """
         Добавляет предмет(item) в этот рюкзак
         """
         # TODO: реализуйте метод
 
-    def show_items(self):
+    def show_items(self) -> None:
         """
-        Вывод все предметы, содержащиеся в рюкзаке в виде нумерованного списка
+        Выводит(print'ом) все предметы, содержащиеся в рюкзаке в виде нумерованного списка
         """
         # TODO: реализуйте метод
 

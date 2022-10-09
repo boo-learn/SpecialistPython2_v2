@@ -1,5 +1,5 @@
 class Point:
-    def __init__(self, x, y):
+    def __init__(self, x: int, y: int):
         self.x = x
         self.y = y
 
@@ -12,4 +12,3 @@ random_point = Point(-12, 10)
 # TODO: выведите расстояние от каждой точки(из списка) до точки random_point
 # Совет: используйте функцию distance() из предыдущего задания
 # Подсказка: смотри пример, Module1/examples/05_objects_list.py
-

@@ -9,16 +9,16 @@ class Item:
 
 class BackPack:  # рюкзак
     # TODO-0: копируем реализацию всех методов из практики или дописываем самостоятельно
-    def __init__(self, max_weight):
+    def __init__(self, max_weight: float):
         ...
 
-    def add_item(self, item: Item):
+    def add_item(self, item: Item) -> None:
         """
         Добавляет предмет(item) в этот рюкзак
         """
         ...
 
-    def show_items(self):
+    def show_items(self) -> None:
         """
         Вывод все предметы, содержащиеся в рюкзаке в виде нумерованного списка
         """
