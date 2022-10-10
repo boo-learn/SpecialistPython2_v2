@@ -8,10 +8,13 @@ class BackPack:  # рюкзак
 
     # TODO: сюда копируем реализацию класса из предыдущего задания
 
-    def add_items(self, items: list[Item]):
-        """
-        :param items: Список вещей(объектов класса Item)
-        """
+        def add_items(self, items: list[Item])
+        # TODO: реализуйте метод
+        for item in items:
+            if self.sum_weight() + item.weight <= self.max_weight:
+                self.items.append(item)
+            else:
+                print(item.name, 'не поместился в рюкзак')
         # TODO: реализуйте метод так, чтобы из переданного списка предметов выбиралось и помещалось в рюкзак,
         #  максимальное количество, с учетом ограничения общего веса в рюкзаке. Т.е. берем самые легкие предметы.
 
