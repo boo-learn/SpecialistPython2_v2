@@ -24,8 +24,8 @@ class BackPack:  # рюкзак
         """
         Выводит(print'ом) все предметы, содержащиеся в рюкзаке в виде нумерованного списка
         """
-        for item in self.items:
-            print(item.show_item())
+        for index, item in enumerate(self.items):
+            print(index + 1, item.show_item())
         # TODO: реализуйте метод
 
 
