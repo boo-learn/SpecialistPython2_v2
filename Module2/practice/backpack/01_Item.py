@@ -1,9 +1,10 @@
 class Item:
     def __init__(self, name: str, weight: float, cost: int):
-        self.name = ...  # Название предмета
-        self.weight = ...  # Вес предмета, в килограммах
-        self.cost = ...  # Цена предмета, пусть будет, в рублях
-
+        self.name = name  # Название предмета
+        self.weight = weight  # Вес предмета, в килограммах
+        self.cost = cost  # Цена предмета, пусть будет, в рублях
+    def show(self):
+        return f"{self.name} вес:{self.weight} цена: {self.cost}"
 
 def show_item(item: Item) -> str:
     """
@@ -25,13 +26,15 @@ print(show_item(item3))
 print(show_item(item4))
 
 # TODO-3: сделайте функцию show_item(), методом show() класса Item
-# print(item1.show())
-# print(item2.show())
-# print(item3.show())
-# print(item4.show())
+print(item1.show())
+print(item2.show())
+print(item3.show())
+print(item4.show())
 
 # Помещаем все объекты item в список:
 items = [item1, item2, item3, item4]
 # TODO-4:  Выведите элементы в виде нумерованного списка, при выводе используйте метод .show()
+n=1
 for item in items:
-    ...
+    print(f"Позиция {n}: {item.show()}")
+    n +=1
