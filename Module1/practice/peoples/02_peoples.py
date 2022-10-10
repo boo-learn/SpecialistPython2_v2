@@ -28,3 +28,18 @@ peoples = [
 
 # TODO-2: найдите всех одногодок и выведите их Фамилии и Имена
 #  Примечание: Если одногодок нет, выведите сообщение "одногодок нет"
+ages = []
+same_age = 0
+same_age_peoples = []
+for person in peoples:
+    ages.append(person.age)
+for age in ages:
+    if ages.count(age) != 1:
+        same_age = age
+for person in peoples:
+    if person.age == same_age:
+        same_age_peoples.append(person.full_name())
+if same_age_peoples == []:
+    print('Одногодок нет')
+else:
+    print(same_age_peoples)
