@@ -6,15 +6,26 @@ class Card:
 
     def to_str(self):
         # TODO-0: скопируйте реализацию метода из предыдущей задачи
-        ...
+        if self.suit == "Hearts":
+            self.suit = '\u2665'
+        elif self.suit == "Diamonds":
+            self.suit = '\u2666'
+        elif self.suit == "Clubs":
+            self.suit = '\u2663'
+        elif self.suit == "Spades":
+            self.suit = '\u2660'
+        return (f"{self.value}{self.suit}")
 
     def equal_suit(self, other_card):
         # TODO-1: метод возвращает True - если масти карт равны или False - если нет
-        ...
+        if self.suit == other_card.suit:
+            return True
+        else:
+            return False
 
 
 # Создадим несколько карт
-card1 = Card("10", "Hearts")
+card1 = Card("10", "Diamonds")
 card2 = Card("A", "Diamonds")
 
 # Проверим, одинаковые ли масти у карт
