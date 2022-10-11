@@ -4,7 +4,9 @@ class Author:
         self.surname = surname
 
     def short_name(self) -> str:
-        # TODO-0: скопируйте реализацию метода из предыдущей задачи
+        # TODO-1: метод возвращает строку в формате: М.Булгаков
+        #  пояснение: Первую букву имени, фамилию целиком
+        return self.name[0] + "." + self.surname
         ...
 
 
@@ -16,7 +18,9 @@ class Book:
         self.pages = pages
 
     def to_str(self) -> str:
-        # TODO-0: скопируйте реализацию метода из предыдущей задачи
+        return self.name + " author: " + self.author.short_name()  + " publish:" + str(self.year) + "year"
+        # TODO-2: метод возвращает строку в формате: "Вьюга" author:М.Булгаков publish:1926 год
+        #  пояснение: Название книги выводим в кавычках(""), у имени автора только первую букву
         ...
 
 
@@ -30,5 +34,7 @@ books_catalog = [
     Book("Сияние", author2, 2014, 544),
     Book("Оно", author2, 1986, 320),
 ]
-
+#print(books_catalog)
+for book in books_catalog:
+    print(book.to_str())
 # TODO-1: Выведите нумерованный список книг, используя для каждой книги ее строковое представление(метод .to_str())
