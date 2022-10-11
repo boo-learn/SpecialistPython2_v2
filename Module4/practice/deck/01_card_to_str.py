@@ -5,8 +5,15 @@ class Card:
         self.suit = suit  # Масть карты
 
     def to_str(self):
-        # TODO-1: метод возвращает строковое представление карты в виде: 10♥ и A♦
-        ...
+        if self.suit == 'Hearts':
+            uni_suit = '\u2665'
+        elif self.suit == 'Diamonds':
+            uni_suit = '\u2666'
+        elif self.suit == 'Spades':
+            uni_suit = '\u2660'
+        else:
+            uni_suit = '\u2663'
+        return f'{self.value}{uni_suit}'
 
 
 # Создадим несколько карт
@@ -18,7 +25,3 @@ print(card1.to_str())
 print(card2.to_str())
 
 # Пример, вывод иконок мастей:
-print('\u2661', '\u2665')
-print('\u2662', '\u2666')
-print('\u2667', '\u2663')
-print('\u2664', '\u2660')
