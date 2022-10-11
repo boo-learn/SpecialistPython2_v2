@@ -6,7 +6,15 @@ class Card:
 
     def to_str(self):
         # TODO-1: метод возвращает строковое представление карты в виде: 10♥ и A♦
-        ...
+        if self.suit == 'Hearts':
+            uni_suit = '\u2665'
+        elif self.suit == 'Diamonds':
+            uni_suit = '\u2666'
+        elif self.suit == 'Spades':
+            uni_suit = '\u2660'
+        else:
+            uni_suit = '\u2663'
+        return f'{self.value}{uni_suit}'
 
 
 # Создадим несколько карт
