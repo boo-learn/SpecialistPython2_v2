@@ -5,3 +5,19 @@ from deck_total import Card, Deck
 #   Если карта из первой колоды окажется больше(старше), то записываем 1:0(условно начисляем победное очко первой колоде),
 #   если карты одинаковые, то не учитываем очко никуда.
 #   Выведите итоговый счет, сравнив попарно все карты в колодах.
+
+deck1 = Deck(4)
+deck2 = Deck(4)
+deck1.shuffle()
+deck2.shuffle()
+
+win1 = 0
+win2 = 0
+while len(deck1.cards) > 0:
+    card1 = deck1.draw(1)
+    card2 = deck2.draw(1)
+    if card1 > card2:
+        win1 += 1
+    elif card2 > card1:
+        win2 += 1
+print(win1, ':', win2)
