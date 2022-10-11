@@ -4,3 +4,13 @@ from deck_total import Card, Deck
 
 # TODO: Создайте колоду из 52 карт. Перемешайте ее. Вытяните две карты сверху.
 #   Сравните эти карты и выведите сообщение формата: “карта A♦ больше J♣”
+deck = Deck()
+print(deck)
+deck.shuffle()
+card1, card2 = deck.draw(2)
+if card1 > card2:
+    print(f'{card1} больше {card2}')
+if card1 < card2:
+    print(f'{card1} меньше {card2}')
+if card1 == card2:
+    print(f'{card1} равно {card2}')
