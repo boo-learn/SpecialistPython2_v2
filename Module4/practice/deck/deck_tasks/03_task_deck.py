@@ -4,3 +4,15 @@ from deck_total import Card, Deck
 #   Снова перемешайте колоду и вытяните еще одну. Если вторая карта меньше первой, повторите “перемешать + вытянуть”,
 #   до тех пор, пока не вытяните карту больше предыдущей карты.
 #   В качестве результата выведи все вытягиваемые карты в консоль.
+
+deck = Deck()
+deck.shuffle()
+card1 = deck.draw(1)
+print(card1)
+
+while True:
+    deck.shuffle()
+    card2 = deck.draw(1)
+    print(card2)
+    if card2 > card1:
+        break
