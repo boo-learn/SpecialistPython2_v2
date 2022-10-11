@@ -9,13 +9,25 @@ class Coin:
         """
         Подбрасывание монетки. # heads-орел/tails-решка
         """
-        self.side = ...  # random: heads/tails
+        self.side = random.choice(['heads', 'tails'])
 
-# Задание:
-# 1. Создайте список из n-монеток, n - вводится с клавиатуры
-# 2. Подбросьте(flip) все монетки. У каждой монетки в списке вызовите метод .flip()
-# 3. Выведите соотношение выпавших орлов и решек в процентах
+n = int(input("enter the # of coins"))
+coinlist =[]
+heads = 0
+tails = 0
 
-# Пояснение: когда вы создаете монетку, то она находится в неопределенном состоянии self.side = None, т.е.
-# она находится у вас в руке и не выпала ни орлом ни решкой. Монетка "определеяется" со стороной(орел/решка),
-# только после того, как вы ее подбрасываете(вызываете метод flip())
+for i in range(n):
+    coin = Coin()
+    coinlist.append(coin)
+
+for i in range(n):
+    coinlist[i].flip()
+    print(coinlist[i].side)
+
+    if coin.side == 'heads':
+        heads += 1
+    elif coin.side == 'tails':
+        tails += 1
+
+print("Tails = ", tails/n*100, "%")
+print("Heads = ", heads/n*100, "%")
