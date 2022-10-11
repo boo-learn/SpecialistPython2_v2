@@ -5,10 +5,17 @@ class Card:
         self.suit = suit  # Масть карты
 
     def to_str(self):
-        # TODO-0: скопируйте реализацию метода из предыдущей задачи
+        if self.suit == "Hearts"  : g_suit = '\u2665'
+        if self.suit == "Diamonds": g_suit = '\u2666'
+        if self.suit == "Clubs"   : g_suit = '\u2663'
+        if self.suit == "Spades"  : g_suit = '\u2660'
+        return f"{self.value}{g_suit}"
+        # TODO-1: метод возвращает строковое представление карты в виде: 10♥ и A♦
         ...
 
     def equal_suit(self, other_card):
+        if self.suit == other_card.suit: return True
+        else :                      return False
         # TODO-1: метод возвращает True - если масти карт равны или False - если нет
         ...
 
