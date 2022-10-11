@@ -1,4 +1,4 @@
-# Начнем с создания карты
+
 class Card:
     def __init__(self, value, suit):
         self.value = value  # Значение карты(2, 3... 10, J, Q, K, A)
