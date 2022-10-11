@@ -6,7 +6,8 @@ class Card:
 
     def to_str(self):
         # TODO-1: метод возвращает строковое представление карты в виде: 10♥ и A♦
-        ...
+        sign = self.suit.replace("Hearts", '\u2661').replace("Diamonds", '\u2662').replace("Spades", '\u2660').replace("Clubs ", '\u2663')
+        return f"{self.value} {sign}"
 
 
 # Создадим несколько карт
