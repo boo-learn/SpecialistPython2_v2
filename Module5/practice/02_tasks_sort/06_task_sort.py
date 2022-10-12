@@ -13,3 +13,17 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+
+
+prices = [2, 1, 10, 50, 10, 4, 7]
+
+
+prices.sort(reverse=True)
+
+pair_amount = round(len(prices)/2)
+
+check = 0
+for price in prices[:pair_amount]:
+    check += price
+
+print(f"Max Check: {check}")
