@@ -13,3 +13,9 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+
+prices = [2, 1, 15, 4, 12, 9, 10, 50, 10]
+prices.sort()
+half = int(len(prices)/2)
+summa = sum(prices[half:])
+print(summa)
