@@ -13,3 +13,14 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+
+import random
+
+n = 5
+prices = [random.randint(0, 10) for _ in range(n)]
+print(prices)
+
+prices.sort()
+print(prices)
+
+print(sum(prices[n//2:]))
