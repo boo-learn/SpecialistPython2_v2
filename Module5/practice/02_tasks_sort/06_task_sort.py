@@ -13,3 +13,14 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+
+goods = [2, 1, 10, 50, 10]
+goods.sort()
+print(goods)
+summ_check = 0
+index = 0
+for item in goods:
+    index += 1
+    if index % 2 == 1:
+         summ_check += item
+print (summ_check)
