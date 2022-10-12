@@ -11,3 +11,16 @@
 # 10 1 3 4 3 5 6 7 7 6 1
 # Выход
 # 5
+results = [10, 1, 3, 4, 3, 5, 8, 6, 6, 7, 7, 6, 1]
+results.sort(reverse=True)
+i = 0
+separator = 0
+point = results[0]
+for res in results:
+    if res < point:
+        point = res
+        i += 1
+    if i == 3:
+        break
+    separator += 1
+print(len(results[:separator]))
