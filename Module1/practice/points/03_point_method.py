@@ -6,15 +6,12 @@ class Point:
         self.x = x
         self.y = y
 
-    def dist_to(self, other_point: Point) -> float:
-        # TODO-1: реализуйте метод
-        # Подсказка: смотри пример, Module1/examples/06_object_methods.py
-        ...
+    def dist_to(self, other_point: Point) -> float:        
+        return ((self.x - other_point.x)**2 + (self.y - other_point.y)**2)**0.5
 
-
-# Дано две точки на координатной плоскости
 point1 = Point(2, 4)
 point2 = Point(5, -2)
 
 # TODO-2: выведите расстояние между точками используя метод dist_to()
-print(f"Расстояние между точками = {...}")
+distance = Point.dist_to(point2)
+print('Расстояние между точками = {}'.format(distance))
