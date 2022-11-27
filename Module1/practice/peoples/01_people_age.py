@@ -5,11 +5,14 @@ class People:
         self.age = age
 
     def change_age(self, new_age: int) -> None:
+        if type(new_age) == int and 1 < new_age < 100:
+            self.age = new_age
+        else:
+            print('некорректное значение для возраста')
         # Корректным возрастом считаем целое число от 1 до 100
         # Если задан некорректный возраст, выводим "некорректное значение для возраста" и оставляем старое значение
         # Метод меняет свойство self.age на значение new_age
         # TODO: напишите реализацию данного метода
-        ...
 
     def full_name(self) -> str:
         return f"{self.surname} {self.name}"
