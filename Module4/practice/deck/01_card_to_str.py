@@ -6,7 +6,14 @@ class Card:
 
     def to_str(self):
         # TODO-1: метод возвращает строковое представление карты в виде: 10♥ и A♦
-        ...
+        if self.suit == 'Spades':
+            return self.value + '\u2660'
+        elif self.suit == 'Hearts':
+            return self.value + '\u2665'
+        elif self.suit == 'Diamonds':
+            return self.value + '\u2666'
+        else:
+            return self.value + '\u2663'
 
 
 # Создадим несколько карт
