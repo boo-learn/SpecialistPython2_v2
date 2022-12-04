@@ -6,16 +6,21 @@ class Card:
 
     def to_str(self):
         # TODO-1: метод возвращает строковое представление карты в виде: 10♥ и A♦
-        ...
+        card_suits = {'Diamonds':'\u2666' ,'Hearts':'\u2665' , 'Spades':'\u2663' , 'Clubs':'\u2660'}
+        return f'{self.value}{card_suits[self.suit]}'
 
 
 # Создадим несколько карт
 card1 = Card("10", "Hearts")
 card2 = Card("A", "Diamonds")
+card3 = Card("2", 'Clubs')
+card4 = Card('5', 'Spades')
 
 # Выведем карты на экран в виде: 10♥ и A♦
 print(card1.to_str())
 print(card2.to_str())
+print(card3.to_str())
+print(card4.to_str())
 
 # Пример, вывод иконок мастей:
 print('\u2661', '\u2665')
