@@ -1,16 +1,28 @@
-# Начнем с создания карты
 class Card:
     def __init__(self, value, suit):
         self.value = value  # Значение карты(2, 3... 10, J, Q, K, A)
         self.suit = suit  # Масть карты
 
     def to_str(self):
-        # TODO-0: скопируйте реализацию метода из предыдущей задачи
-        ...
+        if self.suit == "Hearts":
+            self.suit = '\u2665'
+            return self.value + self.suit
+        elif self.suit == "Diamonds":
+            self.suit = '\u2666'
+            return self.value + self.suit
+        elif self.suit == "Clubs":
+            self.suit = '\u2663'
+            return self.value + self.suit
+        elif self.suit == "Spades":
+            self.suit = '\u2660'
+            return self.value + self.suit
+
 
     def equal_suit(self, other_card):
-        # TODO-1: метод возвращает True - если масти карт равны или False - если нет
-        ...
+       if card1.suit == card2.suit:
+           return True
+       else:
+           return False
 
 
 # Создадим несколько карт
