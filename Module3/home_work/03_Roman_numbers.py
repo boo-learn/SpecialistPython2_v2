@@ -1,26 +1,96 @@
-# Задание:
-# Напишите класс для работы с римскими цифрами.
-# Подробнее про Римские цифры тут: http://graecolatini.bsu.by/htm-different/num-converter-roman.htm
 class Roman:
+        
     def __init__(self, number):
-        pass
+        self.number = number
+        self.converted_string_number = str(self.number)
+        self.number_lenght = len(str(self.number))
+        if self.number_lenght < 4:
+            self.converted_string_number = '0' * (4 - self.number_lenght) + self.converted_string_number
+        self.complex_simple()
+        
+    def __str__(self):
+        return f'{self.roman_number}'
+    
+    def complex_simple(self):
+        self.roman_number = ''
+        roman_numbers = [['M'],['C', 'D', 'M'] , ['X', 'L', 'C'], ['I', 'V', 'X']]
+        iter = 0
+        for value in self.converted_string_number:
+            if int(value) == 0:
+                roman_numbers[iter].clear()
+            elif iter == 0:
+                self.roman_number = roman_numbers[0][0] * int(value)
+                iter +=1
+                continue
+
+            if int(value) >=1 and int(value) <=3:
+                self.roman_number = self.roman_number + roman_numbers[iter][0] * int(value)
+            elif int(value) ==4:
+                self.roman_number = self.roman_number + ''.join([roman_number for roman_number in roman_numbers[iter][0:2]])
+            elif int(value) ==5:
+                self.roman_number = self.roman_number + roman_numbers[iter][1]
+            elif int(value) > 5 and int(value) <=8:
+                self.roman_number = self.roman_number + roman_numbers[iter][1] + roman_numbers[iter][0] * (int(value) - 5)
+            elif int(value) == 9:
+                self.roman_number = self.roman_number + roman_numbers[iter][0] + roman_numbers[iter][2]
+            iter +=1
 
 
-# Реализуйте операции:
-# Сложение
-# Вычитание
-# Умножение
-# Целочисленное деление
-# Сравнение (> < == !=)
-# Пример:
+    def __add__(self,other_number):
+        return Roman(self.number + other_number.number)
+        
+    def __sub__(self,other_number):
+        return Roman(self.number - other_number.number)
+
+    def __mul__(self, multiple_number):
+        return Roman(self.number * multiple_number)
+    
+    def __gt__(self, other_number):
+        if self.number > other_number.number:
+            print(f'{self.roman_number} > {other_number.roman_number}')
+        else:
+            print(f'False')
+        
+    def __lt__(self, other_number):
+        if self.number < other_number.number:
+            print(f'{self.roman_number} < {other_number.roman_number}')
+        else:
+            print(f'False')
+
+    def __eq__(self,other_number):
+        if self.roman_number == other_number.roman_number: 
+            print(f'{self.roman_number} == {other_number.roman_number}')
+        else:
+            print(f'False')
+    def __ne__(self,other_number):
+        if self.roman_number != other_number.roman_number: 
+            print(f'{self.roman_number} != {other_number.roman_number}')
+        else:
+            print(f'False')
+
 n1 = Roman(10)
 n2 = Roman(14)
-print(n1)  # X
-print(n2)  # XIV
-n3 = n1 + n2
-print(n3)  # XXIV
-n3 *= 2
-print(n3)  # XLVIII
+print(n1)  
+print(n2)  
+n3 = Roman(5)
+n4 = Roman(1)
+n5 = n3 + n4
+print(n5)
+n6 = Roman(15)
+n7 = Roman(5)
+n8 = n6 - n7
+print(n8)
+n9 = Roman(999)
+n9 *= 4
+print(n9)
+
+n6 > n7
+n7 < n6
+
+n10 = Roman(15)
+n10 == n6
+n10 == n7
+n1 != n5
 
 # ограничение: 4-значные числа.
 # Алгоритм
