@@ -5,3 +5,17 @@
 numbers = [-2.5, 13.6, 13, -22.4, -12.8, 12.8, 21, 4, 22.1, 3]
 a = ...  # Задайте самостоятельно, выбрав произвольное число
 b = ...  # Задайте самостоятельно, выбрав произвольное число
+import random
+
+numbers = [-2.5, 13.6, 13, -22.4, -12.8, 12.8, 21, 4, 22.1, 3]
+a = random.randint(-23,0)
+b =random.randint(0,23)
+print(a)
+print(b)
+sum = 0
+
+for number in numbers:
+    if a < number < b:
+        sum +=number
+        
+print(number)
