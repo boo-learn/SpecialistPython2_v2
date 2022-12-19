@@ -6,10 +6,19 @@ class Coin:
         self.side = None
 
     def flip(self) -> None:
-        """
-        Подбрасывание монетки. # heads-орел/tails-решка
-        """
-        self.side = ...  # random: heads/tails
+        self.side = random.randint(0,1)
+
+n = int(input())
+coins = []
+num_of_side0 = 0
+
+for c in range(n):
+    coins.append(Coin())
+    coins[c].flip()
+    if coins[c].side == 0:
+        num_of_side0 += 1
+
+print(f"Доля выпавших решек (сторона 0):  {num_of_side0/n}")
 
 # Задание:
 # 1. Создайте список из n-монеток, n - вводится с клавиатуры
