@@ -1,19 +1,63 @@
 class Item:
-    ...
-    # TODO: сюда копируем реализацию класса из предыдущего задания
+    def __init__(self, name: str, weight: float, cost: int):
+        self.name = name  # Название предмета
+        self.weight = weight  # Вес предмета, в килограммах
+        self.cost = cost  # Цена предмета, пусть будет, в рублях
+
+    def show(self):
+        return f"{self.name} вес:{self.weight} цена:{self.cost}"
+
+    def __lt__(self, other):
+        return self.weight < other.weight
+
 
 
 class BackPack:  # рюкзак
-    ...
+    def __init__(self, max_weight):
+        self.items = []  # Предметы, которые хранятся в рюкзаке
+        self.max_weight = max_weight
 
-    # TODO: сюда копируем реализацию класса из предыдущего задания
+    def add_item(self, item: Item) -> None:
+        """
+        Добавляет предмет(item) в этот рюкзак
+        """
+        if self.sum_weight() + item.weight < self.max_weight:
+            self.items.append(item)
+        else:
+            print(f"Предмет {item.name} слишком тяжелый")
+
+    def show_items(self) -> None:
+        """
+        Выводит(print'ом) все предметы, содержащиеся в рюкзаке в виде нумерованного списка
+        """
+        for i, item in enumerate(self.items, 1):
+            print(f'{i}. {item.show()}')
+
+    def sum_weight(self) -> float:
+        """
+        Возвращает суммарный вес всех предметов в рюкзаке
+        """
+        current_weight = 0
+        for item in self.items:
+            current_weight += item.weight
+        return current_weight
+
+    def sum_cost(self) -> int:
+        """
+        Возвращает суммарную стоимость всех предметов в рюкзаке
+        """
+        current_cost = 0
+        for item in self.items:
+            current_cost += item.cost
+        return current_cost
 
     def add_items(self, items: list[Item]):
         """
         :param items: Список вещей(объектов класса Item)
         """
-        # TODO: реализуйте метод так, чтобы из переданного списка предметов выбиралось и помещалось в рюкзак,
-        #  максимальное количество, с учетом ограничения общего веса в рюкзаке. Т.е. берем самые легкие предметы.
+        items.sort()
+        for item in items:
+            self.add_item(item)
 
 
 # Создаем предметы
