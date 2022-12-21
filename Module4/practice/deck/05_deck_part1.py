@@ -9,11 +9,18 @@ class Deck:
         values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
         suits = ["Hearts", "Diamonds", "Spades", "Clubs"]
         self.cards = []
+        for s in suits :
+            for v in values:
+                self.cards.append(Card(v, s))
         # TODO-1: конструктор добавляет в список self.cards все(52) карты
 
     def show(self):
-        # TODO-2: Принцип работы данного метода прописан в 00_task_deck.md
-        ...
+        cardst = []
+        cardcnt = 0
+        for c in self.cards:
+            cardst.append(c.to_str())
+            cardcnt += 1
+        return f"cards[{cardcnt}], {','.join(cardst)}"
 
 
 # Создаем колоду
