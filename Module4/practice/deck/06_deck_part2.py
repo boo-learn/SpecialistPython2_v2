@@ -1,6 +1,21 @@
+import random
+
 class Card:
-    # TODO-0: сюда копируем реализацию класса карты из предыдущего задания
-    ...
+    def __init__(self, value, suit):
+        self.value = value  # Значение карты(2, 3... 10, J, Q, K, A)
+        self.suit = suit  # Масть карты
+
+    def to_str(self):
+        symb = {
+            'Diamonds':'\u2666'
+            ,'Hearts':'\u2665'
+            ,'Spades':'\u2660'
+            ,   'Clubs':'\u2663'
+                }
+        return f"{self.value}{symb[self.suit]}"
+
+    def equal_suit(self, other_card):
+        return self.suit == other_card.suit
 
 
 class Deck:
@@ -9,20 +24,23 @@ class Deck:
         values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
         suits = ["Hearts", "Diamonds", "Spades", "Clubs"]
         self.cards = []
-        # TODO-0: конструктор копируем из предыдущей задачи
+        for s in suits :
+            for v in values:
+                self.cards.append(Card(v, s))
+        # TODO-1: конструктор добавляет в список self.cards все(52) карты
 
     def show(self):
-        # TODO-0: копируем из предыдущей задачи
-        ...
+        return f"cards[{len(self.cards)}], {','.join(card.to_str() for card in self.cards)}"
+        # TODO-2: Принцип работы данного метода прописан в 00_task_deck.md
 
     def draw(self, x):
+        selection = self.cards[0:x-1]
+        self.cards = self.cards[x:]
+        return selection
         # TODO-1: Принцип работы данного метода прописан в 00_task_deck.md
-        ...
 
     def shuffle(self):
-        # TODO-2: Принцип работы данного метода прописан в 00_task_deck.md
-        #   Подсказка: https://www.w3schools.com/python/ref_random_shuffle.asp
-        ...
+        random.shuffle(self.cards)
 
 
 # Создаем колоду
