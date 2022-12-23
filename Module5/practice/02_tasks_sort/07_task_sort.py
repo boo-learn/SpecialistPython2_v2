@@ -11,3 +11,20 @@
 # 10 1 3 4 3 5 6 7 7 6 1
 # Выход
 # 5
+from itertools import groupby
+
+
+# n = int(input('Количество участников:'))
+# numbers = [int(input()) for _ in range(n)]
+
+numbers = [100, 50, 90, 60, 90, 80, 80]
+numbers.sort(reverse=True)
+winners = 0
+for i, group in enumerate(groupby(numbers), 1):
+    if i > 3:  # призеры - не хужe 3 степени
+        break
+    points, group_item = group
+    # print(i, points)
+    for person in group_item:
+        winners += 1
+print(winners)
