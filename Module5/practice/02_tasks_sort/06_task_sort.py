@@ -13,3 +13,10 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+
+
+# costs = [int(x) for x in input("Цены товаров:").split()]
+costs = [2, 1, 10, 50, 10, 20, 30]
+costs.sort()
+max_bill = sum(costs[len(costs)//2:])
+print(max_bill)
