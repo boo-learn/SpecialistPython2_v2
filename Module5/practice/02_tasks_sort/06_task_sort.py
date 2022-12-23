@@ -13,3 +13,11 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+
+numbers = [10, 2, 50, 1, 10,]
+reverse=True
+print(numbers)
+numbers.reverse()
+numbers.sort(key=abs, reverse=True)
+
+print(sum(numbers[:3]))
