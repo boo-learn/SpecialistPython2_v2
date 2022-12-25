@@ -9,13 +9,13 @@ class Account:
         """
         Полная информация о счете в формате: "Иван баланс: 100 руб. паспорт: 3200 123456 т.+7-900-200-02-03"
         """
-        return f"..."
+        return f"{self.name} баланс: {self.balance} руб. паспорт: {self.passport} т.{self.phone_number}"
 
     def __repr__(self) -> str:
         """
         :return: Информацию о счете в виде строки в формате "Иван баланс: 100 руб."
         """
-        return f"..."
+        return f"{self.name} баланс: {self.balance } руб."
 
 
 account1 = Account("Иван", "3230 634563", "+7-900-765-12-34")
