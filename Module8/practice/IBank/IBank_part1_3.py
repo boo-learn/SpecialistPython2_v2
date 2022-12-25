@@ -9,7 +9,11 @@ class Account:
         :param amount: сумма перевода
         :return:
         """
-        pass
+        if target_account.__balance >= amount:
+            target_account.__balance -=amount
+            self.deposit(amount)
+        else:
+            raise ValueError("Недостаточно средств на счете")
 
 
 account1 = Account("Иван", "3230 634563", "+7-900-765-12-34", 1000)
