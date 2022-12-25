@@ -54,7 +54,7 @@ class Account:
             target_account.deposit(amount)
             self.withdraw(amount)
         else:
-            print(f"Недостаточная сумма на балансе для перевода")
+            raise  ValueError(f" Cредств недостаточно")
 
 
 account1 = Account("Иван", "3230 634563", "+7-900-765-12-34", 1000)
