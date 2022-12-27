@@ -1,16 +1,36 @@
 class Account:
-    # TODO-0: скопируйте реализацию из предыдущего решения
+    def __init__(self, name: str, passport: str, phone_number: str, start_balance: int = 0):
+        self.name = name
+        self.passport = passport
+        self.phone_number = phone_number
+        self.__balance = start_balance  # TODO: Закрываем прямой доступ к балансу
+
+    def full_info(self) -> str:
+        return f"{self.name} баланс: {self.balance} руб. паспорт: {self.passport} т.{self.phone_number}"
+
+    def __repr__(self) -> str:
+        return f"{self.name} баланс: {self.balance} руб."
+
+    @property
+    def balance(self) -> int:
+        return self.__balance
+
+    def deposit(self, amount: int) -> None:
+        self.__balance += amount
+
+    def withdraw(self, amount: int) -> None:
+        if amount <= self.__balance:
+            self.__balance -= amount
+        else:
+            raise ValueError("no money!")
 
     # TODO-1: напишите реализацию метода transfer()
     def transfer(self, target_account: 'Account', amount: int) -> None:
-        """
-        Перевод денег на счет другого клиента
-        :param target_account: счет клиента для перевода
-        :param amount: сумма перевода
-        :return:
-        """
-        pass
-
+        if amount <= self.__balance:
+            self.__balance -= amount
+            target_account.deposit(amount)
+        else:
+            raise ValueError("no money!")
 
 account1 = Account("Иван", "3230 634563", "+7-900-765-12-34", 1000)
 account2 = Account("Алексей", "3232 456124", "+7-901-744-22-99", 200)
