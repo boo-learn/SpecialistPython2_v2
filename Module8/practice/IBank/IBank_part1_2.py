@@ -18,8 +18,8 @@ class Account:
         """
         return f"..."
 
-    # TODO: совместно с преподавателем реализуйте getter для просмотра баланса
-    #  Можете попробовать самостоятельно: https://pythobyte.com/using-getters-and-setters-in-python-5205-840ed13f/
+    # TODO: реализуйте getter для просмотра баланса
+    #  Подробнее тут: https://pythobyte.com/using-getters-and-setters-in-python-5205-840ed13f/
     @property
     def balance(self) -> int:
         return ...
@@ -40,25 +40,22 @@ class Account:
 
 
 # Создаем тестовый аккаунт:
-account1 = Account("Алексей", "+7-901-744-22-99", "3232 456124", start_balance=500)
-
-# Смотрим баланс:
-print(account1)
+account1 = Account("Алексей", "3232 456124", "+7-901-744-22-99", start_balance=500)
 
 # Вносим сумму на счет:
-account1.deposit(600)
-print(account1)
+# account1.deposit(600)
+# print(account1)
 
 # Снимаем деньги со счета:
-try:
-    account1.withdraw(1000)
-except ValueError as e:
-    print(e)
-print(account1)
+# try:
+#     account1.withdraw(1000)
+# except ValueError as e:
+#     print(e)
+# print(account1)
 
 # Пробуем снять еще:
-try:
-    account1.withdraw(1000)
-except ValueError as e:
-    print(e)
-print(account1)
+# try:
+#     account1.withdraw(1000)
+# except ValueError as e:
+#     print(e)
+# print(account1)

@@ -1,3 +1,6 @@
+# Как запустить тесты?
+# Смотри в 'tasks/run_test.md'
+
 from typing import List
 import pytest
 from IBank_part1_3 import Account

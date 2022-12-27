@@ -60,7 +60,7 @@ def test_withdraw_inc_commission_on_negative_balance(self):
     assert credit_account.balance == 500
     self.account1.withdraw(600)
     self.assertEqual(self.account1.balance, -112)  # уходим в -баланс. Комиссия 2%, т.к. до снятия был положительный баланс
-    self.account1.withdraw(50)  # снимает при -балансе. Комиссия 5% (2 рубля с 50)
+    self.account1.withdraw(50)  # снимаем при -балансе. Комиссия 5% (2 рубля с 50)
     self.assertEqual(self.account1.balance, -164)
 
 

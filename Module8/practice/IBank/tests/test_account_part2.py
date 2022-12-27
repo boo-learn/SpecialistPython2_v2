@@ -25,18 +25,18 @@ def test_operation_deposit(account: Account):
     account.deposit(500)
     account.deposit(200)
     assert len(account.get_history()) == 2  # Должны быть добавлены ровно две операции
-    assert Operation.DEPOSIT in account.get_history()[0]
-    assert "500" in account.get_history()[0]
-    assert Operation.DEPOSIT in account.get_history()[1]
-    assert "200" in account.get_history()[1]
+    assert Operation.DEPOSIT in str(account.get_history()[0])
+    assert "500" in str(account.get_history()[0])
+    assert Operation.DEPOSIT in str(account.get_history()[1])
+    assert "200" in str(account.get_history()[1])
 
 
 def test_operation_withdraw(account: Account):
     assert len(account.get_history()) == 0
     account.withdraw(100)
     assert len(account.get_history()) == 1
-    assert Operation.WITHDRAW in account.get_history()[0]
-    assert "100" in account.get_history()[0]
+    assert Operation.WITHDRAW in str(account.get_history()[0])
+    assert "100" in str(account.get_history()[0])
 
 
 def test_operation_withdraw_raise(account: Account):
@@ -54,14 +54,14 @@ def test_operation_transfer(accounts: List[Account]):
     assert len(account_sender.get_history()) == 1
     assert len(account_recipient.get_history()) == 1
 
-    assert Operation.TRANSFER_OUT in account_sender.get_history()[0]
-    assert Operation.TRANSFER_IN in account_recipient.get_history()[0]
+    assert Operation.TRANSFER_OUT in str(account_sender.get_history()[0])
+    assert Operation.TRANSFER_IN in str(account_recipient.get_history()[0])
 
-    assert str(sum_transfer) in account_sender.get_history()[0]
-    assert str(sum_transfer) in account_recipient.get_history()[0]
+    assert str(sum_transfer) in str(account_sender.get_history()[0])
+    assert str(sum_transfer) in str(account_recipient.get_history()[0])
 
-    assert account_recipient.name in account_sender.get_history()[0]
-    assert account_sender.name in account_recipient.get_history()[0]
+    assert account_recipient.name in str(account_sender.get_history()[0])
+    assert account_sender.name in str(account_recipient.get_history()[0])
 
 
 def test_operation_transfer_raise(accounts: List[Account]):

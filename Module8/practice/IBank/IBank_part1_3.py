@@ -13,7 +13,7 @@ class Account:
 
 
 account1 = Account("Иван", "3230 634563", "+7-900-765-12-34", 1000)
-account2 = Account("Алексей", "+7-901-744-22-99", "3232 456124", 200)
+account2 = Account("Алексей", "3232 456124", "+7-901-744-22-99", 200)
 
 print(account1)
 print(account2)
