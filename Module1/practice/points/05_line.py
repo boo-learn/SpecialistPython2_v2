@@ -7,13 +7,15 @@ class Point:
         self.y = y
 
     def dist_to(self, other_point: Point) -> float:
-        # TODO-0: скопируйте реализацию из предыдущей задачи
-        ...
-
+        return ((self.x - other_point.x) ** 2 + (self.y - other_point.y) ** 2) ** 0.5
 
 # Ломаная линия задана произвольным количеством последовательных точек
-points = [Point(2, 4), Point(7, 5), Point(5, -2), Point(0, 6), Point(-12, 0)]
+points = [Point(0, 0), Point(0, 5), Point(0, 7), Point(0, 10), Point(0, 12)]
 
-# TODO: Найдите длину ломаной линии
+points_count = len(points)
+line_len = 0
+for i in range(2, len(points)):
+    dist = points[i-1].dist_to(points[i])
+    line_len = line_len + dist
 
-print("Длина ломаной линии = ", ...)
+print("Длина ломаной линии = ", line_len)
