@@ -1,19 +1,67 @@
 class Item:
-    ...
-    # TODO: сюда копируем реализацию класса из предыдущего задания
+    def __init__(self, name: str, weight: float, cost: int):
+        self.name = name  # Название предмета
+        self.weight = weight  # Вес предмета, в килограммах
+        self.cost = cost  # Цена предмета, пусть будет, в рублях
+
+    def show(self) -> str:
+        """
+        Возвращает строковое представление объекта Item
+        """
+        return f"{self.name} вес:{self.weight} цена:{self.cost}"
 
 
 class BackPack:  # рюкзак
-    ...
+    def __init__(self, max_weight: int):
+        self.items = []  # Предметы, которые хранятся в рюкзаке
+        # максимальный суммарный вес предметов, которые можно положить в рюкзак
+        self.max_weight = max_weight
 
     # TODO: сюда копируем реализацию класса из предыдущего задания
 
-    def add_items(self, items: list[Item]):
+    def add_item(self, item: Item) -> None:
         """
-        :param items: Список вещей(объектов класса Item)
+        Добавляет предмет(item) в этот рюкзак
         """
-        # TODO: реализуйте метод так, чтобы из переданного списка предметов выбиралось и помещалось в рюкзак,
-        #  максимальное количество, с учетом ограничения общего веса в рюкзаке. Т.е. берем самые легкие предметы.
+        if self.max_weight - self.sum_weight() >= item.weight:
+            self.items.append(item)
+        else:
+            print(f"Предмет {item.name} слишком тяжелый")
+
+    def show_items(self) -> None:
+        """
+        Выводит(print'ом) все предметы, содержащиеся в рюкзаке в виде нумерованного списка
+        """
+        # TODO: реализуйте метод
+        for i, item in enumerate(self.items):
+            print(f"{i+1}) {item.name}")
+
+    # TODO: добавьте новое свойство .max_weight - максимальный суммарный вес предметов, которые можно положить в рюкзак
+
+    def sum_weight(self) -> float:
+        """
+        Возвращает суммарный вес всех предметов в рюкзаке
+        """
+        # TODO: реализуйте метод
+        summa = 0
+        for item in self.items:
+            summa += item.weight
+        return summa
+
+    def sum_cost(self) -> int:
+        """
+        Возвращает суммарную стоимость всех предметов в рюкзаке
+        """
+        sum_cost = 0
+        # TODO: реализуйте метод
+        for item in self.items:
+            sum_cost += item.cost
+        return sum_cost
+
+    def add_items(self, items: list) -> None:
+        items.sort(key=lambda item: item.weight)
+        for item in items:
+            self.add_item(item)
 
 
 # Создаем предметы
