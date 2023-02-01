@@ -1,21 +1,40 @@
 class Card:
-    # TODO-0: сюда копируем реализацию класса карты из предыдущего задания
-    ...
+    def __init__(self, value: str, suit: str):
+        self.value = value  # Значение карты(2, 3... 10, J, Q, K, A)
+        self.suit = suit  # Масть карты
+
+    def to_str(self) -> str:
+        # TODO-1: метод возвращает строковое представление карты в виде: 10♥ и A♦
+        if self.suit == "Hearts":
+            icon = "\u2665"
+        elif self.suit == "Diamonds":
+            icon = "\u2666"
+        elif self.suit == "Clubs":
+            icon = "\u2663"
+        elif self.suit == "Spades":
+            icon = "\u2660"
+        return f"{self.value}{icon}"
+
+    def equal_suit(self, other_card: "Card") -> bool:
+        # TODO-1: метод возвращает True - если масти карт равны или False - если нет
+        return self.suit == other_card.suit
 
 
 values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
-hearts_cards = []
+hearts_cards = [Card(value, "Hearts") for value in values]
 # TODO-1: добавьте в список hearts_cards все червовые карты(от 2-ки до туза)
 
-diamonds_cards = []
+diamonds_cards = [Card(value, "Diamonds") for value in values[-1::-1]]
 # TODO-2: добавьте в список diamonds_cards все бубновые карты(от туза до 2-ки)
 
 # TODO-3: выведите все карты из списка hearts_cards в терминал через запятую в одну строку:
 # Пример вывода: 2♥, 3♥, 4♥ ... A♥
+for card in hearts_cards:
+    if card != hearts_cards[-1]:
+        print(f"{card.to_str()}", end=", ")
+    else:
+        print(f"{card.to_str()}")
 
-
-cards = [
-    Card("2", "Hearts"),
-    Card("3", "Hearts"),
-    Card("4", "Hearts"),
-    ...]
+cards = []
+values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
+suits = ["Hearts", "Diamonds", "Spades", "Clubs"]
