@@ -1,6 +1,21 @@
+import random
+
 class Card:
-    # TODO-0: сюда копируем реализацию класса карты из предыдущего задания
-    ...
+    def __init__(self, value, suit):
+        self.value = value  # Значение карты(2, 3... 10, J, Q, K, A)
+        self.suit = suit  # Масть карты
+
+    def to_str(self):
+        suit_icons = {
+            "Hearts": "\u2661",
+            "Diamonds": "\u2662",
+            "Spades": "\u2664",
+            "Clubs": "\u2667"
+        }
+        return f"{self.value}{suit_icons[self.suit]}"
+
+    def equal_suit(self, other_card):
+        return self.suit == other_card.suit
 
 
 class Deck:
@@ -9,17 +24,23 @@ class Deck:
         values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
         suits = ["Hearts", "Diamonds", "Spades", "Clubs"]
         self.cards = []
-        # TODO-0: конструктор копируем из предыдущей задачи
+        for suit in suits:
+            for val in values:
+                self.cards.append(Card(val, suit))
 
     def show(self):
-        # TODO-0: копируем из предыдущей задачи
-        ...
+        cards_list = []
+        for card in self.cards:
+            cards_list.append(card.to_str())
+        return str(f"deck[{len(cards_list)}]" + ",".join(cards_list))
 
     def draw(self, x):
-        # TODO-1: Принцип работы данного метода прописан в 00_task_deck.md
-        ...
+        for i in range(x):
+            self.cards.pop(len(self.cards)-1)
+
 
     def shuffle(self):
+        random.shuffle(self.cards)
         # TODO-2: Принцип работы данного метода прописан в 00_task_deck.md
         #   Подсказка: https://www.w3schools.com/python/ref_random_shuffle.asp
         ...
@@ -38,4 +59,5 @@ hand = deck.draw(5)
 # Выводим колоду, чтобы убедиться что 5 верхних карт отсутствуют
 print(deck.show())
 # Выводим список карт "в руке"(список hand)
-print(...)
+for card in deck.cards:
+    print(card.to_str())
