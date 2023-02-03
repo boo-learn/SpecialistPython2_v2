@@ -64,10 +64,10 @@ def gen_list(size, at, to):
     list = []
     for i in range(size):
         list.append(randint(at, to))
-    return(list)
-    pass
+    return (list)
 
-nums = []
+
+
 nums = gen_list(10, -10, 10)
 print("before sort = ", nums)
 sort_choice(nums)
