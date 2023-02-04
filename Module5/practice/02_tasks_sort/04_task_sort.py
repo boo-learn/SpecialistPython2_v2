@@ -5,3 +5,31 @@
 # В примере ниже, два самых больших по модулю числа это: -22.4 и 21.1. Они самые большие по модулю, а их сумма = -1.3
 
 numbers = [-2.5, 13.6, -13, -22.4, -12.8, -6.7, 12.8, -21, 4, 21.1, 0]
+#print(numbers)
+
+
+def sort_choice(nums):
+    i = 0
+    while i < len(nums) - 1:
+        m = i
+        j = i + 1
+        while j < len(nums):
+            if abs(nums[j]) < abs(nums[m]): #Скрипт сортировки скорректиров в части добавления модуля
+                m = j
+            j += 1
+        nums[i], nums[m] = nums[m], nums[i]
+        i += 1
+#Отсортируем список по возрастанию с учётом модуля
+sort_choice(numbers)
+#print(numbers)
+
+#развернём список в обратную сторону
+numbers.reverse()
+#print(numbers)
+
+#Вводим переменную суммы
+sumv = 0
+for i in range(5):
+    sumv += numbers[i]
+print(sumv)
+
