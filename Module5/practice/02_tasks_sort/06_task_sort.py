@@ -1,15 +1,37 @@
-# Рекламная акция
-# В сети магазинов "Н-Аудио" проводится рекламная акция. Каждый второй товар – бесплатно.
-# Естественно, кассирам дано указание пробивать товары в таком порядке, чтобы магазин потерял как можно меньше денег.
-# По списку товаров определите максимальную сумму в чеке.
-#
-# Вход:дано N натуральных чисел – цены товаров.
-# Выход: одно число – максимальная сумма чека.
+import random as r
 
-# Пример
-# Вход:
-# 2 1 10 50 10
-# Выход:
-# 70
-# Пояснение:
-# Возможен такой порядок: 10 2 50 1 10
+
+def sort_choice(nums: list) -> None:
+    i = 0
+    while i < len(nums) - 1:
+        m = i
+        j = i + 1
+        while j < len(nums):
+            if nums[j] < nums[m]:
+                m = j
+            j += 1
+        nums[i], nums[m] = nums[m], nums[i]
+        i += 1
+
+
+n = 10
+# создаем список из случайных чисел от 1 до 15 в количестве n
+cost_list = [r.randint(1, 15)for _ in range(n)]
+# сортируем список цен
+sort_choice(cost_list)
+# инвертируем что бы самые дорогие товары были первыми
+cost_list = cost_list[-1::-1]
+# список в который будем записывать результат
+res_list = []
+if n % 2 != 0:  # если товаров не четное количество то действеум
+    res_list.append(cost_list[0])
+    cost_list = cost_list[1:]
+    for i in range(len(cost_list)//2):
+        res_list.append(cost_list[-1-i])
+        res_list.append(cost_list[i])
+else:  # если товаров четное количество
+    for i in range(len(cost_list)//2):
+        res_list.append(cost_list[i])
+        res_list.append(cost_list[-1-i])
+
+print(res_list)
