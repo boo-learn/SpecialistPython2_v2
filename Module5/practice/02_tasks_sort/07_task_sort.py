@@ -11,3 +11,24 @@
 # 10 1 3 4 3 5 6 7 7 6 1
 # Выход
 # 5
+# 2 2 3
+
+from base_sort import sort_choice
+
+numbers = [12, 1, 3, 4, 3, 5, 6, 7, 7, 7, 1, 6, 1]
+numbers = numbers[1:]
+sort_choice(numbers)
+numbers.reverse()
+
+# max level of prize (3)
+max_level = 0
+prizers = 0
+i = 0
+
+while max_level != 3 and i < len(numbers) - 1:
+    if numbers[i] != numbers[i+1]:
+        max_level += 1
+    # print(i)
+    prizers += 1
+    i += 1
+print(prizers)
