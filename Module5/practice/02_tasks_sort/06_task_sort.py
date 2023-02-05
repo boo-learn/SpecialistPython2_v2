@@ -13,3 +13,37 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
+
+def sort_choice(nums):
+    i = 0
+    while i < len(nums) - 1:
+        m = i
+        j = i + 1
+        while j < len(nums):
+            if i % 2 == 0:
+                if nums[j] > nums[m]:
+                    m = j
+            else:
+                if nums[j] < nums[m]:
+                    m = j
+            j += 1
+        nums[i], nums[m] = nums[m], nums[i]
+        i += 1
+
+
+numbers = []
+
+cheque = input("Введите цены товаров: ")
+numbers = cheque.split(" ")
+
+numbers = [int(_) for _ in numbers]
+
+sort_choice(numbers)
+
+sum_price = 0
+
+for i in range(len(numbers)):
+    if i % 2 == 0:
+        sum_price = sum_price + numbers[i]
+print(sum_price)
+
