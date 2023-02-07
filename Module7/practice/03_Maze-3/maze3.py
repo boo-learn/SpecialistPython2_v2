@@ -1,5 +1,26 @@
-# Скопируйте решение из предыдущей задачи и адаптируйте под условия текущей задачи
-# Чем меньше пришлось вносить изменений в код программы, тем лучше было решение предыдущей задачи
+maze_3 = [
+    [3],  # 0
+    [2],  # 1
+    [1],  # 2
+    [0],  # 3
+    [7],  # 4
+    [8],  # 5
+    [7],  # 6
+    [4, 6],  # 7
+    [5]  # 8
+]
 
+home = 0
+bank = 7
+shop = 2
+maze_3_sol = dfs(maze_3, home)
+print(maze_3_sol)
 
-# Решите задачу и выведите ответ в нужном формате
+if maze_3_sol[bank]:
+    print("Сan go to the bank")
+if not maze_3_sol[bank]:
+    print("Сan't go to the bank")
+if maze_3_sol[shop]:
+    print("Сan go to the shop")
+if not maze_3_sol[shop]:
+    print("Сan't go to the shop")
