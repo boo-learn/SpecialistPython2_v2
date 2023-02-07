@@ -1,5 +1,31 @@
-# Скопируйте решение из предыдущей задачи(Maze-1) и адаптируйте под условия текущей задачи
-# Чем меньше пришлось вносить изменений в код программы, тем лучше было решение предыдущей задачи
+def dfs(graph, start_point):
+    visited = [False] * len(graph)
 
+    def _dfs(v):
+        visited[v] = True
+        for w in graph[v]:
+            if not visited[w]:  # посещён ли текущий сосед?
+                _dfs(w)
 
-# Решите задачу и выведите ответ в нужном формате
+    _dfs(start_point)
+    return visited
+
+graph = [
+    [1, 3], # 0
+    [0, 4], # 1
+    [5], # 2
+    [0, 4, 6], # 3
+    [1, 3], # 4
+    [2, 8], # 5
+    [3], # 6
+    [8], # 7
+    [5, 7], # 8    
+]
+
+start = 7
+result = dfs(graph, 7)
+
+if result[2]:
+    print("Can go to the bank")
+else:
+    print("Can't go to the bank")
