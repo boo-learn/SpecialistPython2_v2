@@ -1,16 +1,41 @@
+import re
+
 class Account:
+ 
     def __init__(self, name: str, passport: str, phone_number: str, start_balance: int = 0):
-        pass
+        passport_reg = r"\d{4} \d{6}"
+        phone_number_reg = r"[+]7-\d{3}-\d{3}-\d{2}-\d{2}"
+        if re.match(passport_reg, passport):
+            self.passport = passport
+        else:
+            raise ValueError("Неверный формат паспорта")
+        if re.match(phone_number_reg, phone_number):
+            self.phone_number = phone_number
+        else:
+            raise ValueError("Неверный формат телефона")
+        self.name = name
+        self.__balance = start_balance
 
-    # TODO-0: сюда копируем реализацию класса Account из предыдущей задачи
+    @property
+    def balance(self) -> int:
+        return self.__balance
 
-    # TODO-1: добавьте проверку паспорта и телефона(в конструкторе) на соответствие заданным форматам
-    #  В случае несоответствия выбрасываем исключение ValueError("Неверный формат телефона/паспорта")
-    #  Проверка информации на корректность - валидация
-    #  Готовые валидаторы можете взять в директории helpers
-    pass
+    def full_info(self) -> str:
+        return f"{self.name} баланс: {self.__balance} руб. паспорт: {self.passport} т.{self.phone_number}"
 
+    def __repr__(self) -> str:
+        return f"{self.name} баланс: {self.__balance} руб."
 
-account1 = Account("Иван", "3230 634563", "+7-900-765-12-34", 1000)  # аккаунт с корректными данными
-account2 = Account("Алексей", "323 456124", "+7-901-744-22-99")  # номер паспорта задан неверно
-account3 = Account("Петр", "3232 456124", "+7-904-745-47", 400)  # номер телефона задан неверно
+    def deposit(self, money: int) -> None:
+        self.__balance += money
+
+    def withdraw(self, money: int) -> int:
+        if self.__balance >= money:
+            self.__balance -= money
+            return money
+        else:
+            raise ValueError
+
+    def transfer(self, target_account: 'Account', money: int) -> None:
+        to_transaction = self.withdraw(money)
+        target_account.__balance += to_transaction
