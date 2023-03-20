@@ -9,8 +9,12 @@ class People:
         # Если задан некорректный возраст, выводим "некорректное значение для возраста" и оставляем старое значение
         # Метод меняет свойство self.age на значение new_age
         # TODO: напишите реализацию данного метода
-        ...
-
+        
+        if type(new_age) == int and 101 > new_age > 0:
+            self.age = new_age
+        else:
+            raise ValueError("Возраст должен быть числом от 1 до 100")
+            
     def full_name(self) -> str:
         return f"{self.surname} {self.name}"
 
