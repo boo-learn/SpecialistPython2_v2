@@ -10,7 +10,11 @@ class Card:
 
     def equal_suit(self, other_card):
         # TODO-1: метод возвращает True - если масти карт равны или False - если нет
-        ...
+        if self.suit == other_card.suit:
+            flag = True
+        else:
+            flag = False
+        return flag
 
 
 # Создадим несколько карт
