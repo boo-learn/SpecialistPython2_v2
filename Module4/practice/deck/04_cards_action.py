@@ -1,12 +1,14 @@
-class Card:
-    # TODO-0: сюда копируем реализацию класса карты из предыдущего задания
-    ...
+for suit in suits:
+    for value in values:
+        card = Card(value, suit)
+        cards.append(card)
 
 
-cards = []
-values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
-suits = ["Hearts", "Diamonds", "Spades", "Clubs"]
-# TODO-1: в список cards добавьте ВСЕ карты всех мастей
 
-# TODO-2: Выведите карты в формате: cards[кол-во]2♥, 3♥, 4♥ ... A♥, 2♦, 3♦ ... A♦, ...
-#  кол-во берем от размера списка cards
+
+cards_str = []
+for card in cards:
+    cards_str.append(card.to_str())
+
+result = ",".join(cards_str)
+print(result)
