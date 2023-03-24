@@ -9,3 +9,32 @@
 # Выведите: учеников, изучающих только один язык
 
 # TODO: your code here...
+
+
+import collections
+
+
+counter = collections.Counter()
+
+people = [
+    {"name": "Alex",
+     "surname": "Ivanov",
+     "language": ["eng", "french"]
+     },
+    {"name": "Ivan",
+     "surname": "Alexov",
+     "language": ["eng", "french"]
+     },
+    {"name": "Sveta",
+     "surname": "Ivanova",
+     "language": ["eng"]
+     },
+    {"name": "Ivan",
+     "surname": "Svetov",
+     "language": ["french"]
+     },   
+]
+
+"""Сделал только структуру"""
+
+
