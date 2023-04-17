@@ -9,7 +9,20 @@ class Coin:
         """
         Подбрасывание монетки. # heads-орел/tails-решка
         """
-        self.side = ...  # random: heads/tails
+        self.side = random.choice(['heads', 'tails'])
+
+n = int(input("Введите количество монеток: "))
+coins = [Coin() for _ in range(n)]
+
+for coin in coins:
+    coin.flip()
+
+heads_count = sum(coin.side == 'heads' for coin in coins)
+tails_count = n - heads_count
+
+print(f"Орлов {heads_count/n*100:.2f}%")
+print(f"Решек {tails_count/n*100:.2f}%")
+# print(f"{heads_count/n*100:.2f}% орлов - {tails_count/n*100:.2f}% решек")
 
 # Задание:
 # 1. Создайте список из n-монеток, n - вводится с клавиатуры
