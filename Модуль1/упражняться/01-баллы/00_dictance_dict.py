@@ -12,3 +12,4 @@ point2 = {"x": -2, "y": 4}
 dist = distance(point1, point2)
 
 print("Расстояние между точками = ", dist)
+test
