@@ -8,7 +8,10 @@ def distance(p1: Point, p2: Point) -> float:
     """
     Расстояние между двумя точками
     """
-    # TODO: напишите тело функции
+    x_diff = p2.x - p1.x
+    y_diff = p2.y - p1.y
+    dist = (x_diff ** 2 + y_diff ** 2) ** 0.5
+    return round(dist)
 
 
 # Даны две точки на координатной плоскости
