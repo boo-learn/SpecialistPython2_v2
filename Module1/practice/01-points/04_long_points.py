@@ -8,12 +8,19 @@ class Point:
 
     def dist_to(self, other_point: Point) -> float:
         # TODO-0: скопируйте реализацию из предыдущей задачи
-        ...
-
-
-# Дан список из произвольного количества точек:
+         return ((self.x - other_point.x) ** 2 + (self.y - other_point.y) ** 2) ** 0.5
+#
+#
+# # Дан список из произвольного количества точек:
 points = [Point(2, 7), Point(12, 7), Point(5, -2), Point(10, -16), Point(-12, 0)]
+#
+# # TODO-1: найдите точку наиболее удаленную от начала координат и выведите ее координаты
+zero_point = Point(0, 0)
+max_dist = 0
+for point in points:
+    dist = point.dist_to(zero_point)
+    if dist > max_dist:
+        max_dist = dist
+        max_point = point
 
-# TODO-1: найдите точку наиболее удаленную от начала координат и выведите ее координаты
-
-print("Координаты наиболее удаленной точки = ", ...)
+print("Координаты наиболее удаленной точки = ", max_point.x, max_point.y)
