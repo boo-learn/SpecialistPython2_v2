@@ -1,13 +1,32 @@
 class Item:
-    ...
-    # TODO: сюда копируем реализацию класса из предыдущего задания
+    def __init__(self, name: str, weight: float, cost: int):
+        self.name = name  # Название предмета
+        self.weight = weight  # Вес предмета, в килограммах
+        self.cost = cost  # Цена предмета, пусть будет, в рублях
+
+    def show(self):
+        return f"{self.name} вес:{self.weight} цена:{self.cost}"
 
 
 class BackPack:  # рюкзак
-    ...
+    def __init__(self, max_weight=10):
+        self.items = []  # Предметы, которые хранятся в рюкзаке
+        self.max_weight = max_weight
 
-    # TODO: сюда копируем реализацию класса из предыдущего задания
-    # TODO: добавьте новое свойство .max_weight - максимальный суммарный вес предметов, которые можно положить в рюкзак
+    def add_item(self, item: Item) -> None:
+        """
+        Добавляет предмет(item) в этот рюкзак
+        """
+        # TODO: реализуйте метод
+        self.items.append(item.name)
+
+    def show_items(self) -> None:
+        """
+        Выводит(print'ом) все предметы, содержащиеся в рюкзаке в виде нумерованного списка
+        """
+        # TODO: реализуйте метод
+
+        print(*self.items)
 
     def sum_weight(self) -> float:
         """
@@ -32,10 +51,13 @@ item4 = Item("Кот", 0.5, 250)
 backpack = BackPack(max_weight=30)
 
 # Пытаемся добавлять предметы в рюкзак
-backpack.add_item(item1)
-backpack.add_item(item2)
-backpack.add_item(item3)
-backpack.add_item(item4)
+items = [item1, item2, item3, item4]
+for i in items:
+    if i.weight < backpack.max_weight:
+        backpack.add_item(i)
+        backpack.max_weight -= i.weight
+    else:
+        print(f"Предмет {i.name} слишком тяжелый")
 # TODO: Если предмет не помещается в рюкзак по весу - вывести сообщение "Предмет {name} слишком тяжелый",
 #  и сам предмет не должен быть добавлен в рюкзак.
 #  Если предмет помещает, то добавляем его в рюкзак.
