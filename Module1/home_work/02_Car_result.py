@@ -2,13 +2,25 @@
 # Само задание в файле 02_Сar_task.md
 
 class Car:
-    def __init__(self, ...):
-        self.gas = ...
-        self.capacity = ...
-        self.gas_per_km = ...
+    def __init__(self, capacity, gas_per_km, gas=0):
+        self.gas = gas  # бензина в баке
+        self.capacity = capacity  # Объем бака
+        self.gas_per_km = gas_per_km   # Расход на 1 км
+        self.mileage = 0  # Пробег
 
-    def fill(self, ...) -> None:
-        ...
+    def fill(self, quantity: (int, float)) -> None:
+        if quantity < self.capacity:
+            self.gas = quantity
+        else:
+            self.gas = self.capacity
+            remain = quantity - self.capacity
+            print(f"В баке {self.capacity}, не влезло {remain}")
 
-    def ride(self, ...) -> None:
-        ...
+    def ride(self, distance: (int, float)) -> None:
+        spend_gas = distance*self.gas_per_km
+        if spend_gas > self.gas:
+            print("Не хватит топлива")
+        else:
+            self.mileage += distance
+            self.gas -= spend_gas
+
