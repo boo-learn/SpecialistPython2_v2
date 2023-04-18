@@ -16,7 +16,7 @@ class Car:
     def ride(self, distance: (int, float)) -> None:
         spend_gas = distance*self.gas_per_km
         if spend_gas > self.gas:
-            self.mileage += self.gas*self.gas_per_km
+            self.mileage += self.gas/self.gas_per_km
             way_to_go = distance - self.gas/self.gas_per_km
             self.gas = 0
             print(f"Топливо кончилось, осталось до пункта назначения {way_to_go}")
