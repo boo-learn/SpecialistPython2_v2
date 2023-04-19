@@ -33,4 +33,9 @@ books_catalog = [
 print("Найти все книги по фамилии автора")
 surname = input("Фамилия автора: ")
 # TODO-1: Выведите нумерованный список книг автора с фамилией surname
+
+for n, book in enumerate(books_catalog, 1):
+    if surname == book.author.surname:
+        print(f'{n}. "{book.name}"')
+        
 #  примечание: если книг для автора с указанной фамилией нет - выведите "Книги не найдены"
