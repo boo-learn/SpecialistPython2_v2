@@ -1,21 +1,31 @@
 class Card:
-    # TODO-0: сюда копируем реализацию класса карты из предыдущего задания
-    ...
+    def __init__(self, value, suit):
+        self.value = value
+        self.suit = suit
+
+    def to_str(self):
+        suit_symbols = {"Hearts": "\u2665", "Diamonds": "\u2666", "Clubs": "\u2665", "Spades": "\u2665"}
+        return self.value + suit_symbols[self.suit]
+
+    def equal_suit(self, new_card) -> bool:
+        return self.suit == new_card.suit
+
+
+def print_cards(cards_list):
+    temp_st = ""
+    for card in cards_list:
+        temp_st += f"{card.to_str()}, "
+    print(temp_st[:-2])
 
 
 values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
 hearts_cards = []
-# TODO-1: добавьте в список hearts_cards все червовые карты(от 2-ки до туза)
+for value in values:
+    hearts_cards.append(Card(value, "Hearts"))
 
 diamonds_cards = []
-# TODO-2: добавьте в список diamonds_cards все бубновые карты(от туза до 2-ки)
+for value in reversed(values):
+    diamonds_cards.append(Card(value, "Hearts"))
 
-# TODO-3: выведите все карты из списка hearts_cards в терминал через запятую в одну строку:
-# Пример вывода: 2♥, 3♥, 4♥ ... A♥
-
-
-cards = [
-    Card("2", "Hearts"),
-    Card("3", "Hearts"),
-    Card("4", "Hearts"),
-    ...]
+print_cards(hearts_cards)
+print_cards(diamonds_cards)
