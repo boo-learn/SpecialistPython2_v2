@@ -48,6 +48,8 @@ for books in books_catalog:
         i+=1
 
 if lst_of_find:
-    print(*lst_of_find, end="\n")
+    for book in lst_of_find:
+        print(book)
 else:
     print("Книги не найдены")
+
