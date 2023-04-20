@@ -88,7 +88,7 @@ class Deck:
         # TODO-1: реализуем новый метод "сдвиг"
         #  Принцип работы: перемещает num_card с верха колоды под низ
         shifted_card = self.cards[:num_card]
-        self.cards = self.cards[num_card:]
+        del self.cards[:num_card]
         self.cards.extend(shifted_card)
 
 
