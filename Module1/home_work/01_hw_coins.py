@@ -9,7 +9,31 @@ class Coin:
         """
         Подбрасывание монетки. # heads-орел/tails-решка
         """
-        self.side = ...  # random: heads/tails
+        self.side = random.randint(0,1)
+
+n =  int(input("Введите количестов монет:"))
+coins = []
+heads = []
+tails = []
+
+def proc(a,n):
+    return (a*100//n)
+
+for i in range(n):
+    coins.append(Coin())
+
+for coin in coins:
+    coin.flip()
+    if coin.side:
+        heads.append(coin.side)
+        continue
+    tails.append(coin.side)
+
+proc_heads=proc(len(heads), n)
+proc_tails=proc(len(tails), n)
+
+print(f"heads: {proc_heads}%, tails: {proc_tails}%")
+
 
 # Задание:
 # 1. Создайте список из n-монеток, n - вводится с клавиатуры
