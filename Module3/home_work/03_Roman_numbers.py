@@ -1,60 +1,85 @@
-# Задание:
-# Напишите класс для работы с римскими цифрами.
-# Подробнее про Римские цифры тут: http://graecolatini.bsu.by/htm-different/num-converter-roman.htm
 class Roman:
-    def __init__(self, number):
-        pass
+    ROMANS = {1000: 'M', 500: 'D', 100: 'C', 50: 'L', 10: 'X', 5: 'V', 1: 'I'}
 
+    def __init__(self, dec: int):
+        self.__dec = dec
+        self.__dec_copy = dec
+        self.__rom = []
+        self.__convert()
 
-# Реализуйте операции:
-# Сложение
-# Вычитание
-# Умножение
-# Целочисленное деление
-# Сравнение (> < == !=)
-# Пример:
-n1 = Roman(10)
-n2 = Roman(14)
-print(n1)  # X
-print(n2)  # XIV
-n3 = n1 + n2
-print(n3)  # XXIV
-n3 *= 2
-print(n3)  # XLVIII
+    def __str__(self):
+        return ''.join(self.__rom)
 
-# ограничение: 4-значные числа.
-# Алгоритм
-# 1. Выделяем (если есть) количество целых тысяч.
-# Полученное значение позволить сгенерировать строку с n количеством «M» (читаем, n*1000).
-# Пример: 2012 после первого пункта даст «MM»
-#
-# 2. Получаем остаток после деления на 1000, чтобы выделить в дальнейшем следующие значения.
-#
-# 3. Выделяем (если возможно), целые 500. При этом учитываем что если полученное значение равно 4 (5+4=9),
-# то следует записывать как значение 1000-100, что в римский СС равнозначно «CM».
-# Пример: 1887 после этого пункта даст нам «MD».
-# 1945 соответственно «MCM».
-#
-# 4. Получаем остаток от деления на 500.
-#
-# 5. Делим на 100 чтобы выделить целые сотни и складываем к предыдущему результату. Учитываем что если получили 4,
-# что равнозначно 400, то записываем как 500-100, то есть «CD».
-# Пример: 1709 даст после этого шага «MDCCC».
-#
-# 6. Получаем остаток от деления на 100.
-#
-# 7. Выделяем из него целые полсотни. Если значение будет равно 4 (то есть 90), то записываем как 100-10,
-# что равно «XC». Иначе прибавляем к строке «L»
-# Пример: 1986 после всего выдаст нам «MCML».
-#
-# 8. Выделяем остаток от 50.
-#
-# 9. Выделяем целое количество десятков и складываем к строке n раз символ «X».
-# При этом учитываем что 40 пишется как 50-10, то есть «XL».
-# Пример: 1986 после всего выдаст нам «MCMLXXX».
-#
-# 10. Получаем остаток от деления на 10. Этот шаг отличается от других тем,
-# что можно сразу приравнять остаток к его эквиваленту. 1=I, 7=VII и так далее.
-#
-# После перебора числа этим алгоритмом мы получаем примерно такое:
-# 2012 == MMXII
+    def dec(self):
+        return self.__dec
+
+    def rom(self):
+        return ''.join(self.__rom)
+
+    def __convert(self):
+        m_s = self.__dec_copy // 1000
+        self.__dec_copy = self.__dec_copy % 1000
+        self.__rom += Roman.ROMANS[1000] * m_s
+
+        d_s = self.__dec_copy // 500
+        if d_s:
+            c_s = (self.__dec_copy - 500) // 100
+            if c_s == 4:
+                self.__rom += Roman.ROMANS[100] + Roman.ROMANS[1000]
+            else:
+                self.__rom += Roman.ROMANS[500] + Roman.ROMANS[100] * c_s
+        else:
+            c_s = self.__dec_copy // 100
+            if c_s:
+                self.__rom += Roman.ROMANS[100] * c_s
+
+        self.__dec_copy = self.__dec_copy % 100
+        l_s = self.__dec_copy // 50
+        if l_s:
+            x_s = (self.__dec_copy - 50) // 10
+            if x_s == 4:
+                self.__rom += Roman.ROMANS[10] + Roman.ROMANS[100]
+            else:
+                self.__rom += Roman.ROMANS[50] + Roman.ROMANS[10] * x_s
+        else:
+            x_s = self.__dec_copy // 10
+            if x_s:
+                self.__rom += Roman.ROMANS[10] * x_s
+
+        self.__dec_copy = self.__dec_copy % 10
+        v_s = self.__dec_copy // 5
+        if v_s:
+            i_s = self.__dec_copy - 5
+            if i_s == 4:
+                self.__rom += Roman.ROMANS[1] + Roman.ROMANS[10]
+            else:
+                self.__rom += Roman.ROMANS[5] + Roman.ROMANS[1] * i_s
+        else:
+            if self.__dec_copy == 4:
+                self.__rom += Roman.ROMANS[1] + Roman.ROMANS[5]
+            else:
+                self.__rom += Roman.ROMANS[1] * self.__dec_copy
+
+    def __add__(self, other):
+        return Roman(self.__dec + other.__dec)
+
+    def __sub__(self, other):
+        return Roman(self.__dec - other.__dec)
+
+    def __mul__(self, k):
+        return Roman(self.__dec * k)
+
+    def __floordiv__(self, other):
+        return Roman(self.__dec // other.__dec)
+
+    def __gt__(self, other):
+        return self.__dec > other.__dec
+
+    def __lt__(self, other):
+        return not self.__gt__(other)
+
+    def __eq__(self, other):
+        return self.__dec == other.__dec
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
