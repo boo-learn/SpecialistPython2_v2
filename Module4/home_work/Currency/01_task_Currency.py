@@ -1,15 +1,19 @@
-# Задание: Создать удобную структуру для работы с курсами валют на определенную дату
-# Курсы валют будем брать с этого сайта: https://www.cbr-xml-daily.ru/ .
-# Нас будут интересовать только курсы доллара и евро.
-# Как получить курс по API со стороннего сайта - смотри в helpers/request_currency.py
+import requests
+from datetime import datetime
+
 
 class Currency:
-    def __init__(self, type):
-        pass
+    def __init__(self, currency):
+        possible_currencies = {"dollar": "usd", "euro": "eur"}
+        for key, value in possible_currencies.items():
+            if currency == key:
+                self._currency = value
+            elif currency == value:
+                self._currency = value
 
-
-usd = Currency("usd")  # Создаем валюту "Доллар"
-euro = Currency("euro")  # Создаем валюту "Евро"
-print(usd['02.09.2020'])  # ← получение курса доллара на указанную дату
-print(euro['12.10.2018'])  # ← получение курса евро на указанную дату
-print(euro['12.14.2018'])  # ← в случае некорректной выбрасываем исключение
+    def __getitem__(self, key):
+        input_date = datetime.strptime(key, '%d.%m.%Y')
+        date = str(input_date.strftime('%Y/%m/%d'))
+        url = f"https://www.cbr-xml-daily.ru/archive/{date}/daily_json.js"
+        response = requests.get(url)
+        return response.json()['Valute'][self._currency.upper()]['Value']
