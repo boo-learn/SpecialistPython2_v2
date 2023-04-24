@@ -3,9 +3,29 @@
 # Нас будут интересовать только курсы доллара и евро.
 # Как получить курс по API со стороннего сайта - смотри в helpers/request_currency.py
 
+import requests
+
+
 class Currency:
     def __init__(self, type):
-        pass
+        self.type = None
+        if type == 'usd':
+            self.type = 'USD'
+        if type == 'euro':
+            self.type = 'EUR'
+
+    def __getitem__(self, date):
+        split_date = date.split('.')
+        url = f'https://www.cbr-xml-daily.ru/archive/{split_date[2]}/{split_date[1]}/{split_date[0]}/daily_json.js'
+        response = requests.get(url)
+        if response.status_code != 200:
+            print(response.json())
+            raise ValueError
+        else:
+            if self.type:
+                self.__value = response.json()['Valute'][self.type]['Value']
+                return self.__value
+
 
 
 usd = Currency("usd")  # Создаем валюту "Доллар"
