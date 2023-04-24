@@ -5,3 +5,12 @@
 # В примере ниже, два самых больших по модулю числа это: -22.4 и 21.1. Они самые большие по модулю, а их сумма = -1.3
 
 numbers = [-2.5, 13.6, -13, -22.4, -12.8, -6.7, 12.8, -21, 4, 21.1, 0]
+numbers_dict = {}
+for i, number in enumerate(numbers):
+    numbers_dict[abs(number)] = i
+sorted_keys = sorted(numbers_dict.keys())
+
+sum = 0
+for key in sorted_keys[-5:]:
+    value = numbers[numbers_dict[key]]
+    sum += value
