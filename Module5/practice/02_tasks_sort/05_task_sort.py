@@ -26,9 +26,12 @@ staff = [
         'salary': 34500
     },
 ]
+sorted_staff = sorted(staff, key=lambda x: (-x['salary'], x['surname'], x['name']))
 
-# 1. Выведите список сотрудников, отсортированный по уменьшению их заработной платы.
-# Если у нескольких сотрудников одинаковая ЗП, то добавьте сортировку по Фамилии
 print("Список сотрудников отсортированный по уменьшению ЗП:")
+for s in sorted_staff:
+    print(s['surname'], s['name'], s['salary'])
 
-# 2. Найдите сумму зарплат трех самых низкооплачиваемых сотрудников:
+lowest_salaries = [s['salary'] for s in sorted_staff[-3:]]
+total_salary = sum(lowest_salaries)
+print("Сумма зарплат трех самых низкооплачиваемых сотрудников:", total_salary)
