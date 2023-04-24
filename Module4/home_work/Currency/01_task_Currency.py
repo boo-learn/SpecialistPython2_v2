@@ -6,9 +6,8 @@
 import requests
 
 
-class Currency(dict):
+class Currency:
     def __init__(self, type):
-        super(Currency).__init__()
         self.type = None
         if type == 'usd':
             self.type = 'USD'
@@ -18,14 +17,15 @@ class Currency(dict):
     def __getitem__(self, date):
         split_date = date.split('.')
         url = f'https://www.cbr-xml-daily.ru/archive/{split_date[2]}/{split_date[1]}/{split_date[0]}/daily_json.js'
-        response = requests.get(url).json()
-        if not response.get('Valute', None):
-            print(response)
+        response = requests.get(url)
+        if response.status_code != 200:
+            print(response.json())
             raise ValueError
         else:
             if self.type:
-                self.__value = response['Valute'][self.type]['Value']
+                self.__value = response.json()['Valute'][self.type]['Value']
                 return self.__value
+
 
 
 usd = Currency("usd")  # Создаем валюту "Доллар"
