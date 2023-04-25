@@ -11,3 +11,16 @@
 # 10 1 3 4 3 5 6 7 7 6 1
 # Выход
 # 5
+winners_point = [10, 1, 3, 4, 3, 5, 6, 7, 7, 6, 1]
+
+winner_count = 0
+winners_grade = 1
+
+while winners_grade <= 3:
+    max_point = max(winners_point)
+    while max_point in winners_point:
+        winners_point.remove(max_point)
+        winner_count += 1
+    winners_grade += 1
+
+print(winner_count)
