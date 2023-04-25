@@ -13,12 +13,12 @@
 # 70
 # Пояснение:
 # Возможен такой порядок: 10 2 50 1 10
-goods_price = [2, 1, 10, 50, 10, -33]
-goods_price.sort(key=lambda n: n)
+goods_price = [2, 1, 10, 50, 10]
+goods_price.sort()
 
-most_price_goods = ((len(goods_price)+1) // 2)
+most_price_goods = (len(goods_price)+1) // 2
 sum_price = 0
-a = goods_price[- most_price_goods: ]
+a = goods_price[- most_price_goods:]
 for price in goods_price[- most_price_goods:]:
     sum_price += price
 
