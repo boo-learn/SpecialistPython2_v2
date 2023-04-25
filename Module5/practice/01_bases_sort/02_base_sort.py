@@ -1,6 +1,7 @@
 # Все алгоритмы сортировки из examples/ оберните в функции
 import random
 
+
 def bubble_sort(nums: list) -> None:
     swapped = True
     j = 0
@@ -27,7 +28,7 @@ def sort_choice(nums: list) -> None:
         nums[i], nums[m] = nums[m], nums[i]
         i += 1
 
-
+2
 def quick_sort(nums: list) -> None:
     # Создадим вспомогательную функцию, которая вызывается рекурсивно
     def partition(nums, low, high):
