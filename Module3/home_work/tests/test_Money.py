@@ -55,7 +55,7 @@ def test_mul():
     money1 = Money(22, 55)
     money2 = money1 * 2
     assert str(money1) == "22руб 55коп"
-    assert str(money2) == "45руб 5коп"
+    assert str(money2) == "45руб 10коп"
     assert isinstance(money2, Money)
     money3 = Money(4, 105)
     money4 = money3 * 3
