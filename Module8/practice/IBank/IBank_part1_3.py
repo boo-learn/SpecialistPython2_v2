@@ -1,39 +1,51 @@
+from typing import List
+import re
+
+
 class Account:
-    # TODO-0: скопируйте реализацию из предыдущего решения
+    def __init__(self, name: str, passport: str, phone_number: str, start_balance: int = 0):
+        self.name = name
+        self.passport = None
+        self.phone_number = None
+        self.__check_passport(passport)
+        self.__check_phone(phone_number)
+        self.__balance = start_balance
+        self.info = self.full_info()
+        self.__history: List[Operation] = []
 
-    # TODO-1: напишите реализацию метода transfer()
+    def __check_passport(self, passport):
+        passport_pattern = r"\d{4} \d{6}"
+        if re.match(passport_pattern, passport):
+            self.passport = passport
+        else:
+            raise ValueError('Неверный формат паспортных данных')
+
+    def __check_phone(self, phone):
+        phone_pattern = r"[+]7-\d{3}-\d{3}-\d{2}-\d{2}"
+        if re.match(phone_pattern, phone):
+            self.phone_number = phone
+        else:
+            raise ValueError('Неверный формат номера телефона')
+
+    def full_info(self) -> str:
+        return f"{self.name} баланс: {self.__balance} руб. паспорт: {self.passport} т.{self.phone_number}"
+
+    def __repr__(self) -> str:
+        return self.info
+
+    @property
+    def balance(self):
+        return self.__balance
+
+    def deposit(self, amount):
+        self.__balance += amount
+
+    def withdraw(self, amount):
+        if self.__balance - amount >= 0:
+            self.__balance -= amount
+        else:
+            raise ValueError('Недостаточно средств')
+
     def transfer(self, target_account: 'Account', amount: int) -> None:
-        """
-        Перевод денег на счет другого клиента
-        :param target_account: счет клиента для перевода
-        :param amount: сумма перевода
-        :return:
-        """
-        pass
-
-
-account1 = Account("Иван", "3230 634563", "+7-900-765-12-34", 1000)
-account2 = Account("Алексей", "3232 456124", "+7-901-744-22-99", 200)
-
-print(account1)
-print(account2)
-
-# Переводим деньги с первого аккаунт на второй:
-try:
-    account1.transfer(account2, 500)
-except ValueError as e:
-    print(e)
-
-# Проверяем изменения баланса:
-print(account1)
-print(account2)
-
-# Переводим еще с первого аккаунт на второй:
-try:
-    account1.transfer(account2, 600)
-except ValueError as e:
-    print(e)
-
-# Проверяем изменения баланса:
-print(account1)
-print(account2)
+        self.withdraw(amount)
+        target_account.deposit(amount)
