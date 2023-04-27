@@ -38,3 +38,25 @@ class Account:
         if self.__balance - amount < 0:
             raise ValueError
         self.__balance -= amount
+
+
+# Создаем тестовый аккаунт:
+account1 = Account("Алексей", "3232 456124", "+7-901-744-22-99", start_balance=500)
+
+# Вносим сумму на счет:
+account1.deposit(600)
+print(account1)
+
+# Снимаем деньги со счета:
+try:
+    account1.withdraw(1000)
+except ValueError as e:
+    print(e)
+print(account1)
+
+# Пробуем снять еще:
+try:
+    account1.withdraw(1000)
+except ValueError as e:
+    print(e)
+print(account1)
