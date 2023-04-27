@@ -1,35 +1,73 @@
-## ТЗ “I-Bank” Часть-2 "История операций"
+class Account:
+    def __init__(self, name: str, passport: str, phone_number: str, start_balance: int = 0):
+        self.name = name
+        self.passport = passport
+        self.phone_number = phone_number
+        self.__balance = start_balance
+        self.__history = []
 
-Дополнение к документу “ТЗ I-Bank Часть-1”
+    def full_info(self) -> str:
+        """
+        Полная информация о счете в формате: "Иван баланс: 100 руб. паспорт: 3200 123456 т.+7-900-200-02-03"
+        """
+        return f"{self.name} баланс: {self.__balance} руб. паспорт: {self.passport} т.{self.phone_number}"
+
+    def __repr__(self) -> str:
+        """
+        :return: Информацию о счете в виде строки в формате "Иван баланс: 100 руб."
+        """
+        return f"{self.name} баланс: {self.__balance} руб."
+
+    def add_history(self, msg):
+        self.__history.append(msg)
+
+    @property
+    def balance(self) -> int:
+        return self.__balance
+
+    @balance.getter
+    def balance(self) -> int:
+        return self.__balance
+
+    def deposit(self, amount: int) -> None:
+        """
+        Внесение суммы на текущий счет
+        :param amount: сумма
+        """
+        self.__balance += amount
+        self.add_history(f"Пополнение {amount} руб.")
+
+    def withdraw(self, amount: int) -> None:
+        if amount <= self.__balance:
+            self.__balance -= amount
+            self.add_history(f"Снятие {amount} руб.")
+        else:
+            raise ValueError("Денег на счету недостаточно")
+
+    def transfer(self, target_account: 'Account', amount: int) -> None:
+        """
+        Перевод денег на счет другого клиента
+        :param target_account: счет клиента для перевода
+        :param amount: сумма перевода
+        :return:
+        """
+        if self.__balance >= amount:
+            self.__balance -= amount
+            target_account.__balance += self.__balance
+            self.add_history(f"Перевод {amount} руб. на счёт клиента: {target_account.name}")
+            target_account.add_history(f"Перевод {amount} руб. на счёт клиента: {self.name}")
+        else:
+            raise ValueError("Недостаточно денег на счёте")
 
 
-### Доработки
+account1 = Account("Иван", "3230 634563", "+7-900-765-12-34", 1000)
+account2 = Account("Алексей", "3232 456124", "+7-901-744-22-99", 200)
 
-1. Необходимо добавить возможность просмотра всей **истории операций** над счетом клиента(поступление, снятие, переводы)
+print(account1)
+print(account2)
 
-### Формат вывода истории:
-
-**Пополнение** **600** руб. \
-**Снятие** **400** руб. \
-**Пополнение** **1000** руб. \
-**Перевод** **750** руб. на счет клиента: **Петр** \
-**Поступление** **300** руб. со счета клиента: **Александр** \
-...
-
-**Жирным** выделена информация, которая _обязательно_ должна присутствовать в строковом представлении истории операций.
-Типы операций должны именоваться именно этими терминами: "Пополнение", "Снятие", "Перевод" и "Поступление".
-
-**_Обратите внимание!_** Операция "перевод другому клиенту" создает две операции:
-1. Операцию "**Перевод**", на счету отправителя
-2. Операцию "**Поступление**", на счету получателя
-
-**_Обратите внимание!_** В историю записываем только операции меняющие баланс счета. Например, попытка снять денег больше, 
-чем есть на счету, будет отклонена и не будет записана в историю.
-
-### Правило реализации
-
-Информацию о каждой операции (пополнение, снятие и т.д.) храним в виде отдельного объекта(см. `iBank_part2.py`)
-
-## Тестирование
-
-Выполнив все доработки, проверьте работу своего класса, запустив тесты(`tests/test_account_part2.py`)
+# Переводим деньги с первого аккаунт на второй:
+try:
+    account1.transfer(account2, 500)
+except ValueError as e:
+    print(e)
