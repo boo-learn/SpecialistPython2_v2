@@ -3,7 +3,7 @@
 
 from typing import List
 import pytest
-from IBank_part1_3 import Account
+from Module8.practice.IBank.IBank_part1_3 import Account
 
 
 @pytest.fixture

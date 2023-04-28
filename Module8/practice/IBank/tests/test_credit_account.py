@@ -1,6 +1,6 @@
 from typing import List
 import pytest
-from IBank_part4_2 import CreditAccount
+from Module8.practice.IBank.IBank_part4_2 import CreditAccount
 
 
 @pytest.fixture
